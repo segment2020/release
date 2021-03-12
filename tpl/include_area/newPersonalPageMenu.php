@@ -13,16 +13,12 @@ if (CModule::IncludeModule('forum'))
 
 	if (0 === (int)$newMessageCount['UNREAD_PM'])
 		$newMessageCount = '';
-}
+} 
 else
 	$newMessageCount = '';
 ?>
-<a href="/personal/" class="list-group-item"><img src="/tpl/images/lkmenu1.png">Профиль пользователя</a>
-
-<? if ( CSite::InGroup(array(7)) ) {?>
-<a href="/personal/mymaterials/" class="list-group-item"><img src="/tpl/images/lkmenu1.png">Мои публикации</a>
-
-<? }  
+	<a href="/personal/" class="list-group-item"><img src="/tpl/images/lkmenu1.png">Профиль пользователя</a>
+<?
 	use \Bitrix\Main\UserGroupTable;
 
 	$res = UserGroupTable::getList(array('filter' => array('USER_ID' => $USER->GetID(), 'GROUP_ID' => array(ID_GROUP_COMPANY_STAFF, ID_GROUP_COMPANY_ADMIN))));
