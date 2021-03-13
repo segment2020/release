@@ -228,7 +228,7 @@ submitElement.addEventListener("click", () => {
 
 // Предварительный просмотр.
 $(document).on("click", ".newPreviewbtn", function (e) {
-	e.preventDefault(); 
+	e.preventDefault();   
 	var nameEl = document.getElementById("lk_name");
 	var prevTextEl = document.getElementById("ce-preview_text");
 	var companyNameEl = document.getElementById("personalPageCompanyName");
@@ -249,7 +249,7 @@ $(document).on("click", ".newPreviewbtn", function (e) {
 		else
 			var prevText = ""; 
 
-		var prewHead = '<div class="detailinfo clearfix"><div class="detailinfofirm floatleft">Публикация компании <a href="#">' + companyName + '</a></div><div class="detailinfolink floatleft"><a href="#"><i class="icon-icons_main-10"></i><span>Все новости компании</span></a></div></div>';
+		var prewHead = '<div class="detailinfo clearfix"><div class="detailinfofirm floatleft">Публикация <a href="#">' + companyName + '</a></div><div class="detailinfolink floatleft"><a href="#"><i class="icon-icons_main-10"></i><span>Все новости компании</span></a></div></div>';
 
 		prevText = '<div class="descrcontent">' + prevText + '</div>'; 
 
