@@ -14,7 +14,7 @@ $this->setFrameMode(false);
 if(!CModule::IncludeModule("iblock"))
 {
 	ShowError(GetMessage("CC_BIEAF_IBLOCK_MODULE_NOT_INSTALLED"));
-	return;
+	return; 
 }
 
 $arElement = false;
@@ -80,15 +80,20 @@ if(!is_array($arParams["GROUPS"]))
 $arGroups = $USER->GetUserGroupArray();
 
 // check whether current user can have access to add/edit elements
-if ($arParams["ID"] == 0)
+if(true)
+{ 
+	$bAllowAccess = true;
+}
+elseif ($arParams["ID"] == 0)
 {
 	$bAllowAccess = count(array_intersect($arGroups, $arParams["GROUPS"])) > 0 || $USER->IsAdmin();
 }
 else
 {
 	// rights for editing current element will be in element get filter
-	$bAllowAccess = $USER->GetID() > 0;
+	$bAllowAccess = $arParams["USER_ID"] > 0;
 }
+
 
 $arResult["ERRORS"] = array();
 
@@ -282,7 +287,7 @@ if ($bAllowAccess)
 		// get current iblock element
 
 		$rsIBlockElements = CIBlockElement::GetList(array("SORT" => "ASC"), $arFilter);
-		if (CSite::InGroup(array(1))) {
+		if (CSite::InGroup(array(1, 5, 6, 7, 9))) {
 			if ($bWorkflowIncluded)
 			{
 				$LAST_ID = CIBlockElement::WF_GetLast($arElement['ID']);

@@ -51,6 +51,7 @@
     <div id="js-editor"></div>
     <div class="block-moveTo clearfix">Поместить материал в:
         <select id="moveTo" name="PROPERTY[<?= $moveToId ?>][0]"> 
+            <option value="<?= IBLOCK_ID_ALL_MATERIALS ?>"<?if ($moveToValue == IBLOCK_ID_ALL_MATERIALS) {?> selected<?}?>>Без категории</option>
             <option value="<?= IBLOCK_ID_NEWS_COMPANY ?>"<?if ($moveToValue == IBLOCK_ID_NEWS_COMPANY) {?> selected<?}?>>Новости компании</option>
             <option value="<?= IBLOCK_ID_NEWS_INDUSTRY ?>"<?if ($moveToValue == IBLOCK_ID_NEWS_INDUSTRY) {?> selected<?}?>>Новости отрасли</option>
         <?  if (CSite::InGroup(array(9))) { ?>

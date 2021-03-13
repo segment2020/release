@@ -110,12 +110,18 @@ if (isset($arParams["LIST_URL"])) {
 			$location = '/personal/company/new/';
 			break;
 		}
+		
+		case IBLOCK_ID_ALL_MATERIALS:
+		{
+			$location = '/personal/mymaterials/';
+			break;
+		}
 
 		default:
 			$location = '/personal/';
 	}
 }
-	
+	 
 
 
 // pre($arResult, EXIT_PRE);
@@ -148,14 +154,14 @@ if (strlen($arResult["MESSAGE"]) > 0)
 	<?if ($arParams["MAX_FILE_SIZE"] > 0):?><input type="hidden" name="MAX_FILE_SIZE" value="<?= $arParams["MAX_FILE_SIZE"] ?>" />
 	<?endif?>
 	<table class="data-table" style="width: 90%">
-		<thead> 
+		<thead>
 			<tr>
 				<td colspan="2">&nbsp;</td>
 			</tr>
 		</thead>
 		<?if (is_array($arResult["PROPERTY_LIST"]) && !empty($arResult["PROPERTY_LIST"])):?>
 		<tbody>
-			<?foreach ($arResult["PROPERTY_LIST"] as $propertyID):?> 
+			<?foreach ($arResult["PROPERTY_LIST"] as $propertyID):?>
 			<tr>
 				<td>
 					<?if (intval($propertyID) > 0):?><?= $arResult["PROPERTY_LIST_FULL"][$propertyID]["NAME"] ?>
@@ -225,9 +231,9 @@ if (strlen($arResult["MESSAGE"]) > 0)
 										$value = $_REQUEST["PROPERTY"]["editorData"][$propertyID];
 										$description = $_REQUEST["PROPERTY"]["editorData"][$propertyID];
 										console_log("case description: ".$description." - value: ".$value)
-										?> 
-										<textarea cols="30" rows="5" name="PROPERTY[<?= $propertyID ?>][<?= $i ?>]">    <?= $_REQUEST["PROPERTY"]["editorData"][$propertyID] ?>       </textarea> 
-										<?
+										?>
+					<textarea cols="30" rows="5" name="PROPERTY[<?= $propertyID ?>][<?= $i ?>]">    <?= $_REQUEST["PROPERTY"]["editorData"][$propertyID] ?>       </textarea>
+					<?
 										
 										// echo call_user_func_array($arResult["PROPERTY_LIST_FULL"][$propertyID]["GetPublicEditHTML"],
 										// array(
@@ -523,7 +529,7 @@ if (strlen($arResult["MESSAGE"]) > 0)
 					<input type="submit" name="iblock_submit" value="<?= GetMessage("IBLOCK_FORM_SUBMIT") ?>" />
 					<?if (strlen($arParams["LIST_URL"]) > 0):?>
 					<input type="submit" name="iblock_apply" value="<?= GetMessage("IBLOCK_FORM_APPLY") ?>" />
-					<input type="button" name="iblock_cancel" value="<? echo GetMessage('IBLOCK_FORM_CANCEL'); ?>" onclick="location.href='<? echo CUtil::JSEscape($arParams["LIST_URL"])?>';"
+					<input type="button" name="iblock_cancel" value="<? echo GetMessage('IBLOCK_FORM_CANCEL'); ?>" onclick="location.href='<? echo CUtil::JSEscape($arParams[" LIST_URL"])?>';"
 					>
 					<?endif?>
 				</td>

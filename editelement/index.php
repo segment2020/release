@@ -15,7 +15,7 @@ $APPLICATION->SetTitle("Редактирование елемента");
 	// {
 		// header('Location: /personal/company/news/?action=add&add=success');
 		// exit();
-	// }
+	// } 
 // }
 
 
@@ -209,6 +209,12 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 		{  
 			$displayJsonDataId = PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
 			$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY;
+			break;
+		} 
+		case IBLOCK_ID_ALL_MATERIALS:
+		{  
+			$displayJsonDataId = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
+			$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
 			break;
 		}
 	}

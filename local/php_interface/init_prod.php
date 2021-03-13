@@ -11,7 +11,6 @@ use \Bitrix\Main\Application;
 use \Bitrix\Main\Loader;
 use \Bitrix\Main\UserTable;
 
-
 define('EXIT_PRE', true);
 define('SITE_ID_FOR_SEND_EVENT', 's1');
 define('DAYS_IN_MONHT', 31);
@@ -68,6 +67,8 @@ define('IBLOCK_ID_INFOBLOCKS_LIST', 19);
 define('IBLOCK_ID_NOVETLY', 20);
 define('IBLOCK_ID_BANNERS', 21);
 define('IBLOCK_ID_CATALOGS_PDF', 22);
+define('IBLOCK_ID_ALL_MATERIALS', 23);
+
 define('IBLOCK_ID_USERS', 400);
 define('PAGE_TOP_100', 500);
 define('PAGE_ACTUAL_TODAY', 600);
@@ -127,7 +128,7 @@ define('PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY', 176);         // Перенест�
 define('PROPERTY_ID_OLD_ID_IN_NEWS_COMPANY', 252);          // Старый Id.
 define('PROPERTY_ID_MARKED_IN_NEWS_COMPANY', 277);          // Выделено.
 define('PROPERTY_ID_MARKED_TO_IN_NEWS_COMPANY', 278);       // Дата до которого выделено. 
-define('PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY', 295);    	// Json данные
+define('PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY', 292);    	// Json данные
 
 // IBLOCK_ID_CATALOG
 define('PROPERTY_ID_BRAND_IN_CATALOG', 206);                 // Бренд.
@@ -154,7 +155,7 @@ define('PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY', 174);         // Перенест
 define('PROPERTY_ID_OLD_ID_IN_NEWS_INDUSTRY', 253);          // Старый Id.
 define('PROPERTY_ID_MARKED_IN_NEWS_INDUSTRY', 282);          // Выделено.
 define('PROPERTY_ID_MARKED_TO_IN_NEWS_INDUSTRY', 283);       // Дата до которого выделено. 
-define('PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY', 296);    	 // Json данные
+define('PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY', 293);    	 // Json данные
 
 // IBLOCK_ID_DEFAULTERS
 define('PROPERTY_ID_DEFAULTER_IN_DEFAULTERS', 8);            // Неплательщик.
@@ -183,7 +184,7 @@ define('PROPERTY_ID_ADD_MATERIAL_IN_STOCK', 238);            // Доп. мате
 define('PROPERTY_ID_OLD_ID_IN_STOCK', 263);                  // Старый Id.
 define('PROPERTY_ID_MARKED_IN_NEWS_STOCK', 284);             // Выделено.
 define('PROPERTY_ID_MARKED_TO_IN_NEWS_STOCK', 285);          // Дата до которого выделено.
-define('PROPERTY_ID_JSON_DATA_IN_NEWS_STOCK', 299);    	 		//Json данные
+define('PROPERTY_ID_JSON_DATA_IN_STOCK', 298);    	 		//Json данные
 
 // IBLOCK_ID_ANALYTICS
 define('PROPERTY_ID_COMPANY_ID_IN_ANALYTICS', 175); // id компании.
@@ -197,7 +198,7 @@ define('PROPERTY_ID_COMPANY_ID_IN_LIFE_INDUSTRY', 183); // id компании.
 define('PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY', 184); // Перенести в.
 define('PROPERTY_ID_ADD_MATERIAL_IN_LIFE_INDUSTRY', 201); // Доп. материал.
 define('PROPERTY_ID_OLD_ID_IN_LIFE_INDUSTRY', 258); // Старый Id.
-define('PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY', 298);    	 // Json данные
+define('PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY', 295);    	 // Json данные
 
 // IBLOCK_ID_VIEWPOINT
 define('PROPERTY_ID_NAME_IN_VIEWPOINT', 28); // Имя.
@@ -213,7 +214,7 @@ define('PROPERTY_ID_ADD_MATERIAL_IN_VIEWPOINT', 154); // Доп. материа�
 define('PROPERTY_ID_MOVE_TO_IN_VIEWPOINT', 182); // Перенести в.
 define('PROPERTY_ID_PHOTO_SRC_IN_VIEWPOINT', 247); // Источник фото.
 define('PROPERTY_ID_OLD_ID_IN_VIEWPOINT', 262); // Старый Id.
-define('PROPERTY_ID_JSON_DATA_IN_VIEWPOINT', 297);    	// Json данные
+define('PROPERTY_ID_JSON_DATA_IN_VIEWPOINT', 296);    	// Json данные
 
 // IBLOCK_ID_GALLERY_PHOTO
 define('PROPERTY_ID_IMAGES_IN_GALLERY_PHOTO', 33); // Изображения.
@@ -260,7 +261,7 @@ define('PROPERTY_ID_MOVE_TO_IN_EVENTS', 178); // Перенести в.
 define('PROPERTY_ID_END_TIME_IN_EVENTS', 211); // Время окончания.
 define('PROPERTY_ID_OLD_ID_IN_EVENTS', 264); // Старый Id.
 
-//IBLOCK_ID_PRODUCTS_REVIEW
+//IBLOCK_ID_PRODUCTS_REVIEW 
 define('PROPERTY_ID_TEXT_IMG_SRC_IN_PRODUCTS_REVIEW', 61);     // Текст на картинке.
 define('PROPERTY_ID_NEWS_SRC_IN_PRODUCTS_REVIEW', 62);         // Источник новости.
 define('PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW', 75);       // id компании.
@@ -272,7 +273,7 @@ define('PROPERTY_ID_SHOW_LOGO_IN_PRODUCTS_REVIEW', 166);       // Показыв
 define('PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW', 185);         // Перенести в.
 define('PROPERTY_ID_ADD_MATERIAL_IN_PRODUCTS_REVIEW', 202);    // Доп. материал.
 define('PROPERTY_ID_OLD_ID_IN_PRODUCTS_REVIEW', 259);          // Старый id. 
-define('PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW', 294);    	// Json данные
+define('PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW', 297);    	// Json данные
 
 // IBLOCK_ID_PRICE_LISTS
 define('PROPERTY_ID_COMPANY_ID_IN_PRICE_LIST', 71);            // ID компании.
@@ -304,7 +305,7 @@ define('PROPERTY_ID_TYPE_IN_LICENSE', 173);            // Тип.
 define('PROPERTY_ID_MOVE_TO_IN_LICENSE', 180);         // Перенести в.
 define('PROPERTY_ID_OLD_ID_IN_LICENSE', 255);          // Старый id.
 
-// IBLOCK_ID_NOVETLY
+// IBLOCK_ID_NOVETLY 
 define('PROPERTY_ID_TEXT_IMG_SRC_IN_NOVETLY', 216);    // Текст на картинке.
 define('PROPERTY_ID_NEWS_SRC_IN_NOVETLY', 214);        // Источник новости.
 define('PROPERTY_ID_COMPANY_ID_IN_NOVETLY', 213);      // id компании.
@@ -317,7 +318,8 @@ define('PROPERTY_ID_REJ_MESS_IN_NOVETLY', 222);        // Причина отк�
 define('PROPERTY_ID_OLD_ID_IN_NOVETLY', 254);          // Старый ID.
 define('PROPERTY_ID_MARKED_IN_NEWS_NOVETLY', 280);     // Выделено.
 define('PROPERTY_ID_MARKED_TO_IN_NEWS_NOVETLY', 281);  // Дата до которого выделено.
-define('PROPERTY_ID_JSON_DATA_IN_NEWS_NOVETLY', 300);  //  	 Json данные
+define('PROPERTY_ID_JSON_DATA_IN_NOVETLY', 294);  //  	 Json данные
+define('PROPERTY_ID_MOVE_TO_IN_NOVETLY', 299);  //  	 Перенести в.
 
 // IBLOCK_ID_BANNERS
 define('PROPERTY_ID_COMPANY_ID_IN_BANNERS', 226); // id компании.
@@ -372,12 +374,12 @@ define('PROPERTY_ID_EMAIL_IN_CATALOGS_PDF', 235);      // email.
 define('PROPERTY_ID_COUNTRY_IN_CATALOGS_PDF', 236);    // Страна.
 define('PROPERTY_ID_OLD_ID_IN_CATALOGS_PDF', 266);     // Старый ID.
 
+// IBLOCK_ID_ALL_MATERIALS
+define('PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS', 309);       	// Json данные
+define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 308); 			// Перенести в.
 
-	// file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/tpl/log.log', '444');
-
-
-
-
+	// file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/tpl/log.log', '444'); 
+ 
 AddEventHandler("iblock", "OnStartIBlockElementAdd", Array("AddTaranslitCodeName", "OnStartIBlockElementAddHandler"));
 AddEventHandler("iblock", "OnStartIBlockElementUpdate", Array("AddTaranslitCodeName", "OnStartIBlockElementUpdateHandler"));
 
@@ -442,7 +444,7 @@ class AddTaranslitCodeName
 				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_STOCK;
 				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_STOCK;
 				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_STOCK;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_STOCK;  
+				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_STOCK;  
 				break;
 			}
 
@@ -535,7 +537,14 @@ class AddTaranslitCodeName
 				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NOVETLY;
 				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NOVETLY;
 				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NOVETLY;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_NOVETLY; 
+				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
+				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
+				break;
+			}
+			case IBLOCK_ID_ALL_MATERIALS:
+			{ 
+				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
 				break;
 			}
 		}
@@ -582,7 +591,7 @@ class AddTaranslitCodeName
 							case IBLOCK_ID_STOCK:
 							{
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
-								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_STOCK; // поправить переменную на beta во всех файлах
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK; 
 								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
 								break;
 							} 
@@ -603,7 +612,7 @@ class AddTaranslitCodeName
 							case IBLOCK_ID_NOVETLY:
 							{
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
-								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_NOVETLY; // поправить переменную на beta во всех файлах
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
 								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
 								break;
 							}
@@ -611,27 +620,36 @@ class AddTaranslitCodeName
 						$arFieldsCopy = array(
 							"IBLOCK_ID"      			=> $move, 
 							"NAME"                    	=> $arFields['NAME'],
+							"ACTIVE"  					=> $arFields['ACTIVE'],
 							"TAGS"  					=> $arFields['TAGS'],
-							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'],
-							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'],
+							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
 							"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
 							"MODIFIED_BY"               => $USER->GetID(),   
-							"ACTIVE_FROM"				=> $arFields['ACTIVE_FROM'], 
-							"DETAIL_TEXT_TYPE"			=> $arFields['DETAIL_TEXT_TYPE'],  
-							);  
+							"ACTIVE_FROM"				=> date("d.m.Y H:i:s"), 
+							"DETAIL_TEXT_TYPE"			=> $arFields['DETAIL_TEXT_TYPE'],
+						);  
+
+						if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
+							if (!empty($arFields['PREVIEW_PICTURE']['name'])) {
+								$arFieldsCopy['PREVIEW_PICTURE'] = $arFields['PREVIEW_PICTURE'];
+							} else {
+								$arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']); 
+							}
+						}
+
+						if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) { 
+							if (!empty($arFields['DETAIL_PICTURE']['name'])) {
+								$arFieldsCopy['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE'];
+							} else {
+                                $arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
+                            }
+						}
 
 						$arFieldsCopy["PROPERTY_VALUES"][$moveToIdCopy] = $move;
 						$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
 						$arFieldsCopy["PROPERTY_VALUES"][$companyIdCopy] = $arFields["PROPERTY_VALUES"][$companyId];
 						$arFieldsCopy["PROPERTY_VALUES"][$propertyId] = $companyId;
-
-						if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
-							$arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']);
-						}
-
-						if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) {
-							$arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
-						}
+ 
 						// pre($arFieldsCopy);
 						// Создаём новый элемент.
 						$el = new CIBlockElement();
@@ -685,8 +703,13 @@ class AddTaranslitCodeName
 		if (empty($arFields['PROPERTY_VALUES'][$propertyId]) && !isset($arFields['API']))
 			$arFields['PROPERTY_VALUES'][$propertyId] = $companyId;
 
-		if (!isset($arFields['IPROPERTY_TEMPLATES']))
-			$arFields['ACTIVE'] = 'N';
+		if (!isset($arFields['IPROPERTY_TEMPLATES'])) {
+			if (CSite::InGroup(array(1)) || $arFields['ACTIVE'] == 'Y') {
+				$arFields['ACTIVE'] = 'Y';  
+			} elseif (!CSite::InGroup(array(1)) || $arFields['ACTIVE'] == 'Y') { 
+				$arFields['ACTIVE'] = 'N'; 
+			}
+		}
 
 		if (IBLOCK_ID_COMPANY == $arFields['IBLOCK_ID'])
 		{
@@ -764,7 +787,7 @@ class AddTaranslitCodeName
                     $rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_STOCK;
                     $sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_STOCK;
                     $rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_STOCK;
-					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_STOCK;  
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_STOCK;  
                     break;
                 }
 
@@ -857,9 +880,16 @@ class AddTaranslitCodeName
                     $rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NOVETLY;
                     $sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NOVETLY;
                     $rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NOVETLY;
-					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_NOVETLY; 
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
+                    $moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
                     break;
                 }
+				case IBLOCK_ID_ALL_MATERIALS:
+				{ 
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+					break;
+				}
             }
 
 		// Редактируем эл. из ЛК 
@@ -873,7 +903,7 @@ class AddTaranslitCodeName
 			} 
 			$move = $_POST["PROPERTY"][$moveToPropertyId][0];
 			//Если надо перенести элемент...
-			if ($move !== $arFields['IBLOCK_ID']) {
+			if (!empty($move) && $move !== $arFields['IBLOCK_ID']) {
 				// Узнаем ID инфоблока куда надо перенести.
 				$res = CIBlock::GetByID($move);  
 				if ($ar_res = $res->GetNext()) {    
@@ -905,7 +935,7 @@ class AddTaranslitCodeName
 							case IBLOCK_ID_STOCK:
 							{
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
-								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_STOCK; // поправить переменную на beta во всех файлах
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK; 
 								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
 								break;
 							} 
@@ -926,7 +956,7 @@ class AddTaranslitCodeName
 							case IBLOCK_ID_NOVETLY:
 							{
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
-								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_NOVETLY; // поправить переменную на beta во всех файлах
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
 								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
 								break;
 							}
@@ -934,26 +964,36 @@ class AddTaranslitCodeName
 						$arFieldsCopy = array(
 							"IBLOCK_ID"      			=> $move, 
 							"NAME"                    	=> $arFields['NAME'],
+							"ACTIVE"  					=> $arFields['ACTIVE'],
 							"TAGS"  					=> $arFields['TAGS'],
-							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'],
+							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
 							"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
 							"MODIFIED_BY"               => $USER->GetID(),   
-							"ACTIVE_FROM"				=> $arFields['ACTIVE_FROM'], 
-							);  
+							"ACTIVE_FROM"				=> date("d.m.Y H:i:s"), 
+							"DETAIL_TEXT_TYPE"			=> $arFields['DETAIL_TEXT_TYPE'],
+						); 
+
+						if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
+							if (!empty($arFields['PREVIEW_PICTURE']['name'])) {
+								$arFieldsCopy['PREVIEW_PICTURE'] = $arFields['PREVIEW_PICTURE'];
+							} else {
+								$arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']); 
+							}
+						}
+
+						if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) { 
+							if (!empty($arFields['DETAIL_PICTURE']['name'])) {
+								$arFieldsCopy['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE'];
+							} else {
+                                $arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
+                            }
+						}
 
 						$arFieldsCopy["PROPERTY_VALUES"][$moveToIdCopy] = $move;
 						$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
 						$arFieldsCopy["PROPERTY_VALUES"][$companyIdCopy] = $arFields["PROPERTY_VALUES"][$companyId];
 						$arFieldsCopy["PROPERTY_VALUES"][$propertyId] = $companyId;
-
-						if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
-							$arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']);
-						}
-
-						if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) {
-							$arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
-						}
-						// pre($arFieldsCopy);
+  
 						// Создаём новый элемент.
 						$el = new CIBlockElement();
 						$DB->StartTransaction();
@@ -982,130 +1022,119 @@ class AddTaranslitCodeName
             $key = array_keys($arFields['PROPERTY_VALUES'][$moveToPropertyId]);
             $move = $arFields['PROPERTY_VALUES'][$moveToPropertyId][$key[0]]['VALUE'];
  
-            // Если надо перенести элемент... !!!недоделаный блок - moveTo через тип "привязка к элементам"!!!
-            if (false) {
-                // Узнаем ID инфоблока куда надо перенести.
-                $res = CIBlockElement::GetByID($move);
-                if ($ar_res = $res->GetNext()) {
-                    $key = array_keys($arFields['PROPERTY_VALUES'][$propertyId]);
-                    $companyId = $arFields['PROPERTY_VALUES'][$propertyId][$key[0]]['VALUE'];
+            // Если надо перенести элемент... 
+            if (!empty($move) && $move !== $arFields['IBLOCK_ID']) {
+				// Узнаем ID инфоблока куда надо перенести.
+				$res = CIBlock::GetByID($move);  
+				if ($ar_res = $res->GetNext()) {    
+					$key = array_keys($arFields['PROPERTY_VALUES'][$propertyId]);
+					$companyId = $arFields['PROPERTY_VALUES'][$propertyId][$key[0]]['VALUE'];
+					// Узнаем ID свойства у инфоблока в который переносим (moveToIdCopy).
+						switch ($move) {
+							case IBLOCK_ID_NEWS_COMPANY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
+								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
+								break;
+							} 
+							case IBLOCK_ID_NEWS_INDUSTRY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
+								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
+								break;
+							} 
+							case IBLOCK_ID_LIFE_INDUSTRY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
+								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_LIFE_INDUSTRY;
+								break;
+							} 
+							case IBLOCK_ID_STOCK:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
+								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
+								break;
+							} 
+							case IBLOCK_ID_VIEWPOINT:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
+								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
+								break;
+							} 
+							case IBLOCK_ID_PRODUCTS_REVIEW:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
+								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
+								break;
+							} 
+							case IBLOCK_ID_NOVETLY:
+							{ 
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
+								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
+								break;
+							}
+						}     
+						$arFieldsCopy = array(
+							"IBLOCK_ID"      			=> $move, 
+							"NAME"                    	=> $arFields['NAME'],
+							"ACTIVE"  					=> $arFields['ACTIVE'],
+							"TAGS"  					=> $arFields['TAGS'],
+							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
+							"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
+							"MODIFIED_BY"               => $USER->GetID(),   
+							"ACTIVE_FROM"				=> date("d.m.Y H:i:s"), 
+							"DETAIL_TEXT_TYPE"			=> $arFields['DETAIL_TEXT_TYPE'],
+						); 
 
-                    $tmpName = explode(' ', $ar_res['NAME']);
-                    $iBlockId = $tmpName[1];
+						if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
+							if (!empty($arFields['PREVIEW_PICTURE']['name'])) {
+								$arFieldsCopy['PREVIEW_PICTURE'] = $arFields['PREVIEW_PICTURE'];
+							} else {
+								$arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']); 
+							}
+						}
 
-                    // Узнаем ID свойства propertyId у инфоблока в который переносим.
-                    switch ($iBlockId) {
-                            case IBLOCK_ID_NEWS_COMPANY:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-                                break;
+						if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) { 
+							if (!empty($arFields['DETAIL_PICTURE']['name'])) {
+								$arFieldsCopy['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE'];
+							} else {
+                                $arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
                             }
+						}
 
-                            case IBLOCK_ID_NEWS_INDUSTRY:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_NEWS_INDUSTRY;
-                                break;
-                            }
+						$arFieldsCopy["PROPERTY_VALUES"][$moveToIdCopy] = $move;
+						$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
+						$arFieldsCopy["PROPERTY_VALUES"][$companyIdCopy] = $arFields["PROPERTY_VALUES"][$companyId];
+						$arFieldsCopy["PROPERTY_VALUES"][$propertyId] = $companyId;
+  
+						// pre($arFieldsCopy);
+						// Создаём новый элемент.
+						$el = new CIBlockElement();
+						$DB->StartTransaction();
+						if ($NEW_ID = $el->Add($arFieldsCopy)) {
+						// Удаляем текущий элемент.
+							if (CIBlock::GetPermission($arFields['IBLOCK_ID']) >= 'W') {
+								if (!CIBlockElement::Delete($arFields['ID'])) {
+									$strWarning .= 'Error!';
+									$DB->Rollback();
+								} else {
+									$DB->Commit();
+								}
+							}
+						} else {
+						echo "Error: ".$el->LAST_ERROR;
+						}
+					} 
 
-                            case IBLOCK_ID_STOCK:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_IN_STOCK;
-                                break;
-                            }
-
-                            case IBLOCK_ID_BRANDS:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_IN_BRANDS;
-                                break;
-                            }
-
-                            case IBLOCK_ID_LICENSE:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_IN_LICENSE;
-                                break;
-                            }
-
-                            case IBLOCK_ID_GALLERY_PHOTO:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_IN_GALLERY_PHOTO;
-                                break;
-                            }
-
-                            case IBLOCK_ID_GALLERY_VIDEO:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_IN_GALLERY_VIDEO;
-                                break;
-                            }
-
-                            case IBLOCK_ID_VIEWPOINT:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
-                                break;
-                            }
-
-                            case IBLOCK_ID_EVENTS:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_IN_EVENTS;
-                                break;
-                            }
-
-                            case IBLOCK_ID_PRODUCTS_REVIEW:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
-                                break;
-                            }
-                            
-                            case IBLOCK_ID_ANALYTICS:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_IN_ANALYTICS;
-                                break;
-                            }
-
-                            case IBLOCK_ID_NOVETLY:
-                            {
-                                $propertyId = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
-                                break;
-                            }
-                        }
-
-                    $arFieldsCopy['NAME'] = $arFields['NAME'];
-                    $arFieldsCopy['TAGS'] = $arFields['TAGS'];
-                    $arFieldsCopy['PREVIEW_TEXT'] = $arFields['PREVIEW_TEXT'];
-                    $arFieldsCopy['DETAIL_TEXT'] = $arFields['DETAIL_TEXT'];
-                    $arFieldsCopy['ACTIVE'] = $arFields['ACTIVE'];
-                    $arFieldsCopy["IBLOCK_SECTION_ID"] = false;       // Элемент лежит в корне раздела.
-                        $arFieldsCopy["MODIFIED_BY"] = $USER->GetID();    // Элемент изменен текущим пользователем.
-                        $arFieldsCopy["IBLOCK_ID"] = (int)$iBlockId;
-                    $arFieldsCopy["PROPERTY_VALUES"][$propertyId] = $companyId;
-
-                    if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
-                        $arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']);
-                    }
-
-                    if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) {
-                        $arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
-                    }
-                    // pre($arFieldsCopy);
-                    // Создаём новый элемент.
-                    $el = new CIBlockElement();
-                    if ($NEW_ID = $el->Add($arFieldsCopy)) {
-                        // Удаляем текущий элемент.
-                        if (CIBlock::GetPermission($arFields['IBLOCK_ID']) >= 'W') {
-                            global $DB;
-
-                            $DB->StartTransaction();
-                            if (!CIBlockElement::Delete($arFields['ID'])) {
-                                $strWarning .= 'Error!';
-                                $DB->Rollback();
-                            } else {
-                                $DB->Commit();
-                            }
-                        }
-                    }
-                }
-
-                return;
-            }
+				return;
+			} 
 
 
             // Если публикация отклонена сделаем элемент неактивным.
@@ -1143,8 +1172,15 @@ class AddTaranslitCodeName
         // Соответственно, проверим на его наличие - если его нет, то значит элемент редактировал пользователь.
         // Установим елемент неактивным, если материал отклонён - снимим эту галку и галку уведомить пользователя.
         if (!isset($arFields['IPROPERTY_TEMPLATES']) && !isset($arFields['SORT']) && !isset($arFields['CODE'])) {
-            $arFields['ACTIVE'] = 'N';
-            // pre($arFields, EXIT_PRE);
+
+			// "Не-костыльное" решение
+			// Проверка пользователя, состоит ли он в группе редакторов, если нет - тогда редактирование элемента делает его неактивным, несмотря на значение активности прилетающее из формы
+			if (CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') {
+				$arFields['ACTIVE'] = 'Y';  
+			} elseif (!CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') { 
+				$arFields['ACTIVE'] = 'N'; 
+			} 
+ 
             if (!empty($arFields['PROPERTY_VALUES']) && !empty($arFields['PROPERTY_VALUES'][$rejPropertyId]['VALUE'])) {
                 $arFields['PROPERTY_VALUES'][$rejPropertyId]['VALUE'] = '';
             }
@@ -1186,80 +1222,82 @@ class AddTaranslitCodeName
         // pre($arFields, EXIT_PRE);
         //*********************************************************************************************************
         // Создание истории изменений. ---- if
-		
-        if (empty($arFields["PROPERTY_VALUES"][$jsonDataId])) { 
-            // TODO Добавить в копирование свойство Актуально сегодня!!!
-            $resource = CIBlockElement::GetByID($arFields['ID']);
-            if ($ob = $resource->GetNextElement()) {
-                // pre($arFields);
-                $arFieldsExisting = $ob->GetFields();
-                $arPropsExisting = $ob->GetProperties();
 
-                // pre($arFieldsExisting);
-                // pre($arPropsExisting);
+		// Отказались от этого механизма
 
-                $arFieldsCopy = $arFields;
-                $arFieldsCopy['NAME'] = $arFieldsExisting['NAME'];
-                $arFieldsCopy['TAGS'] = $arFieldsExisting['TAGS'];
-                $arFieldsCopy['PREVIEW_TEXT'] = $arFieldsExisting['PREVIEW_TEXT'];
-                $arFieldsCopy['DETAIL_TEXT'] = $arFieldsExisting['DETAIL_TEXT'];
-                $arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFieldsExisting['PREVIEW_PICTURE']);
-                $arFieldsCopy['ACTIVE'] = 'N';
+        // if (empty($arFields["PROPERTY_VALUES"][$jsonDataId])) { 
+        //     // TODO Добавить в копирование свойство Актуально сегодня!!!
+        //     $resource = CIBlockElement::GetByID($arFields['ID']);
+        //     if ($ob = $resource->GetNextElement()) {
+        //         // pre($arFields);
+        //         $arFieldsExisting = $ob->GetFields();
+        //         $arPropsExisting = $ob->GetProperties();
 
-                if (isset($arFieldsExisting['DETAIL_PICTURE']) && !empty($arFieldsExisting['DETAIL_PICTURE'])) {
-                    $arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFieldsExisting['DETAIL_PICTURE']);
-                }
+        //         // pre($arFieldsExisting);
+        //         // pre($arPropsExisting);
 
-                foreach ($arPropsExisting as $key => $property) {
-                    if ('archive' == $key) {
-                        //$propertyEnums = CIBlockPropertyEnum::GetList(Array("DEF"=>"DESC", "SORT"=>"ASC"), array("IBLOCK_ID"=>$arFields['IBLOCK_ID'], 'PROPERTY_ID' => $property['ID']));
-                        $propertyEnums = CIBlockPropertyEnum::GetList(array("DEF"=>"DESC", "SORT"=>"ASC"), array("IBLOCK_ID"=>$arFields['IBLOCK_ID'], 'CODE' => $key));
-                        if ($enumFields = $propertyEnums->GetNext()) {
-                            $arFieldsCopy['PROPERTY_VALUES'][$property['ID']] = $enumFields['ID'];
-                        }
+        //         $arFieldsCopy = $arFields;
+        //         $arFieldsCopy['NAME'] = $arFieldsExisting['NAME'];
+        //         $arFieldsCopy['TAGS'] = $arFieldsExisting['TAGS'];
+        //         $arFieldsCopy['PREVIEW_TEXT'] = $arFieldsExisting['PREVIEW_TEXT'];
+        //         $arFieldsCopy['DETAIL_TEXT'] = $arFieldsExisting['DETAIL_TEXT'];
+        //         $arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFieldsExisting['PREVIEW_PICTURE']);
+        //         $arFieldsCopy['ACTIVE'] = 'N';
 
-                        continue;
-                    }
+        //         if (isset($arFieldsExisting['DETAIL_PICTURE']) && !empty($arFieldsExisting['DETAIL_PICTURE'])) {
+        //             $arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFieldsExisting['DETAIL_PICTURE']);
+        //         }
 
-                    if ('F' == $property['PROPERTY_TYPE']) {
-                        if ('Y' == $property['MULTIPLE'] && is_array($property['VALUE'])) {
-                            foreach ($property['VALUE'] as $key => $value) {
-                                // pre($key);
-                                // pre($value);
-                                $arFieldsCopy['PROPERTY_VALUES'][$property['ID']][$property['PROPERTY_VALUE_ID'][$key]] = CFile::MakeFileArray($value);
-                            }
-                        }
-                    }
+        //         foreach ($arPropsExisting as $key => $property) {
+        //             if ('archive' == $key) {
+        //                 //$propertyEnums = CIBlockPropertyEnum::GetList(Array("DEF"=>"DESC", "SORT"=>"ASC"), array("IBLOCK_ID"=>$arFields['IBLOCK_ID'], 'PROPERTY_ID' => $property['ID']));
+        //                 $propertyEnums = CIBlockPropertyEnum::GetList(array("DEF"=>"DESC", "SORT"=>"ASC"), array("IBLOCK_ID"=>$arFields['IBLOCK_ID'], 'CODE' => $key));
+        //                 if ($enumFields = $propertyEnums->GetNext()) {
+        //                     $arFieldsCopy['PROPERTY_VALUES'][$property['ID']] = $enumFields['ID'];
+        //                 }
 
-                    //pre($arFieldsCopy);
+        //                 continue;
+        //             }
 
-                    if ('S' == $property['PROPERTY_TYPE']) {
-                        $arFieldsCopy['PROPERTY_VALUES'][$property['ID']] = $property['VALUE'];
-                    } else {
-                        $arFieldsCopy['PROPERTY_VALUES'][$property['ID']]['VALUE'] = $property['VALUE'];
-                    }
+        //             if ('F' == $property['PROPERTY_TYPE']) {
+        //                 if ('Y' == $property['MULTIPLE'] && is_array($property['VALUE'])) {
+        //                     foreach ($property['VALUE'] as $key => $value) {
+        //                         // pre($key);
+        //                         // pre($value);
+        //                         $arFieldsCopy['PROPERTY_VALUES'][$property['ID']][$property['PROPERTY_VALUE_ID'][$key]] = CFile::MakeFileArray($value);
+        //                     }
+        //                 }
+        //             }
+
+        //             //pre($arFieldsCopy);
+
+        //             if ('S' == $property['PROPERTY_TYPE']) {
+        //                 $arFieldsCopy['PROPERTY_VALUES'][$property['ID']] = $property['VALUE'];
+        //             } else {
+        //                 $arFieldsCopy['PROPERTY_VALUES'][$property['ID']]['VALUE'] = $property['VALUE'];
+        //             }
 
 
-                    if ('L' == $property['PROPERTY_TYPE']) {
-                        if ('Y' == $property['MULTIPLE']) {
-                            $arFieldsCopy['PROPERTY_VALUES'][$property['CODE']] = array();
-                            foreach ($property['VALUE_ENUM_ID'] as $enumID) {
-                                $arFieldsCopy['PROPERTY_VALUES'][$property['CODE']][] = array('VALUE' => $enumID);
-                            }
-                        } else {
-                            $arFieldsCopy['PROPERTY_VALUES'][$property['CODE']] = array('VALUE' => $property['VALUE_ENUM_ID']);
-                        }
-                    }
-                }
+        //             if ('L' == $property['PROPERTY_TYPE']) {
+        //                 if ('Y' == $property['MULTIPLE']) {
+        //                     $arFieldsCopy['PROPERTY_VALUES'][$property['CODE']] = array();
+        //                     foreach ($property['VALUE_ENUM_ID'] as $enumID) {
+        //                         $arFieldsCopy['PROPERTY_VALUES'][$property['CODE']][] = array('VALUE' => $enumID);
+        //                     }
+        //                 } else {
+        //                     $arFieldsCopy['PROPERTY_VALUES'][$property['CODE']] = array('VALUE' => $property['VALUE_ENUM_ID']);
+        //                 }
+        //             }
+        //         }
 
-                $el = new CIBlockElement();
-                if ($NEW_ID = $el->Add($arFieldsCopy)) {
-                    //pre("New ID: ".$NEW_ID);
-                } else {
-                    //pre("Error: ".$el->LAST_ERROR);
-                }
-            }
-        }  
+        //         $el = new CIBlockElement();
+        //         if ($NEW_ID = $el->Add($arFieldsCopy)) {
+        //             //pre("New ID: ".$NEW_ID);
+        //         } else {
+        //             //pre("Error: ".$el->LAST_ERROR);
+        //         }
+        //     }
+        // }  
 	}
 	// end if Cоздание истории изменений.
 //*********************************************************************************************************
@@ -1886,6 +1924,25 @@ if (!function_exists('sort_FeedOnMain')) {
 		}
 		return ($a["dateSort"] > $b["dateSort"]) ? -1 : 1; 
 	}  
+}
+
+// обработка YouTube-ссылки
+function getYoutubeEmbedUrl($url)
+{
+    $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_]+)\??/i';
+    $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))(\w+)/i';
+
+    if (preg_match($longUrlRegex, $url, $matches)) {
+        $youtube_id = $matches[count($matches) - 1];
+    }
+
+    if (preg_match($shortUrlRegex, $url, $matches)) {
+        $youtube_id = $matches[count($matches) - 1];
+    }
+
+	$string = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $youtube_id . '" frameborder="0" allowfullscreen></iframe>';
+
+    return $string;
 }
 
 // для синхронизации с 1С)

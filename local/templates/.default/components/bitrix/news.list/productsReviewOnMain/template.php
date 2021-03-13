@@ -61,11 +61,16 @@ foreach ($arResult["ITEMS"] as $itemkey => $arItem) {
         echo 'rightimg';
     } ?>" style="background-image: url('<?php echo $file['src']; ?>">
 		<div class="mb_background">
-			<?php if ($arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE']) { ?>
+			<? if ($arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE']) { ?>
 				<div class="firmblock">
 					Обзор компании <?=$arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE']?>
 				</div>
-			<?php } ?>			
+                <? } else { 
+					$rsUser = CUser::GetByID($arItem['CREATED_BY']);
+					$arUser = $rsUser->Fetch(); ?> 
+				<div class="newsbfirm">Товарный обзор пользователя <?=$arUser['NAME'] ?></div>
+				
+			<? } ?>			
 			<div class="titleblock">
 				<a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><?php echo $arItem["NAME"]; ?></a>
 			</div>

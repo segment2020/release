@@ -11,7 +11,6 @@ use \Bitrix\Main\Application;
 use \Bitrix\Main\Loader;
 use \Bitrix\Main\UserTable;
 
-
 define('EXIT_PRE', true);
 define('SITE_ID_FOR_SEND_EVENT', 's1');
 define('DAYS_IN_MONHT', 31);
@@ -68,6 +67,8 @@ define('IBLOCK_ID_INFOBLOCKS_LIST', 19);
 define('IBLOCK_ID_NOVETLY', 20);
 define('IBLOCK_ID_BANNERS', 21);
 define('IBLOCK_ID_CATALOGS_PDF', 22);
+define('IBLOCK_ID_ALL_MATERIALS', 23);
+
 define('IBLOCK_ID_USERS', 400);
 define('PAGE_TOP_100', 500);
 define('PAGE_ACTUAL_TODAY', 600);
@@ -373,12 +374,12 @@ define('PROPERTY_ID_EMAIL_IN_CATALOGS_PDF', 235);      // email.
 define('PROPERTY_ID_COUNTRY_IN_CATALOGS_PDF', 236);    // Страна.
 define('PROPERTY_ID_OLD_ID_IN_CATALOGS_PDF', 266);     // Старый ID.
 
+// IBLOCK_ID_ALL_MATERIALS 
+define('PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS', 309);       	// Json данные
+define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 308); 			// Перенести в.
 
-	// file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/tpl/log.log', '444');
-
-
-
-
+	// file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/tpl/log.log', '444'); 
+ 
 AddEventHandler("iblock", "OnStartIBlockElementAdd", Array("AddTaranslitCodeName", "OnStartIBlockElementAddHandler"));
 AddEventHandler("iblock", "OnStartIBlockElementUpdate", Array("AddTaranslitCodeName", "OnStartIBlockElementUpdateHandler"));
 
@@ -540,6 +541,12 @@ class AddTaranslitCodeName
 				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
 				break;
 			}
+			case IBLOCK_ID_ALL_MATERIALS:
+			{ 
+				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+				break;
+			}
 		}
 
 		// Если добавлям элемент из ЛК 
@@ -607,6 +614,14 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
 								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
+								break;
+							}
+							
+							case IBLOCK_ID_ALL_MATERIALS: 
+							{ 
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+								$companyIdCopy = ""; 
 								break;
 							}
 						}  
@@ -877,6 +892,12 @@ class AddTaranslitCodeName
                     $moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
                     break;
                 }
+				case IBLOCK_ID_ALL_MATERIALS: 
+				{ 
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+					break;
+				}
             }
 
 		// Редактируем эл. из ЛК 
@@ -945,6 +966,13 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
 								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
+								break;
+							}
+							case IBLOCK_ID_ALL_MATERIALS: 
+							{ 
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+								$companyIdCopy = ""; 
 								break;
 							}
 						}    
@@ -1065,6 +1093,13 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
 								$companyIdCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
+								break;
+							}
+							case IBLOCK_ID_ALL_MATERIALS: 
+							{ 
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+								$companyIdCopy = ""; 
 								break;
 							}
 						}     

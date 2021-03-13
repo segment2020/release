@@ -38,6 +38,8 @@ foreach($arResult["ITEMS"] as $arItem)
 
 	$showCounter = (isset($arItem['SHOW_COUNTER']) && !empty($arItem['SHOW_COUNTER']))? $arItem["SHOW_COUNTER"]: 0;
 
+
+
 	if ($arItem["PREVIEW_PICTURE"]["SRC"])
 		$file = CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"]["ID"], array('width'=>160, 'height'=>140), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 	else
@@ -62,13 +64,13 @@ foreach($arResult["ITEMS"] as $arItem)
 			</a>
 			<? if ($arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE']) 
 			{ ?>
-				<div class="newsbfirm">Товарный обзор компании <?=$arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE']?></div>
-				<? } else { 
+				<div class="newsbfirm">Материал компании <?=$arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE']?></div>
+			<? } else { 
 					$rsUser = CUser::GetByID($arItem['CREATED_BY']);
 					$arUser = $rsUser->Fetch(); ?> 
-				<div class="newsbfirm">Товарный обзор пользователя <?=$arUser['NAME'] ?></div>
+				<div class="newsbfirm">Материал пользователя <?=$arUser['NAME'] ?></div>
 				
-			<? } ?>			
+			<? } ?>				
 		</div>
 		<div class="seporator"></div>
 <?}?>
