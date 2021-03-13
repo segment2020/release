@@ -90,7 +90,7 @@ use Bitrix\Main\Page\Asset;
 	</div>
  
 		<input type="submit" name="iblock_submit" value="Сохранить" class="btn btn-blue-full minbr" id='addElement' />
-		<button class="btn btn-blue-full minbr previewbtn">Предварительный просмотр</button>
+		<button class="btn btn-blue-full minbr newPreviewbtn">Предварительный просмотр</button>
 		<input type="hidden" name="iBlockId" value="<? echo $_GET['iBlockId']; ?>">
 		<input type="hidden" name="iBlockType" value="<? echo $_GET['iBlockType']; ?>">
 		<div class="errorBlock hide" id='errorText'>Имеются пустые поля</div>
