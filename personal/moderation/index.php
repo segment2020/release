@@ -19,13 +19,14 @@ if ($USER->IsAuthorized()) //Если пользователь авторизо�
         "moderatorFeed",
         array(
         "IBLOCKS" => array(   // Код информационного блока
-           0 => "2",
-           1 => "5",
-           2 => "9",
-           3 => "10",
-           4 => "15",
-           5 => "4",
-           6 => "20", 
+            0 => IBLOCK_ID_ALL_MATERIALS,
+            1 => IBLOCK_ID_NEWS_COMPANY,
+            2 => IBLOCK_ID_NEWS_INDUSTRY,
+            3 => IBLOCK_ID_LIFE_INDUSTRY,
+            4 => IBLOCK_ID_PRODUCTS_REVIEW, 
+            5 => IBLOCK_ID_STOCK, 
+            6 => IBLOCK_ID_NOVETLY, 
+            // 7 => IBLOCK_ID_VIEWPOINT,
         ),
         "NEWS_COUNT" => "5",   // Количество новостей в каждом блоке
         "IBLOCK_SORT_BY" => "SORT",   // Поле для cортировки информационных блоков
