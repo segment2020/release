@@ -373,8 +373,8 @@ define('PROPERTY_ID_COUNTRY_IN_CATALOGS_PDF', 236);    // Страна.
 define('PROPERTY_ID_OLD_ID_IN_CATALOGS_PDF', 266);     // Старый ID.
 
 // IBLOCK_ID_ALL_MATERIALS 
-define('PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS', 309);       	// Json данные
-define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 308); 			// Перенести в.
+define('PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS', 308);       	// Json данные
+define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 309); 			// Перенести в.
 
 	// file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/tpl/log.log', '444'); 
  
