@@ -176,7 +176,18 @@
 	top:auto;*/
 	display:block;
 }
-
+.soc-icons__top {    
+	display: flex;
+    float: right;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+}
+.soc-icons__top .soc-icons {
+	margin: 0 0 0 10px; 
+	width: 35px;
+	height: 35px;
+}
 div.menu-clear-left
 {
 	clear:left;

@@ -12,9 +12,16 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 
+$res = CIBlockElement::GetByID($arResult["ID"]);
+if ($ar_res = $res->GetNext()) 
+	$previewPicPath = CFile::GetPath($ar_res["PREVIEW_PICTURE"]); 
 
 //viewsinc($arResult['ID'], $arResult['IBLOCK_ID'], $arResult['PROPERTIES']['companyId']['VALUE'], $arResult['DATE_CREATE']);
-
+if ($arResult["DETAIL_PICTURE"]["SRC"])
+	$file = CFile::ResizeImageGet($arResult["DETAIL_PICTURE"]["ID"], array('width'=>890, 'height'=>340), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+else if (!empty($previewPicPath)) { 
+	$file = CFile::ResizeImageGet($ar_res["PREVIEW_PICTURE"], array('width'=>890, 'height'=>340), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+}
 
 //pre($arResult);
 $msgCounter = (!empty($arResult['PROPERTIES']['FORUM_MESSAGE_CNT']['VALUE']))? $arResult['PROPERTIES']['FORUM_MESSAGE_CNT']['VALUE']: 0;
@@ -46,10 +53,10 @@ $showCounter = $arResult['SHOW_COUNTER']? $arResult['SHOW_COUNTER']: 0;
 	</div>
 
 	<?
-	if (!empty($arResult["DETAIL_PICTURE"]["SRC"]))
+	if ($file['src'])
 	{
 ?>
-	<div class="mainphoto" style="background-image: url('<? echo $arResult[" DETAIL_PICTURE"]["SRC"]; ?>');">
+	<div class="mainphoto" style="background-image: url('<? echo $file['src']; ?>');">
 		<?
 		if (isset($arResult['PROPERTIES']['imgString']['VALUE']) && !empty($arResult['PROPERTIES']['imgString']['VALUE']))
 		{
@@ -85,8 +92,7 @@ $showCounter = $arResult['SHOW_COUNTER']? $arResult['SHOW_COUNTER']: 0;
 				<? echo $arResult['PROPERTIES']['newsSource']['VALUE']; ?></a>
 		</div>
 	</div>
-	<?} 
-	console_log($arResult);
+	<?}  
 	if (isset($arResult['PROPERTIES']['imgSource']['VALUE']) && !empty($arResult['PROPERTIES']['imgSource']['VALUE']))
 	{
 ?>
