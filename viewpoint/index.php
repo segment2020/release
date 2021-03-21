@@ -8,12 +8,12 @@ $APPLICATION->SetTitle("Мнения");
 			<div class="row">
 				<?$APPLICATION->IncludeFile('/tpl/include_area/bannersContent.php', array('includeArea' => array('actualtoday', 'photogallery', 'defaulters', 'newitems')), array());?>
 			</div>
-		</div>
+		</div> 
 		<div class="col-sm-9 col-xs-12 content-margin">
 			<?
 			$APPLICATION->IncludeComponent(
 	"bitrix:news", 
-	"viewpoint", 
+	"newsCustom", 
 	array(
 		"ADD_ELEMENT_CHAIN" => "Y",
 		"ADD_SECTIONS_CHAIN" => "Y",

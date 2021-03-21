@@ -13,8 +13,8 @@ $APPLICATION->SetTitle("Товарные обзоры");
 			<?
 			$APPLICATION->IncludeComponent(
 	"bitrix:news", 
-	"productsReview", 
-	array(
+	"newsCustom", 
+	array( 
 		"ADD_ELEMENT_CHAIN" => "Y",
 		"ADD_SECTIONS_CHAIN" => "Y",
 		"AJAX_MODE" => "N",

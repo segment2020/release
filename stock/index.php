@@ -13,7 +13,7 @@ $APPLICATION->SetTitle("Акции");
 <?
 $APPLICATION->IncludeComponent(
 	"bitrix:news", 
-	"stock", 
+	"newsCustom",  
 	array(
 		"ADD_ELEMENT_CHAIN" => "Y",
 		"ADD_SECTIONS_CHAIN" => "Y",

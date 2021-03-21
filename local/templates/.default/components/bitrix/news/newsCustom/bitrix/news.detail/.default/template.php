@@ -94,15 +94,12 @@ elseif (IBLOCK_ID_NEWS_INDUSTRY == $arResult['IBLOCK_ID'])
 }
 ?>
 
-<div class="block-default in block-shadow content-margin detailblock clearfix">
-	<div class="detailinfo clearfix">
-		<!-- backup внизу файла -->
-	</div>
+<div class="block-default in block-shadow content-margin detailblock clearfix"> 
 	<h1><? echo $arResult["~NAME"]; ?></h1>
 
 		<div class="detailinfofirm">
 			<span class="detailinfo_author">Автор новости / ньюсмейкер</span> <? echo $companyName; ?>
-		</div>
+		</div> 
 		 
 	<div class="infotvc">
 		<span class="infotime"><? echo $arResult["DATE_CREATE"]; ?></span>

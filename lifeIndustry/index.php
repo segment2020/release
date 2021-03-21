@@ -11,8 +11,8 @@ $APPLICATION->SetTitle("Редакционные статьи");
 		</div>
 		<div class="col-sm-9 col-xs-12 content-margin">
 <? $APPLICATION->IncludeComponent(
-	"bitrix:news", 
-	"analytics",   
+	"bitrix:news",  
+	"newsCustom",   
 	array(
 		"ADD_ELEMENT_CHAIN" => "Y",
 		"ADD_SECTIONS_CHAIN" => "Y",
