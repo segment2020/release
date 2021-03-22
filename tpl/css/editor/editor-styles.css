@@ -388,10 +388,15 @@
 
 .post_gallery__wrap>.post_gallery__item {
   display: flex;
-  flex: 1 0 175px;
+  flex: 1 0 auto;
   overflow: hidden;
   justify-content: center;
   align-items: center;
+}
+
+.post_gallery__wrap>.post_gallery__item>img {
+  height: 100%;
+  max-width: none;
 }
 
 .squares {
@@ -399,7 +404,7 @@
 }
 
 .squares a {
-  width: 175px;
+  width: auto;
   height: 175px;
   margin: 5px;
 }
