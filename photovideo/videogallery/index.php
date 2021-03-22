@@ -1,6 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Видеогалерея");
+console_log($APPLICATION);
 ?>
 <div class="container-fluid">
 	<div class="row row-flex">
