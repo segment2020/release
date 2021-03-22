@@ -1,5 +1,5 @@
 <?
-
+// init prod
 @require_once 'include/autoload.php';
 define("RE_SITE_KEY","6LfKPNoUAAAAAOUDTG1ZOLoKmqXcAYfSMuG-i5EN");
 define("RE_SEC_KEY","6LfKPNoUAAAAAAvB_8UggavqluT0oKXV-t9osr3_");
@@ -712,9 +712,9 @@ class AddTaranslitCodeName
 			$arFields['PROPERTY_VALUES'][$propertyId] = $companyId;
 
 		if (!isset($arFields['IPROPERTY_TEMPLATES'])) {
-			if (CSite::InGroup(array(1)) || $arFields['ACTIVE'] == 'Y') {
+			if (CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') {
 				$arFields['ACTIVE'] = 'Y';  
-			} elseif (!CSite::InGroup(array(1)) || $arFields['ACTIVE'] == 'Y') { 
+			} elseif (!CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') { 
 				$arFields['ACTIVE'] = 'N'; 
 			}
 		}
@@ -1196,7 +1196,7 @@ class AddTaranslitCodeName
         if (!isset($arFields['IPROPERTY_TEMPLATES']) && !isset($arFields['SORT']) && !isset($arFields['CODE'])) {
 
 			// "Не-костыльное" решение
-			// Проверка пользователя, состоит ли он в группе редакторов, если нет - тогда редактирование элемента делает его неактивным, несмотря на значение активности прилетающее из формы
+			// Проверка пользователя, состоит ли он в группе админов, если нет - тогда редактирование элемента делает его неактивным, несмотря на значение активности прилетающее из формы
 			if (CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') {
 				$arFields['ACTIVE'] = 'Y';  
 			} elseif (!CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') { 

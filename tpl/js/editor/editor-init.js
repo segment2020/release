@@ -1,29 +1,12 @@
-// var editorData
-
-// var edDate
-// var edTitle
-// var edPreview
-// var edDetail
-
-// var edPreviewImgLoaded
-// var edDetailImgLoaded
-
-// var edPreviewImgID
-// var edPreviewImgSrc
-
-// var edDetailImgID
-// var edDetailImgSrc
-
-
 var newData;
 var savedDataInput;
 var JSONString;
 var submitElement;
 var detailText = "";
- 
+
 if (!newMaterial && !isJsonError) {
 	var submitElement = document.getElementById("updateElement");
-	if (!editorData) { 
+	if (!editorData) {
 		console.log("Загрузка HTML из старого редактора:");
 		var initParseElement = "<div></div>";
 		if (edPreviewImgLoaded || edDetailImgLoaded) {
@@ -38,24 +21,24 @@ if (!newMaterial && !isJsonError) {
 			var initParseElement = '<div id="edParse">' + edDetail + '</div>';
 		}
 
-		newData = mapDOM(initParseElement, false); 
-		console.log(newData); 
+		newData = mapDOM(initParseElement, false);
+		console.log(newData);
 	} else {
 		console.log("Загружаем данные из Json:");
 		var newData = JSON.parse(editorData)
-		console.log(newData); 
-	}  
-} else { 
-	if (isJsonError) { 
-		var submitElement = document.getElementById("updateElement");  
-		var initParseElement = "<div id='edParse'>"+edDetail+"</div>";
+		console.log(newData);
+	}
+} else {
+	if (isJsonError) {
+		var submitElement = document.getElementById("updateElement");
+		var initParseElement = "<div id='edParse'>" + edDetail + "</div>";
 		console.log("isJsonError");
 		alert("Ошибка парсинга HTML-материала, редактор может отобразить его неполным или некорректным.");
-		newData = mapDOM(initParseElement, false);  
+		newData = mapDOM(initParseElement, false);
 	} else {
 		var submitElement = document.getElementById("addElement");
 		newData = {
-			"blocks": [ 
+			"blocks": [
 				{
 					"type": "paragraph",
 					"data": {
@@ -66,7 +49,7 @@ if (!newMaterial && !isJsonError) {
 			"version": "2.19.1"
 		};
 	}
-	
+
 }
 
 const ImageTool = window.ImageTool;
@@ -75,16 +58,41 @@ const editor = new EditorJS({
 	autofocus: true,
 	hideToolbar: true,
 	tools: {
-		inset: Inset, 
+		quote: {
+			class: Quote,
+			inlineToolbar: true,
+			shortcut: 'CMD+SHIFT+O',
+			config: {
+				quotePlaceholder: 'Текст цитаты',
+				captionPlaceholder: 'Автор',
+			},
+		},
+		Marker: {
+			class: Marker,
+			shortcut: 'CMD+SHIFT+M',
+		},
+		Incut: Incut, 	// разработка
+		carousel: {
+			class: Carousel,
+			config: {
+				endpoints: {
+					byFile: "/imgload/newImgLoad.php",
+				}
+			}
+		},
+		strikethrough: {
+			class: Strikethrough,
+			shortcut: 'CMD+SHIFT+X',
+		},
 		image: {
-			class: ImageTool, 
+			class: ImageTool,
 			config: {
 				endpoints: {
 					byFile: "/imgload/newImgLoad.php",
 					byUrl: "/imgload/newImgLoadURL.php", // доделать
 				}
-			} 
-		}, 
+			}
+		},
 		delimiter: Delimiter,
 		linkTool: {
 			class: LinkTool,
@@ -105,7 +113,7 @@ const editor = new EditorJS({
 				placeholder: "Нажмите Tab для выбора инструмента",
 				inlineToolbar: true
 			}
-		}, 
+		},
 		list: {
 			class: List,
 			inlineToolbar: true,
@@ -146,6 +154,7 @@ const editor = new EditorJS({
 			},
 			toolNames: {
 				"Text": "Параграф",
+				"Carousel": "Сгруппированные картинки",
 				"Image": "Картинка",
 				"Heading": "Заголовок",
 				"List": "Список",
@@ -181,7 +190,11 @@ const editor = new EditorJS({
 					"With border": "С границей",
 					"With background": "C фоном",
 					"Stretch image": "Растянуть на ширину",
-				}, 
+				},
+				"quote": {
+					"Left alignment": "По левой стороне",
+					"Center alignment": "По центру", 
+				},
 			},
 			blockTunes: {
 				"delete": {
@@ -192,7 +205,7 @@ const editor = new EditorJS({
 				},
 				"moveDown": {
 					"Move down": "Переместить вниз"
-				}, 
+				},
 			},
 		}
 	},
@@ -209,7 +222,7 @@ const editor = new EditorJS({
 		// 	}, {}, 0, true);
 		// }
 	}
-}); 
+});
 
 const testButton = document.getElementById("test-button");
 const output = document.getElementById("output");
@@ -217,29 +230,29 @@ const detail_text = document.getElementById("detail_text");
 const jsonData = document.getElementById("jsonData");
 
 // Сохранить
-submitElement.addEventListener("click", () => { 
+submitElement.addEventListener("click", () => {
 	editor.save().then(savedData => {
-		savedDataInput = JSON.stringify(savedData, null, 4); 
+		savedDataInput = JSON.stringify(savedData, null, 4);
 		detailText = jsonToHtml(savedData);
 		jsonData.innerHTML = savedDataInput;
-		detail_text.innerHTML = detailText; 
+		detail_text.innerHTML = detailText;
 	});
 });
 
 // Предварительный просмотр.
 $(document).on("click", ".newPreviewbtn", function (e) {
-	e.preventDefault();   
+	e.preventDefault();
 	var nameEl = document.getElementById("lk_name");
 	var prevTextEl = document.getElementById("ce-preview_text");
 	var companyNameEl = document.getElementById("personalPageCompanyName");
-	var companyName = "Имя вашей компании"; 
- 
+	var companyName = "Имя вашей компании";
+
 	editor.save().then(savedData => {
-		savedDataInput = JSON.stringify(savedData, null, 4); 
+		savedDataInput = JSON.stringify(savedData, null, 4);
 		detailText = jsonToHtml(savedData);
-		
+
 		if (!!companyNameEl)
-		companyName = companyNameEl.textContent;
+			companyName = companyNameEl.textContent;
 
 		if (!!nameEl)
 			var name = nameEl.value
@@ -247,30 +260,31 @@ $(document).on("click", ".newPreviewbtn", function (e) {
 		if (!!prevTextEl)
 			var prevText = prevTextEl.value;
 		else
-			var prevText = ""; 
+			var prevText = "";
 
 		var prewHead = '<div class="detailinfo clearfix"><div class="detailinfofirm floatleft">Публикация <a href="#">' + companyName + '</a></div><div class="detailinfolink floatleft"><a href="#"><i class="icon-icons_main-10"></i><span>Все новости компании</span></a></div></div>';
 
-		prevText = '<div class="descrcontent">' + prevText + '</div>'; 
+		prevText = '<div class="descrcontent">' + prevText + '</div>';
 
 		$('.previewBlock').empty().append('<h1>' + name + '</h1><div class="block-default in block-shadow content-margin previewBlock detailblock"><div class="row">' + prewHead + prevText + detailText + '</div></div>');
 	});
 
 });
 // // тест перед сохранением
-// testButton.addEventListener("click", () => { 
-// 	editor.save().then(savedData => { 
-// 		savedDataInput = JSON.stringify(savedData, null, 4);
-		
-// 		detailText = jsonToHtml(savedData);
+testButton.addEventListener("click", () => {
+	editor.save().then(savedData => {
+		savedDataInput = JSON.stringify(savedData, null, 4);
 
-// 		console.log(savedDataInput);
-// 		detail_text.innerHTML = detailText;
-// 		jsonData.innerHTML = savedDataInput;
-// 	});
-// });
-/** <!--~~~~~~~ Чеклист ~~~~~~~~~--> 
- * 
+		detailText = jsonToHtml(savedData);
+
+		console.log(savedDataInput);
+		detail_text.innerHTML = detailText;
+		jsonData.innerHTML = savedDataInput;
+	});
+});
+
+/** <!--~~~~~~~ Чеклист ~~~~~~~~~-->
+ *
  * 1) Переделать заголовок ☑
  * 2) В идеале сделать свой компонент под анонс, либо вариант переделать первый параграф под анонс ☑
  * 3) Анонс использовать по умолчанию? Настроил скрипт который можно включать/выключать, найти зависимости для анонса ☑
@@ -278,7 +292,7 @@ $(document).on("click", ".newPreviewbtn", function (e) {
  * 5) Первая загруженная картинка будет анонсом и заглавной одновременно? -> заглавную не будем трогать, пока не будет ясен функционал ☑
  * 6) Настройки картинки (вширь или врезка) ☑
  * 7) Почему-то не работают обычные ссылки -> поправил ☑
- * 8) Парсим теги? 
+ * 8) Парсим теги?
  * 9) Модерацию из личного кабинета ☑
  * 10) История изменений
 //  <!--~~~~~~~ Чеклист ~~~~~~~~~-->  */

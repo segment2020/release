@@ -1,4 +1,9 @@
 $(document).ready(function () {
+
+	 
+    $(".post_gallery__item").fancybox(); 
+
+
 	//	Mmenuind
 
 	var menu = new MmenuLight(

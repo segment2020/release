@@ -87,6 +87,7 @@
     <input type="hidden" name="PROPERTY[ACTIVE]" value="N">
     <?  }   else    { ?>
     <? } ?>
+       
     <div class="hide">
         <pre id="output"></pre>    
         <textarea id="detail_text" rows="15" cols="70" name="PROPERTY[DETAIL_TEXT][0]">
@@ -99,14 +100,18 @@
 
 <?   
 ?> 
-<script src="/tpl/js/editor/editor-inset.js"></script>
-<script src="/tpl/js/editor/editor-header.js"></script> 
+<script src="/tpl/js/editor/editor-incut.js"></script> <!-- компонент для разработки -->
+<script src="/tpl/js/editor/editor-header.js"></script>
 <script src="/tpl/js/editor/editor-image.js"></script>
 <script src="/tpl/js/editor/editor-delimiter.js"></script>
 <script src="/tpl/js/editor/editor-list.js"></script>
 <script src="/tpl/js/editor/editor-checklist.js"></script>
 <script src="/tpl/js/editor/editor-embed.js"></script>
 <script src="/tpl/js/editor/editor-link.js"></script>
+<script src="/tpl/js/editor/editor-gallery.js"></script>
+<script src="/tpl/js/editor/editor-marker.js"></script>
+<script src="/tpl/js/editor/editor-strike.js"></script>
+<script src="/tpl/js/editor/editor-quote.js"></script> 
 <script src="/tpl/js/editor/editor.js"></script>
 <script>
     var decodeEntities = (function() {
@@ -258,6 +263,13 @@
                 case "header":
                     articleHTML += `<h${obj.data.level} class="post_header"> ${obj.data.text}  </h${obj.data.level}>`
                     break;
+                case "carousel": 
+                    articleHTML += `<div class="post_gallery"><div class="post_gallery__wrap squares">`;
+                    for (var i = 0; i < obj.data.length; i++) {
+                        articleHTML += `<a class="post_gallery__item" rel="group" title="${obj.data[i].caption}" href="${obj.data[i].url}"><img src="${obj.data[i].url}" /></a>`;
+                    } 
+                    articleHTML += `</div></div>`;  
+                    break;
                 case "paragraph":
                     articleHTML += `<p class="post_caption"> ${obj.data.text} </p>`
                     break;
@@ -265,7 +277,7 @@
                     stretched = obj.data.stretched ? " post_image--stretched" : "";
                     withBorder = obj.data.withBorder ? " post_image--withBorder" : "";
                     withBackground = obj.data.withBackground ? " post_image--withBackground" : "";
-                    caption = obj.data.caption ? `<div class="post_caption"> <p>${obj.data.caption}</p> </div>` : "";
+                    caption = obj.data.caption ? `<div class="post_image--caption"> <i>${obj.data.caption}</i> </div>` : "";
                     articleHTML += `<div class="post_image${stretched}${withBorder}${withBackground}"> <img src="${obj.data.file.url}" alt="${obj.data.caption}"/> ${caption}</div>`; 
                     break;
                 case "delimiter":
@@ -275,10 +287,10 @@
                     articleHTML += `<a class="link-tool__content link-tool__content--rendered" target="_blank" rel="nofollow noindex noreferrer" href="${obj.data.link}"><div class="link-tool__title">${obj.data.meta.title}</div><p class="link-tool__description">${obj.data.meta.description}</p></a>`
                     break;
                 case "list":
-                    if (obj.data.style = "ordered") {
+                    if (obj.data.style == "ordered") {
                         listStyle = "ol";
                     }
-                    if (obj.data.style = "unordered") {
+                    if (obj.data.style == "unordered") {
                         listStyle = "ul";
                     }
                     articleHTML += `<${listStyle} class="list__block">`;
@@ -287,8 +299,16 @@
                     } 
                     articleHTML += `</${listStyle}>`; 
                     break; 
-                case "quote":
-                    articleHTML += "блок quote не обработан"
+                case "quote": 
+                    if (obj.data.alignment == "left") {
+                        quoteStyle = "post_quote--default";
+                    }
+                    if (obj.data.alignment == "center") {
+                        quoteStyle = "post_quote--centered";
+                    }
+                    articleHTML += `<blockquote class="post_quote ${quoteStyle}"><div class="block-quote__content"><svg class="icon-entry_quote"><use xlink:href="#icon-entry_quote"></use></svg> 
+                <div class="block-quote__text">${obj.data.text}</div>
+                <div class="block-quote__author"><div class="block-quote__author-content"><div class="block-quote__author-name">${obj.data.caption}</div></div></div></div></blockquote>`
                     break;
                 case "warning":
                     articleHTML += "блок warning не обработан"
