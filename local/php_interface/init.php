@@ -1,5 +1,5 @@
 <?
-// init prod
+// init alpha (проверить все индексы ID)
 @require_once 'include/autoload.php';
 define("RE_SITE_KEY","6LfKPNoUAAAAAOUDTG1ZOLoKmqXcAYfSMuG-i5EN");
 define("RE_SEC_KEY","6LfKPNoUAAAAAAvB_8UggavqluT0oKXV-t9osr3_");
@@ -68,7 +68,6 @@ define('IBLOCK_ID_NOVETLY', 20);
 define('IBLOCK_ID_BANNERS', 21);
 define('IBLOCK_ID_CATALOGS_PDF', 22);
 define('IBLOCK_ID_ALL_MATERIALS', 23);
-
 define('IBLOCK_ID_USERS', 400);
 define('PAGE_TOP_100', 500);
 define('PAGE_ACTUAL_TODAY', 600);
@@ -128,7 +127,7 @@ define('PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY', 176);         // Перенест�
 define('PROPERTY_ID_OLD_ID_IN_NEWS_COMPANY', 252);          // Старый Id.
 define('PROPERTY_ID_MARKED_IN_NEWS_COMPANY', 277);          // Выделено.
 define('PROPERTY_ID_MARKED_TO_IN_NEWS_COMPANY', 278);       // Дата до которого выделено. 
-define('PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY', 292);    	// Json данные
+define('PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY', 295);    	// Json данные
 
 // IBLOCK_ID_CATALOG
 define('PROPERTY_ID_BRAND_IN_CATALOG', 206);                 // Бренд.
@@ -155,7 +154,7 @@ define('PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY', 174);         // Перенест
 define('PROPERTY_ID_OLD_ID_IN_NEWS_INDUSTRY', 253);          // Старый Id.
 define('PROPERTY_ID_MARKED_IN_NEWS_INDUSTRY', 282);          // Выделено.
 define('PROPERTY_ID_MARKED_TO_IN_NEWS_INDUSTRY', 283);       // Дата до которого выделено. 
-define('PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY', 293);    	 // Json данные
+define('PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY', 296);    	 // Json данные
 
 // IBLOCK_ID_DEFAULTERS
 define('PROPERTY_ID_DEFAULTER_IN_DEFAULTERS', 8);            // Неплательщик.
@@ -184,7 +183,7 @@ define('PROPERTY_ID_ADD_MATERIAL_IN_STOCK', 238);            // Доп. мате
 define('PROPERTY_ID_OLD_ID_IN_STOCK', 263);                  // Старый Id.
 define('PROPERTY_ID_MARKED_IN_NEWS_STOCK', 284);             // Выделено.
 define('PROPERTY_ID_MARKED_TO_IN_NEWS_STOCK', 285);          // Дата до которого выделено.
-define('PROPERTY_ID_JSON_DATA_IN_STOCK', 298);    	 		//Json данные
+define('PROPERTY_ID_JSON_DATA_IN_STOCK', 299);    	 		//Json данные
 
 // IBLOCK_ID_ANALYTICS
 define('PROPERTY_ID_COMPANY_ID_IN_ANALYTICS', 175); // id компании.
@@ -198,7 +197,7 @@ define('PROPERTY_ID_COMPANY_ID_IN_LIFE_INDUSTRY', 183); // id компании.
 define('PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY', 184); // Перенести в.
 define('PROPERTY_ID_ADD_MATERIAL_IN_LIFE_INDUSTRY', 201); // Доп. материал.
 define('PROPERTY_ID_OLD_ID_IN_LIFE_INDUSTRY', 258); // Старый Id.
-define('PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY', 295);    	 // Json данные
+define('PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY', 298);    	 // Json данные
 
 // IBLOCK_ID_VIEWPOINT
 define('PROPERTY_ID_NAME_IN_VIEWPOINT', 28); // Имя.
@@ -214,7 +213,7 @@ define('PROPERTY_ID_ADD_MATERIAL_IN_VIEWPOINT', 154); // Доп. материа�
 define('PROPERTY_ID_MOVE_TO_IN_VIEWPOINT', 182); // Перенести в.
 define('PROPERTY_ID_PHOTO_SRC_IN_VIEWPOINT', 247); // Источник фото.
 define('PROPERTY_ID_OLD_ID_IN_VIEWPOINT', 262); // Старый Id.
-define('PROPERTY_ID_JSON_DATA_IN_VIEWPOINT', 296);    	// Json данные
+define('PROPERTY_ID_JSON_DATA_IN_VIEWPOINT', 297);    	// Json данные
 
 // IBLOCK_ID_GALLERY_PHOTO
 define('PROPERTY_ID_IMAGES_IN_GALLERY_PHOTO', 33); // Изображения.
@@ -273,7 +272,7 @@ define('PROPERTY_ID_SHOW_LOGO_IN_PRODUCTS_REVIEW', 166);       // Показыв
 define('PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW', 185);         // Перенести в.
 define('PROPERTY_ID_ADD_MATERIAL_IN_PRODUCTS_REVIEW', 202);    // Доп. материал.
 define('PROPERTY_ID_OLD_ID_IN_PRODUCTS_REVIEW', 259);          // Старый id. 
-define('PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW', 297);    	// Json данные
+define('PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW', 294);    	// Json данные
 
 // IBLOCK_ID_PRICE_LISTS
 define('PROPERTY_ID_COMPANY_ID_IN_PRICE_LIST', 71);            // ID компании.
@@ -318,8 +317,8 @@ define('PROPERTY_ID_REJ_MESS_IN_NOVETLY', 222);        // Причина отк�
 define('PROPERTY_ID_OLD_ID_IN_NOVETLY', 254);          // Старый ID.
 define('PROPERTY_ID_MARKED_IN_NEWS_NOVETLY', 280);     // Выделено.
 define('PROPERTY_ID_MARKED_TO_IN_NEWS_NOVETLY', 281);  // Дата до которого выделено.
-define('PROPERTY_ID_JSON_DATA_IN_NOVETLY', 294);  //  	 Json данные
-define('PROPERTY_ID_MOVE_TO_IN_NOVETLY', 299);  //  	 Перенести в.
+define('PROPERTY_ID_JSON_DATA_IN_NOVETLY', 300);  //  	 Json данные
+define('PROPERTY_ID_MOVE_TO_IN_NOVETLY', 301);  //  	 Перенести в.
 
 // IBLOCK_ID_BANNERS
 define('PROPERTY_ID_COMPANY_ID_IN_BANNERS', 226); // id компании.
@@ -375,8 +374,8 @@ define('PROPERTY_ID_COUNTRY_IN_CATALOGS_PDF', 236);    // Страна.
 define('PROPERTY_ID_OLD_ID_IN_CATALOGS_PDF', 266);     // Старый ID.
 
 // IBLOCK_ID_ALL_MATERIALS 
-define('PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS', 309);       	// Json данные
-define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 308); 			// Перенести в.
+define('PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS', 308);       	// Json данные
+define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 309); 			// Перенести в.
 
 	// file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/tpl/log.log', '444'); 
  
