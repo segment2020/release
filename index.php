@@ -16,7 +16,7 @@ $newsFeedOnMain_settingsList = array(
 	8 => array( 'iBlock__id' => IBLOCK_ID_BRANDS, 			'iBlock__limit' => '2', 'csstag'=> 'newscomptag' ), // Бренды. 
 ); 
 
-// ratingCalc();
+// ratingCalc(); test
 $hostingPage = 90; // 0 - главная страница.
 $bannersArray = array();
 
