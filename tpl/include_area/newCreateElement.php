@@ -87,8 +87,8 @@ use Bitrix\Main\Page\Asset;
 	}  
 	 	 $APPLICATION->IncludeFile('/tpl/include_area/tags.php', array(), array()); ?>
 			</div> 
-	</div>
- 
+	</div> 
+	
 		<input type="submit" name="iblock_submit" value="Сохранить" class="btn btn-blue-full minbr" id='addElement' />
 		<button class="btn btn-blue-full minbr newPreviewbtn">Предварительный просмотр</button>
 		<input type="hidden" name="iBlockId" value="<? echo $_GET['iBlockId']; ?>">

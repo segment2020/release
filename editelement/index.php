@@ -317,6 +317,7 @@ $APPLICATION->IncludeComponent(
 			55 => $displayAreaOtherPagePropId,
 			56 => $displayJsonDataId, 
 			57 => $moveToPropertyId, 
+			58 => "CREATED_BY",
 		),
 		"PROPERTY_CODES_REQUIRED" => array(
 			0 => "NAME",

@@ -54,13 +54,14 @@ if ($arResult['ACTIVE'] == "Y") {
 	<div class="block-default in block-shadow content-margin">  
 		<div class="row">
 			
-<?   
+<?    
 //********************************************************************************************************************************* 
 $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 	'createNewMaterial' => false,  
-	'isActiveMaterial' => $iBlockIsActive,  
+	'isActiveMaterial' => $iBlockIsActive,    
 	'iBlockId' => $arResult['IBLOCK_ID'],
 	'name' => $arResult['NAME'], 
+	'createdBy' => $arResult['CREATED_BY'], 
 	'date_x' => $arResult['TIMESTAMP_X'], 
 	'previewText' => $arResult['PREVIEW_TEXT'], 
 	'detailText' => $arResult['DETAIL_TEXT'],
@@ -72,6 +73,8 @@ $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 	'editorDataId' => $arResult["PROPERTIES"]["editorData"]["ID"],
 	'moveToValue' => $arResult["PROPERTIES"]["moveTo"]["VALUE"],
 	'moveToId' => $arResult["PROPERTIES"]["moveTo"]["ID"],  
+	'companyId' => $arResult["PROPERTIES"]["companyId"]["VALUE"], 
+	'companyToId' => $arResult["PROPERTIES"]["companyId"]["ID"],  
 	),
 	array()); 
 	   
@@ -112,6 +115,9 @@ $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 
 		</div>  
 		</div> 
+		<!-- тестовая кнопка просто закомментируй не обязательно каждый раз удалять -->
+		<input type="submit" name="test-button" value="тест" class="btn btn-blue-full minbr" id='test-button' />  
+		<!-- /end тестовая кнопка просто закомментируй не обязательно каждый раз удалять -->
 		<input type="submit" name="iblock_submit" value="Сохранить" class="btn btn-blue-full minbr" id='updateElement' /> 
 		<button class="btn btn-blue-full minbr newPreviewbtn">Предварительный просмотр</button> 
 		<input type="hidden" name="iBlockId" value="<? echo $arResult['IBLOCK_ID']; ?>">

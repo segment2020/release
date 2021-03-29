@@ -271,17 +271,18 @@ $(document).on("click", ".newPreviewbtn", function (e) {
 
 });
 // // тест перед сохранением
-testButton.addEventListener("click", () => {
-	editor.save().then(savedData => {
-		savedDataInput = JSON.stringify(savedData, null, 4);
+if (testButton) { 
+	testButton.addEventListener("click", () => {
+		editor.save().then(savedData => {
+			savedDataInput = JSON.stringify(savedData, null, 4); 
+			detailText = jsonToHtml(savedData); 
+			console.log(savedDataInput);
 
-		detailText = jsonToHtml(savedData);
-
-		console.log(savedDataInput);
-		detail_text.innerHTML = detailText;
-		jsonData.innerHTML = savedDataInput;
+			detail_text.innerHTML = detailText;
+			jsonData.innerHTML = savedDataInput;
+		});
 	});
-});
+}
 
 /** <!--~~~~~~~ Чеклист ~~~~~~~~~-->
  *

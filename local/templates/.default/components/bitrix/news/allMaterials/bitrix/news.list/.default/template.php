@@ -67,10 +67,30 @@ foreach($arResult["ITEMS"] as $arItem)
 				<div class="newsbfirm">Материал компании <?=$arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE']?></div>
 			<? } else { 
 					$rsUser = CUser::GetByID($arItem['CREATED_BY']);
-					$arUser = $rsUser->Fetch(); ?> 
-				<div class="newsbfirm">Материал пользователя <?=$arUser['NAME'] ?></div>
+					$arUser = $rsUser->Fetch(); 
+					
+					if (true)
+						{
+							$arSelect = array('ID', "NAME");
+							$arFilter = array("IBLOCK_ID" => IBLOCK_ID_COMPANY, 'ID' => $arUser['UF_ID_COMPANY']);
+							$res = CIBlockElement::GetList(array(), $arFilter, false, array(), $arSelect);
+							if ($ob = $res->GetNextElement())
+								$arFields = $ob->GetFields();
+
+						}
+
+						console_log($arItem);
+						console_log("arUser".$arUser);
+						console_log($arFields);
+
+					$authorMsg = !empty($arFields['NAME']) ? "Материал компании ".$arFields['NAME'] : "Материал пользователя ".$arUser['NAME'];  
+					
+					?> 
+				<div class="newsbfirm"> <?=$authorMsg ?></div>
 				
-			<? } ?>				
+			<? } 
+			
+			?>				
 		</div>
 		<div class="seporator"></div>
 <?}?>

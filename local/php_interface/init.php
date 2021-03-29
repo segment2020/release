@@ -628,13 +628,14 @@ class AddTaranslitCodeName
 							"IBLOCK_ID"      			=> $move, 
 							"NAME"                    	=> $arFields['NAME'],
 							"ACTIVE"  					=> $arFields['ACTIVE'],
+							"CREATED_BY"  				=> $arFields['CREATED_BY'],
 							"TAGS"  					=> $arFields['TAGS'],
 							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
 							"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
 							"MODIFIED_BY"               => $USER->GetID(),   
 							"ACTIVE_FROM"				=> date("d.m.Y H:i:s"), 
 							"DETAIL_TEXT_TYPE"			=> $arFields['DETAIL_TEXT_TYPE'],
-						);  
+						); 
 
 						if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
 							if (!empty($arFields['PREVIEW_PICTURE']['name'])) {
@@ -979,6 +980,7 @@ class AddTaranslitCodeName
 							"IBLOCK_ID"      			=> $move, 
 							"NAME"                    	=> $arFields['NAME'],
 							"ACTIVE"  					=> $arFields['ACTIVE'],
+							"CREATED_BY"  				=> $arFields['CREATED_BY'],
 							"TAGS"  					=> $arFields['TAGS'],
 							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
 							"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
@@ -1106,6 +1108,7 @@ class AddTaranslitCodeName
 							"IBLOCK_ID"      			=> $move, 
 							"NAME"                    	=> $arFields['NAME'],
 							"ACTIVE"  					=> $arFields['ACTIVE'],
+							"CREATED_BY"  				=> $arFields['CREATED_BY'],
 							"TAGS"  					=> $arFields['TAGS'],
 							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
 							"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
@@ -1728,29 +1731,13 @@ if (!function_exists('viewsinc')) {
 
 	function viewsinc($element_id, $iblock_id, $company_id, $element_date_create = null) {
 		if (!isBot()) {
-
-			// if ()
-			// {
-				// $strSql = "SELECT `id` FROM `blackIp` WHERE ELEMENT_ID='".$element_id."' AND IBLOCK_ID='".$iblock_id."' AND CUR_DATE='".$cur_date."'";
-				// if ($company_id) {
-					// $strSql .= "AND COMPANY_ID=".$company_id;
-				// }
-			// }
-
 			global $DB;
 
-			// $fd = fopen($_SERVER['DOCUMENT_ROOT'] . '/tpl/log.log', 'a') or exit("Не удалось открыть файл " . $_SERVER['DOCUMENT_ROOT'] . '/tpl/log.log');
-			// $str = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-			// $str = serialize($str) . "\r\n";
-			// fwrite($fd, $str);
-			// fclose($fd);
-
-			$cur_date = date("Y-m-d");
+			$cur_date = date("Y-m-d"); 
+			if (empty($company_id))
+				$company_id = "1";
 
 			$strSql = "SELECT `ID`, `serverData`, `sessionData` FROM `segment_views` WHERE ELEMENT_ID='".$element_id."' AND IBLOCK_ID='".$iblock_id."' AND CUR_DATE='".$cur_date."'";
-			if ($company_id) {
-				$strSql .= "AND COMPANY_ID = " . $company_id;
-			}
 
 			$result = $DB->Query($strSql, false, "", array("ignore_dml"=>true));
 			if ($resultid = $result->GetNext()) {
@@ -1763,14 +1750,16 @@ if (!function_exists('viewsinc')) {
 				$strSql = "UPDATE segment_views SET NUM_VIEWS=".$DB->IsNull("NUM_VIEWS", 0)."+1, `serverData` = '" . $serverStr . "', `sessionData` = '" . $sessionStr . "' WHERE ID='".$resultid['ID']."'";		
 				$DB->Query($strSql, false, "", array("ignore_dml"=>true));			
 			} else {
-				// $serverData = json_encode($_SERVER);
 				$serverData = $_SERVER['REMOTE_ADDR'];
-				// $sessionData = json_encode($_SESSION);
 				$sessionData = $_SESSION['SALE_USER_ID'];
 
 				$element_date_create = (null == $element_date_create)? 'now': $element_date_create;
 
+			// 	create table try (  
+			// 		COMPANY_ID varchar(40) DEFAULT '' not null
+			//    );
 				// Добавляем новую запись:
+				//$strSql = "INSERT INTO `segment_views` (ELEMENT_ID, IBLOCK_ID, CUR_DATE, NUM_VIEWS, ELEMENT_DATE_CREATE,serverData, sessionData) VALUES ('".$element_id."', '".$iblock_id."', '".$cur_date."', '1', '" . date("Y.m.d",strtotime($element_date_create)) . "', '" . $serverData . "', '" . $sessionData . "')"; 
 				$strSql = "INSERT INTO `segment_views` (ELEMENT_ID, IBLOCK_ID, CUR_DATE, NUM_VIEWS, COMPANY_ID, ELEMENT_DATE_CREATE, serverData, sessionData) VALUES ('".$element_id."', '".$iblock_id."', '".$cur_date."', '1', '".$company_id."', '" . date("Y.m.d", strtotime($element_date_create)) . "', '" . $serverData . "', '" . $sessionData . "')";
 				$DB->Query($strSql, false, "", array("ignore_dml"=>true));
 			}
@@ -1778,7 +1767,7 @@ if (!function_exists('viewsinc')) {
 		}
 	}
 }
-
+	
 
 
 

@@ -1,6 +1,5 @@
 <?
-use Bitrix\Main\Page\Asset;  
-console_log("iBlockType: ".$iBlockType." - iBlockId: ".$iBlockId." - jsonDataId: ".$jsonDataId." - elementCode: ".$elementCode);
+use Bitrix\Main\Page\Asset;   
   
 $APPLICATION->IncludeComponent(
 	"wp:news.detail", 
@@ -41,6 +40,7 @@ $APPLICATION->IncludeComponent(
 			5 => "DETAIL_PICTURE", 
 			6 => "SHOW_COUNTER",
 			7 => "ACTIVE" ,
+			8 => "CREATED_BY",
 		),
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
 		"MESSAGE_404" => "",
