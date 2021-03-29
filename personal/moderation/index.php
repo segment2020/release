@@ -10,9 +10,9 @@ $APPLICATION->SetTitle("Модерация");
 <?
 if ($USER->IsAuthorized()) //Если пользователь авторизован 
 {
-    $currentUserId = $USER->GetID();
-    $rsUser = CUser::GetByID($currentUserId); //$USER->GetID() - получаем ID авторизованного пользователя и сразу же его поля
-    $arUser = $rsUser->Fetch();
+    // $currentUserId = $USER->GetID();
+    // $rsUser = CUser::GetByID($currentUserId); //$USER->GetID() - получаем ID авторизованного пользователя и сразу же его поля
+    // $arUser = $rsUser->Fetch();
 
     $APPLICATION->IncludeComponent(
         "bitrix:news.index",

@@ -193,7 +193,7 @@ const editor = new EditorJS({
 				},
 				"quote": {
 					"Left alignment": "По левой стороне",
-					"Center alignment": "По центру", 
+					"Center alignment": "По центру",
 				},
 			},
 			blockTunes: {
