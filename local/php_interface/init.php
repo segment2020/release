@@ -376,6 +376,7 @@ define('PROPERTY_ID_OLD_ID_IN_CATALOGS_PDF', 266);     // Старый ID.
 // IBLOCK_ID_ALL_MATERIALS 
 define('PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS', 308);       	// Json данные
 define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 309); 			// Перенести в.
+define('PROPERTY_ID_COMPANY_ID_IN_ALL_MATERIALS', 301); 		// id компании.
 
 	// file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/tpl/log.log', '444'); 
  
@@ -1033,7 +1034,7 @@ class AddTaranslitCodeName
 		} 
 
         // Если элемент редактируется из админки
-		
+		console_log($arFields);
         if ($USER->IsAdmin() && (isset($arFields['IPROPERTY_TEMPLATES']))) {
             $key = array_keys($arFields['PROPERTY_VALUES'][$moveToPropertyId]);
             $move = $arFields['PROPERTY_VALUES'][$moveToPropertyId][$key[0]]['VALUE'];

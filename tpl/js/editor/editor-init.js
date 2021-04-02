@@ -224,10 +224,11 @@ const editor = new EditorJS({
 	}
 });
 
-const testButton = document.getElementById("test-button");
-const output = document.getElementById("output");
-const detail_text = document.getElementById("detail_text");
-const jsonData = document.getElementById("jsonData");
+const testButton 	= document.getElementById("test-button");
+const output 		= document.getElementById("output");
+const detail_text 	= document.getElementById("detail_text");
+const jsonData 		= document.getElementById("jsonData");
+const authorPick 	= document.getElementById("author-pick");
 
 // Сохранить
 submitElement.addEventListener("click", () => {
@@ -283,6 +284,14 @@ if (testButton) {
 		});
 	});
 }
+// if (authorPick) { 
+// 	authorPick.onchange 
+// 	const pickAuthor = document.getElementById('author-change');
+// 	const pickCompany = document.getElementById('authorCompany-change');
+
+// 	https://betterprogramming.pub/how-onchange-differs-between-react-and-vanilla-javascript-90b56d6a340a
+// }
+ 
 
 /** <!--~~~~~~~ Чеклист ~~~~~~~~~-->
  *

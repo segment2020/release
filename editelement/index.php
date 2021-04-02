@@ -1,7 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Редактирование елемента");
-?>
+?> 
 
 <?
 // if (isset($_GET['strIMessage']) && (!empty($_GET['strIMessage'])))
@@ -42,6 +42,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 			$markedToPropId    = PROPERTY_ID_MARKED_TO_IN_NEWS_COMPANY;
 			$moveToPropertyId  = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
 			$displayJsonDataId = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
+			$companyIdProp = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
 			break;
 		}
 
@@ -56,6 +57,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 			$markedToPropId    = PROPERTY_ID_MARKED_TO_IN_NEWS_INDUSTRY;
 			$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
 			$displayJsonDataId = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
+			$companyIdProp = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
 			break;
 		}
 
@@ -68,6 +70,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 			$markedToPropId    = PROPERTY_ID_MARKED_TO_IN_NEWS_STOCK;
 			$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_STOCK;
 			$displayJsonDataId = PROPERTY_ID_JSON_DATA_IN_STOCK;
+			$companyIdProp = PROPERTY_ID_COMPANY_ID_IN_STOCK;
 			break;
 		}
 
@@ -117,6 +120,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 			$photoSrcPropId = PROPERTY_ID_PHOTO_SRC_IN_VIEWPOINT;
 			$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
 			$displayJsonDataId = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
+			$companyIdProp = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
 			break;
 		}
 
@@ -152,6 +156,8 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 			$addMaterialPropId  = PROPERTY_ID_ADD_MATERIAL_IN_PRODUCTS_REVIEW;
 			$displayJsonDataId = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
 			$moveToPropertyId = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
+			$companyIdProp = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
+			
 			break;
 		}
 
@@ -182,6 +188,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 			$markedPropId      = PROPERTY_ID_MARKED_IN_NEWS_NOVETLY;
 			$markedToPropId    = PROPERTY_ID_MARKED_TO_IN_NEWS_NOVETLY;
 			$displayJsonDataId = PROPERTY_ID_JSON_DATA_IN_NOVETLY;
+			$companyIdProp = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
 			break;
 		}
 
@@ -209,12 +216,14 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 		{  
 			$displayJsonDataId = PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
 			$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY;
+			$companyIdProp = PROPERTY_ID_COMPANY_ID_IN_LIFE_INDUSTRY;
 			break;
 		} 
 		case IBLOCK_ID_ALL_MATERIALS:
 		{  
 			$displayJsonDataId = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
 			$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
+			$companyIdProp = PROPERTY_ID_COMPANY_ID_IN_ALL_MATERIALS;
 			break;
 		}
 	}
@@ -318,6 +327,7 @@ $APPLICATION->IncludeComponent(
 			56 => $displayJsonDataId, 
 			57 => $moveToPropertyId, 
 			58 => "CREATED_BY",
+			59 => $companyIdProp, 
 		),
 		"PROPERTY_CODES_REQUIRED" => array(
 			0 => "NAME",

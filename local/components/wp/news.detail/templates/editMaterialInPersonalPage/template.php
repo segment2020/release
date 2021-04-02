@@ -54,7 +54,8 @@ if ($arResult['ACTIVE'] == "Y") {
 	<div class="block-default in block-shadow content-margin">  
 		<div class="row">
 			
-<?    
+<?     
+console_log($arResult["PROPERTIES"]["fromCompany"]["ACTIVE"]);
 //********************************************************************************************************************************* 
 $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 	'createNewMaterial' => false,  
@@ -75,6 +76,8 @@ $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 	'moveToId' => $arResult["PROPERTIES"]["moveTo"]["ID"],  
 	'companyId' => $arResult["PROPERTIES"]["companyId"]["VALUE"], 
 	'companyToId' => $arResult["PROPERTIES"]["companyId"]["ID"],  
+	'fromCompanyId' => $arResult["PROPERTIES"]["fromCompany"]["ID"], 
+	'fromCompanyValue' => $arResult["PROPERTIES"]["fromCompany"]["ACTIVE"],  
 	),
 	array()); 
 	   

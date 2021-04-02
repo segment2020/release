@@ -53,27 +53,92 @@
         <textarea placeholder="Анонс публикации" id="ce-preview_text" name="PROPERTY[PREVIEW_TEXT][0]"><? echo strip_tags($previewText); ?></textarea>
     </div>
     <div id="js-editor"></div>
+    <div class="detailinfofirm">
+        <? 
+        $res = CIBlockElement::GetByID($companyId);
+        if($companyAuthor = $res->GetNext()) 
+        echo "<br> компания: ".$companyAuthor['NAME'];
+    ?>
+        <br>
+        <span class="detailinfo_author">Автор новости / ньюсмейкер</span>
+        <? echo ($fromCompanyValue=="Y") ? "Компания" : "Автор"; ?>
+        <b>
+            <? echo ($fromCompanyValue=="Y") ? $companyId : $createdBy; ?>
+        </b>
+    </div>
+
+    Автор:
+    <? $rsUser = CUser::GetByID($createdBy);
+                $arUser = $rsUser->Fetch();
+                echo $arUser["ID"]." - ".$arUser["NAME"] . ' (' . $arUser["LOGIN"] . ')'; ?>
     <? /*if ( CSite::InGroup(array(1)) && $moderation ) { */ ?>
     <? if ( CSite::InGroup(array(1)) ) {
                 ?>
-    <div class="block-moveTo clearfix">
-        Компания автор: "ID компании"
-        <? echo $companyId; ?> <br>
-        <div class="block-moveTo clearfix">
-            Сменить на:
-            <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="" name="PROPERTY[<?= $companyToId ?>][0]">
-                <?   
+    <div class="row">
+        <div id="author-pick" class="clearfix col-xs-3">
+            Сменить автора на:
+            <select onchange="toggleAuthorType()" class="selectpicker selectboxbtn form-control minbr" id="toggleAuthor" name="PROPERTY[<?= $fromCompanyId ?>][0]">
+                <option value="Y" <?if ($fromCompanyValue=="Y" ) {?> selected
+                    <?}?>>Компанию
+                </option>
+                <option value="N" <?if ($fromCompanyValue=="N" ) {?> selected
+                    <?}?>>Автора
+                </option>
+            </select>
+        </div>
+
+        <?
+    $arFilter = Array(
+        Array(
+            "LOGIC"=>"OR",
+            Array(
+            "Bitrix\Main\UserGroupTable:USER.GROUP_ID"=>3
+            )
+        )
+    );
+    ?>
+        <div id="author-change" class="clearfix col-xs-9<?if ($fromCompanyValue=="Y") {?> hide<?}?>"> 
+        <br>
+            <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="" name="PROPERTY[CREATED_BY]">
+                <?
+                $arUsers = Bitrix\Main\UserTable::getList(Array( 
+                    "select"=>Array("ID","NAME","LOGIN"), 
+                    "filter"=>$arFilter, 
+                    "data_doubling"=>false 
+                ));
+                while ($user = $arUsers->fetch()) 
+                    {  
+    
+                        $selected = ''; 
+                        if ($createdBy == $user["ID"])
+                        {
+                            echo '<option value="' . $user["ID"] .'" selected >['. $user["ID"] . '] '. $user["NAME"] . ' (' . $user["LOGIN"] . ')</option>';
+                        } else { 
+                            echo '<option value="' . $user["ID"] .'">['. $user["ID"] . '] '. $user["NAME"] . ' (' . $user["LOGIN"] . ')</option>';
+                        }
+    
+                    }
+                ?>
+            </select>
+        </div>
+        <div id="authorCompany-change" class="clearfix col-xs-9<?if ($fromCompanyValue == "N") {?> hide<?}?>"> 
+            <div class="clearfix">
+                <br>
+                <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="listLookupAvailableItems" name="PROPERTY[<?= $companyToId ?>][0]">
+                    <?   
                 $db_res = CIBlockElement::GetList(array("ID" => "DESC"), Array("IBLOCK_ID"=> "1", "ACTIVE"=>"Y"), false, false, Array("ID","NAME"));
-                $selected = '';
     
 		        while ($comp_res = $db_res->Fetch()) {  
+                    $selected = '';
                     if ($companyId == $comp_res["ID"])
                         $selected = 'selected';
                     echo '<option value="'.$comp_res["ID"].'" ' . $selected .'> ['.$comp_res["ID"].'] '.$comp_res["NAME"]. '</option>'; 
                 } 
                 ?>
-            </select>
-        </div> 
+                </select>
+            </div>
+        </div>
+
     </div>
     <div class="block-moveTo clearfix">Поместить материал в:
         <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="moveTo" name="PROPERTY[<?= $moveToId ?>][0]">
@@ -105,7 +170,7 @@
             </option>
         </select>
     </div>
-    
+
     <fieldset class="fld-checkbox">
         <label for="active_prop" id="check_on-off" class="floatleft">
             <input type="checkbox" name="active_prop" id="fld-checkbox--activate" <? if ($isActiveMaterial) {?> checked
@@ -210,7 +275,6 @@
 
         return false;
     }
-
     // парсим в domElement !Обязательное условие - обернуть всё в 1 <div id="edParse"></div>  
     function mapDOM(element, json) {
         var treeObject = {};
@@ -297,7 +361,6 @@
         treeObject["version"] = "2.19.1";
         return (json) ? JSON.stringify(treeObject) : treeObject;
     }
-
     // предварительный просмотр и парсинг в HTML детальное описание
     function jsonToHtml(articleObj) {
         var caption;
@@ -398,6 +461,21 @@
         var edDetail = <?php echo json_encode(htmlspecialchars_decode($detailText)); ?>;
 
         var edDetailOld = decodeEntities(<?php echo json_encode($detailText); ?>);
+    }
+
+    const companyOptions = document.getElementById("authorCompany-change");
+    const authorOptions = document.getElementById("author-change"); 
+    function toggleAuthorType() { 
+        changeToCompany = (document.getElementById("toggleAuthor").value == "Y") ? true : false;
+        companyAlreadyHided = companyOptions.classList.contains('hide'); 
+
+        console.log(companyOptions);
+        console.log(authorOptions);
+
+        if ((changeToCompany && companyAlreadyHided) || (!changeToCompany && !companyAlreadyHided)) {
+            companyOptions.classList.toggle("hide");
+            authorOptions.classList.toggle("hide");
+        }
     }
 </script>
 <script src="/tpl/js/editor/editor-init.js" type="module"></script>
