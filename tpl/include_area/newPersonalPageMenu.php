@@ -89,7 +89,7 @@ $APPLICATION->IncludeComponent("bitrix:sale.basket.basket.line", "smallCart", Ar
 ?>
 <a href="/personal/subscription/" class="list-group-item"><img src="/tpl/images/lkmenu3.png">Подписка на рассылку</a>
 
-<? if ( CSite::InGroup(array(1)) ) {?>
+<? if ( CSite::InGroup(array(1,9)) ) {?>
 <a href="/personal/moderation/" class="list-group-item"><img src="/tpl/images/lkmenu3.png">Модерация</a>
 
 <? } ?>
