@@ -9,7 +9,7 @@ if ($USER->IsAuthorized()) //Если пользователь авторизо�
 		$leftSideAvatarFile = CFile::ResizeImageGet($arUser['PERSONAL_PHOTO'], array('width'=>80, 'height'=>80), BX_RESIZE_IMAGE_EXACT, true);
 	else 
 		$leftSideAvatarFile['src'] = EMPTY_LOGO_AVATAR_PATH;
-
+ 
  
 // pre($arResult);
 //pre($arUser);
