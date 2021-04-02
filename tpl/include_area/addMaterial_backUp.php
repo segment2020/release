@@ -3,7 +3,7 @@
 				Дополнительный материал
 			</div>
 			<div class='row'>
-<?				// Выберем все активные информационные блоки для текущего сайта
+				<? // Выберем все активные информационные блоки для текущего сайта
 				$res = CIBlock::GetList(array(), array('SITE_ID' => SITE_ID, 'ACTIVE'=>'Y'), true);
 				while ($ar_res = $res->Fetch()) {
 					if (IBLOCK_ID_CITY == $ar_res['ID'] || IBLOCK_ID_INFOBLOCKS_LIST == $ar_res['ID'] || IBLOCK_ID_BANNERS == $ar_res['ID'])

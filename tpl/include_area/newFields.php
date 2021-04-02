@@ -1,9 +1,13 @@
-<div class="col-xs-12">  
+<div class="col-xs-12">
     <?
+        global $USER;
+        $moderatorID = $USER->GetID();
+        $moderation = false;
         if ($APPLICATION->GetCurPage() == "/personal/moderation/edit/") {
-        ?>       
-        <input type="hidden" name='PROPERTY[MODERATION][0]' value="Y">  
-        <? } ?>
+            $moderation = true; 
+        ?>
+    <input type="hidden" name='PROPERTY[MODERATION][0]' value="Y">
+    <? } ?>
     <div class="ce-maintitle">
         <input type="text" id="lk_name" name='PROPERTY[NAME][0]' placeholder="Заголовок*" value="<? echo $name; ?>">
     </div>
@@ -49,28 +53,132 @@
         <textarea placeholder="Анонс публикации" id="ce-preview_text" name="PROPERTY[PREVIEW_TEXT][0]"><? echo strip_tags($previewText); ?></textarea>
     </div>
     <div id="js-editor"></div>
+    <div class="detailinfofirm">
+        <? 
+        $res = CIBlockElement::GetByID($companyId);
+        if($companyAuthor = $res->GetNext()) 
+        echo "<br> компания: ".$companyAuthor['NAME'];
+    ?>
+        <br>
+        <span class="detailinfo_author">Автор новости / ньюсмейкер</span>
+        <? echo ($fromCompanyValue=="Y") ? "Компания" : "Автор"; ?>
+        <b>
+            <? echo ($fromCompanyValue=="Y") ? $companyId : $createdBy; ?>
+        </b>
+    </div>
+
+    Автор:
+    <? $rsUser = CUser::GetByID($createdBy);
+                $arUser = $rsUser->Fetch();
+                echo $arUser["ID"]." - ".$arUser["NAME"] . ' (' . $arUser["LOGIN"] . ')'; ?>
+    <? /*if ( CSite::InGroup(array(1)) && $moderation ) { */ ?>
+    <? if ( CSite::InGroup(array(1)) ) {
+                ?>
+    <div class="row">
+        <div id="author-pick" class="clearfix col-xs-3">
+            Сменить автора на:
+            <select onchange="toggleAuthorType()" class="selectpicker selectboxbtn form-control minbr" id="toggleAuthor" name="PROPERTY[<?= $fromCompanyId ?>][0]">
+                <option value="Y" <?if ($fromCompanyValue=="Y" ) {?> selected
+                    <?}?>>Компанию
+                </option>
+                <option value="N" <?if ($fromCompanyValue=="N" ) {?> selected
+                    <?}?>>Автора
+                </option>
+            </select>
+        </div>
+
+        <?
+    $arFilter = Array(
+        Array(
+            "LOGIC"=>"OR",
+            Array(
+            "Bitrix\Main\UserGroupTable:USER.GROUP_ID"=>3
+            )
+        )
+    );
+    ?>
+        <div id="author-change" class="clearfix col-xs-9<?if ($fromCompanyValue=="Y") {?> hide<?}?>"> 
+        <br>
+            <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="" name="PROPERTY[CREATED_BY]">
+                <?
+                $arUsers = Bitrix\Main\UserTable::getList(Array( 
+                    "select"=>Array("ID","NAME","LOGIN"), 
+                    "filter"=>$arFilter, 
+                    "data_doubling"=>false 
+                ));
+                while ($user = $arUsers->fetch()) 
+                    {  
+    
+                        $selected = ''; 
+                        if ($createdBy == $user["ID"])
+                        {
+                            echo '<option value="' . $user["ID"] .'" selected >['. $user["ID"] . '] '. $user["NAME"] . ' (' . $user["LOGIN"] . ')</option>';
+                        } else { 
+                            echo '<option value="' . $user["ID"] .'">['. $user["ID"] . '] '. $user["NAME"] . ' (' . $user["LOGIN"] . ')</option>';
+                        }
+    
+                    }
+                ?>
+            </select>
+        </div>
+        <div id="authorCompany-change" class="clearfix col-xs-9<?if ($fromCompanyValue == "N") {?> hide<?}?>"> 
+            <div class="clearfix">
+                <br>
+                <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="listLookupAvailableItems" name="PROPERTY[<?= $companyToId ?>][0]">
+                    <?   
+                $db_res = CIBlockElement::GetList(array("ID" => "DESC"), Array("IBLOCK_ID"=> "1", "ACTIVE"=>"Y"), false, false, Array("ID","NAME"));
+    
+		        while ($comp_res = $db_res->Fetch()) {  
+                    $selected = '';
+                    if ($companyId == $comp_res["ID"])
+                        $selected = 'selected';
+                    echo '<option value="'.$comp_res["ID"].'" ' . $selected .'> ['.$comp_res["ID"].'] '.$comp_res["NAME"]. '</option>'; 
+                } 
+                ?>
+                </select>
+            </div>
+        </div>
+
+    </div>
     <div class="block-moveTo clearfix">Поместить материал в:
-        <select id="moveTo" name="PROPERTY[<?= $moveToId ?>][0]"> 
-            <option value="<?= IBLOCK_ID_ALL_MATERIALS ?>"<?if ($moveToValue == IBLOCK_ID_ALL_MATERIALS) {?> selected<?}?>>Без категории</option>
-            <option value="<?= IBLOCK_ID_NEWS_COMPANY ?>"<?if ($moveToValue == IBLOCK_ID_NEWS_COMPANY) {?> selected<?}?>>Новости компании</option>
-            <option value="<?= IBLOCK_ID_NEWS_INDUSTRY ?>"<?if ($moveToValue == IBLOCK_ID_NEWS_INDUSTRY) {?> selected<?}?>>Новости отрасли</option>
-        <?  if (CSite::InGroup(array(9))) { ?>
-            <option value="<?= IBLOCK_ID_LIFE_INDUSTRY ?>"<?if ($moveToValue == IBLOCK_ID_LIFE_INDUSTRY) {?> selected<?}?>>Редакционные статьи</option>
-        <? } ?>
-            <option value="<?= IBLOCK_ID_VIEWPOINT ?>"<?if ($moveToValue == IBLOCK_ID_VIEWPOINT) {?> selected<?}?>>Мнения</option>
-            <option value="<?= IBLOCK_ID_PRODUCTS_REVIEW ?>"<?if ($moveToValue == IBLOCK_ID_PRODUCTS_REVIEW) {?> selected<?}?>>Товарные обзоры</option>
-            <option value="<?= IBLOCK_ID_STOCK ?>"<?if ($moveToValue == IBLOCK_ID_STOCK) {?> selected<?}?>>Акции</option>
-            <option value="<?= IBLOCK_ID_NOVETLY ?>"<?if ($moveToValue == IBLOCK_ID_NOVETLY) {?> selected<?}?>>Новинки</option> 
-        </select> 
-    </div> 
-    <? if ( CSite::InGroup(array(1)) ) {?>
+        <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="moveTo" name="PROPERTY[<?= $moveToId ?>][0]">
+            <option value="<?= IBLOCK_ID_ALL_MATERIALS ?>" <?if ($moveToValue==IBLOCK_ID_ALL_MATERIALS) {?> selected
+                <?}?>>Без категории
+            </option>
+            <option value="<?= IBLOCK_ID_NEWS_COMPANY ?>" <?if ($moveToValue==IBLOCK_ID_NEWS_COMPANY) {?> selected
+                <?}?>>Новости компании
+            </option>
+            <option value="<?= IBLOCK_ID_NEWS_INDUSTRY ?>" <?if ($moveToValue==IBLOCK_ID_NEWS_INDUSTRY) {?> selected
+                <?}?>>Новости отрасли
+            </option>
+            <?  if (CSite::InGroup(array(9))) { ?>
+            <option value="<?= IBLOCK_ID_LIFE_INDUSTRY ?>" <?if ($moveToValue==IBLOCK_ID_LIFE_INDUSTRY) {?> selected
+                <?}?>>Редакционные статьи
+            </option>
+            <? } ?>
+            <option value="<?= IBLOCK_ID_VIEWPOINT ?>" <?if ($moveToValue==IBLOCK_ID_VIEWPOINT) {?> selected
+                <?}?>>Мнения
+            </option>
+            <option value="<?= IBLOCK_ID_PRODUCTS_REVIEW ?>" <?if ($moveToValue==IBLOCK_ID_PRODUCTS_REVIEW) {?> selected
+                <?}?>>Товарные обзоры
+            </option>
+            <option value="<?= IBLOCK_ID_STOCK ?>" <?if ($moveToValue==IBLOCK_ID_STOCK) {?> selected
+                <?}?>>Акции
+            </option>
+            <option value="<?= IBLOCK_ID_NOVETLY ?>" <?if ($moveToValue==IBLOCK_ID_NOVETLY) {?> selected
+                <?}?>>Новинки
+            </option>
+        </select>
+    </div>
+
     <fieldset class="fld-checkbox">
         <label for="active_prop" id="check_on-off" class="floatleft">
-            <input type="checkbox" name="active_prop" id="fld-checkbox--activate" <? if ($isActiveMaterial) {?> checked<? }?>> Активировать
+            <input type="checkbox" name="active_prop" id="fld-checkbox--activate" <? if ($isActiveMaterial) {?> checked
+            <? }?>> Активировать
             <input id="check_first-load" type="hidden" name="PROPERTY[ACTIVE]" value="<? if ($isActiveMaterial) {?>Y<?} else {?>N<?} ?>">
         </label>
-        <script> 
-            $("#fld-checkbox--activate").click(function() { 
+        <script>
+            $("#fld-checkbox--activate").click(function() {
                 if ($(this).prop("checked") == false) {
                     $(this).next().remove();
                     $(this).after("<input type='hidden' name='PROPERTY[ACTIVE]' value='N'>")
@@ -81,25 +189,26 @@
             });
         </script>
     </fieldset>
+
     <?  }   elseif (CSite::InGroup(array(5))) { ?>
     <input type="hidden" name="PROPERTY[ACTIVE]" value="N">
     <?  }   elseif (CSite::InGroup(array(6))) { ?>
     <input type="hidden" name="PROPERTY[ACTIVE]" value="N">
     <?  }   else    { ?>
     <? } ?>
-       
+
     <div class="hide">
-        <pre id="output"></pre>    
+        <pre id="output"></pre>
         <textarea id="detail_text" rows="15" cols="70" name="PROPERTY[DETAIL_TEXT][0]">
             <? echo htmlspecialchars_decode($detailText); ?>
         </textarea>
-        <input type="hidden" name="PROPERTY[DETAIL_TEXT_TYPE][0]" value="html"> 
+        <input type="hidden" name="PROPERTY[DETAIL_TEXT_TYPE][0]" value="html">
         <textarea id="jsonData" rows="15" cols="70" name="PROPERTY[<?= $editorDataId ?>][0]"><? echo htmlspecialchars_decode($editorData); ?></textarea>
     </div>
 </div>
 
 <?   
-?> 
+?>
 <script src="/tpl/js/editor/editor-incut.js"></script> <!-- компонент для разработки -->
 <script src="/tpl/js/editor/editor-header.js"></script>
 <script src="/tpl/js/editor/editor-image.js"></script>
@@ -111,7 +220,7 @@
 <script src="/tpl/js/editor/editor-gallery.js"></script>
 <script src="/tpl/js/editor/editor-marker.js"></script>
 <script src="/tpl/js/editor/editor-strike.js"></script>
-<script src="/tpl/js/editor/editor-quote.js"></script> 
+<script src="/tpl/js/editor/editor-quote.js"></script>
 <script src="/tpl/js/editor/editor.js"></script>
 <script>
     var decodeEntities = (function() {
@@ -166,7 +275,6 @@
 
         return false;
     }
-
     // парсим в domElement !Обязательное условие - обернуть всё в 1 <div id="edParse"></div>  
     function mapDOM(element, json) {
         var treeObject = {};
@@ -253,7 +361,6 @@
         treeObject["version"] = "2.19.1";
         return (json) ? JSON.stringify(treeObject) : treeObject;
     }
-
     // предварительный просмотр и парсинг в HTML детальное описание
     function jsonToHtml(articleObj) {
         var caption;
@@ -263,12 +370,12 @@
                 case "header":
                     articleHTML += `<h${obj.data.level} class="post_header"> ${obj.data.text}  </h${obj.data.level}>`
                     break;
-                case "carousel": 
+                case "carousel":
                     articleHTML += `<div class="post_gallery"><div class="post_gallery__wrap squares">`;
                     for (var i = 0; i < obj.data.length; i++) {
                         articleHTML += `<a class="post_gallery__item" rel="group" title="${obj.data[i].caption}" href="${obj.data[i].url}"><img src="${obj.data[i].url}" /></a>`;
-                    } 
-                    articleHTML += `</div></div>`;  
+                    }
+                    articleHTML += `</div></div>`;
                     break;
                 case "paragraph":
                     articleHTML += `<p class="post_caption"> ${obj.data.text} </p>`
@@ -278,7 +385,7 @@
                     withBorder = obj.data.withBorder ? " post_image--withBorder" : "";
                     withBackground = obj.data.withBackground ? " post_image--withBackground" : "";
                     caption = obj.data.caption ? `<div class="post_image--caption"> <i>${obj.data.caption}</i> </div>` : "";
-                    articleHTML += `<div class="post_image${stretched}${withBorder}${withBackground}"> <img src="${obj.data.file.url}" alt="${obj.data.caption}"/> ${caption}</div>`; 
+                    articleHTML += `<div class="post_image${stretched}${withBorder}${withBackground}"> <img src="${obj.data.file.url}" alt="${obj.data.caption}"/> ${caption}</div>`;
                     break;
                 case "delimiter":
                     articleHTML += `<div class="post_delimiter post_block"></div>`
@@ -296,10 +403,10 @@
                     articleHTML += `<${listStyle} class="list__block">`;
                     for (var i = 0; i < obj.data.items.length; i++) {
                         articleHTML += `<li class="list__item">${obj.data.items[i]}</li>`;
-                    } 
-                    articleHTML += `</${listStyle}>`; 
-                    break; 
-                case "quote": 
+                    }
+                    articleHTML += `</${listStyle}>`;
+                    break;
+                case "quote":
                     if (obj.data.alignment == "left") {
                         quoteStyle = "post_quote--default";
                     }
@@ -317,7 +424,7 @@
                     articleHTML += "блок checklist не обработан"
                     break;
                 case "embed":
-                    articleHTML += `<div class="block-default block-shadow"><div class="videoifame"><iframe width="${obj.data.width}" height="${obj.data.height}" src="${obj.data.embed}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>` 
+                    articleHTML += `<div class="block-default block-shadow"><div class="videoifame"><iframe width="${obj.data.width}" height="${obj.data.height}" src="${obj.data.embed}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>`
                     break;
                 default:
                     return "";
@@ -335,7 +442,7 @@
         var edTitle = <?php echo json_encode($name); ?>;
         var edPreviewImgLoaded = false;
         var edDetailImgLoaded = false;
-        var editorData = decodeQuote(<?php echo json_encode($editorData); ?>); 
+        var editorData = decodeQuote(<?php echo json_encode($editorData); ?>);
 
         var isJsonError = isJson(editorData) ? false : true;
 
@@ -354,6 +461,21 @@
         var edDetail = <?php echo json_encode(htmlspecialchars_decode($detailText)); ?>;
 
         var edDetailOld = decodeEntities(<?php echo json_encode($detailText); ?>);
+    }
+
+    const companyOptions = document.getElementById("authorCompany-change");
+    const authorOptions = document.getElementById("author-change"); 
+    function toggleAuthorType() { 
+        changeToCompany = (document.getElementById("toggleAuthor").value == "Y") ? true : false;
+        companyAlreadyHided = companyOptions.classList.contains('hide'); 
+
+        console.log(companyOptions);
+        console.log(authorOptions);
+
+        if ((changeToCompany && companyAlreadyHided) || (!changeToCompany && !companyAlreadyHided)) {
+            companyOptions.classList.toggle("hide");
+            authorOptions.classList.toggle("hide");
+        }
     }
 </script>
 <script src="/tpl/js/editor/editor-init.js" type="module"></script>

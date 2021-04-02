@@ -17,7 +17,7 @@ $newsFeedOnMain_settingsList = array(
 ); 
 
 // ratingCalc();
-$hostingPage = 90; // 0 - главная страница.
+$hostingPage = 90; // 0 - главная страница.	
 $bannersArray = array();
 
 $arSelect = Array('ID', "PROPERTY_companyId", 'PROPERTY_type', "PROPERTY_htmlCode", 'PROPERTY_displayingArea', 'PROPERTY_flash', 'PREVIEW_PICTURE', 'DETAIL_PICTURE');
@@ -40,11 +40,12 @@ while ($ob = $res->GetNextElement()) {
 	$bannersArray[$arFields['PROPERTY_DISPLAYINGAREA_ENUM_ID']] = $arFields;
 	// pre($arFields);
 }
-?><div class="container-fluid">
+?>
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-6 col-xs-12">
 			<div class="row">
-				<div class="col-xs-12 content-margin">	
+				<div class="col-xs-12 content-margin">
 					<div class="block-shadow mainsliderblock">
 						<?
 						// Актуальное сегодня.
@@ -112,7 +113,7 @@ while ($ob = $res->GetNextElement()) {
 							</div>
 						</div>
 						<div class="news-block-scroll segmentscroll" id='scrollBlock2'>
-						<?
+							<?
 							$GLOBALS['arrFilter'] = array("!PROPERTY_TOINDEX" => false);
 							// Список ID инфоблоков для вывода
 							
@@ -120,32 +121,32 @@ while ($ob = $res->GetNextElement()) {
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="col-sm-6 col-xs-6 cell-12-xs content-margin double-banners">
-					<div id='<? echo $bannersArray[DA_MAIN_1]['ID']; ?>' class='bannerClick'>
-<?
+					<div id='<? echo $bannersArray[DA_MAIN_1][' ID']; ?>' class='bannerClick'>
+						<?
 						if ('html' == $bannersArray[DA_MAIN_1]['PROPERTY_TYPE_VALUE']) {
 							echo $bannersArray[DA_MAIN_1]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 						} else {
 							if (empty($bannersArray[DA_MAIN_1]['filesrc'])) { ?>
-								<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_1]['fileDetSrc']; ?>");'>
-								</div>
-<?
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_1][' fileDetSrc']; ?>");'>
+						</div>
+						<?
 							} else {
 								$ext = substr(strrchr($bannersArray[DA_MAIN_1]['filesrc'], '.'), 1);
 								if ('swf' == $ext) {
 ?>
-								<div class="infoblock mainBanner">
-									<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_1]['filesrc']; ?>" width="310" height="80">
-										<param name="move" value="<? echo $bannersArray[DA_MAIN_1]['filesrc']; ?>">
-									</object>
-								</div>
-<?								}
+						<div class="infoblock mainBanner">
+							<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_1]['filesrc']; ?>" width="310" height="80">
+								<param name="move" value="<? echo $bannersArray[DA_MAIN_1]['filesrc']; ?>">
+							</object>
+						</div>
+						<?								}
 								else {
 ?>
-									<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_1]['filesrc']; ?>");'>
-									</div>
-									<?
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_1][' filesrc']; ?>");'>
+						</div>
+						<?
 								}
 							}
 						}
@@ -158,30 +159,30 @@ while ($ob = $res->GetNextElement()) {
 					</div>
 				</div>
 				<div class="col-sm-6 col-xs-6 cell-12-xs content-margin double-banners">
-					<div id='<? echo $bannersArray[DA_MAIN_2]['ID']; ?>' class='bannerClick'>
-		<?
+					<div id='<? echo $bannersArray[DA_MAIN_2][' ID']; ?>' class='bannerClick'>
+						<?
 						if ('html' == $bannersArray[DA_MAIN_2]['PROPERTY_TYPE_VALUE']) {
 							echo $bannersArray[DA_MAIN_2]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 						} else {
 							if (empty($bannersArray[DA_MAIN_2]['filesrc'])) { ?>
-								<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_2]['fileDetSrc']; ?>");'>
-								</div>
-<?								
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_2][' fileDetSrc']; ?>");'>
+						</div>
+						<?								
 							} else {
 								$ext = substr(strrchr($bannersArray[DA_MAIN_2]['filesrc'], '.'), 1);
 								if ('swf' == $ext) {
 ?>
-									<div class="infoblock mainBanner">
-										<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_2]['filesrc']; ?>" width="310" height="80">
-											<param name="move" value="<? echo $bannersArray[DA_MAIN_2]['filesrc']; ?>">
-										</object>
-									</div>
-<?								}
+						<div class="infoblock mainBanner">
+							<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_2]['filesrc']; ?>" width="310" height="80">
+								<param name="move" value="<? echo $bannersArray[DA_MAIN_2]['filesrc']; ?>">
+							</object>
+						</div>
+						<?								}
 								else {
 ?>
-									<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_2]['filesrc']; ?>");'>
-									</div>
-									<?
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_2][' filesrc']; ?>");'>
+						</div>
+						<?
 								}
 							}
 						}
@@ -200,7 +201,7 @@ while ($ob = $res->GetNextElement()) {
 				<div class="block-title titleline-thik">
 					<i class="icon-icons_main-07"></i><a class="notitlestyle" href="/productnews/">Новинки</a>
 				</div>
-<?
+				<?
 // Новинки.
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
@@ -349,7 +350,7 @@ $APPLICATION->IncludeComponent(
 							<i class="icon-icons_main-06"></i><a class="notitlestyle" href="/hits/">Хиты</a>
 						</div>
 						<div class="hitsbxslider">
-<?
+							<?
 // Хиты.
 $APPLICATION->IncludeComponent(
 	"bitrix:catalog.section", 
@@ -547,30 +548,30 @@ $APPLICATION->IncludeComponent(
 					</div>
 				</div>
 				<div class="col-xs-12 content-margin">
-					<div id='<? echo $bannersArray[DA_MAIN_3]['ID']; ?>' class='bannerClick'>
-<?
+					<div id='<? echo $bannersArray[DA_MAIN_3][' ID']; ?>' class='bannerClick'>
+						<?
 						if ('html' == $bannersArray[DA_MAIN_3]['PROPERTY_TYPE_VALUE']) {
 							echo $bannersArray[DA_MAIN_3]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 						} else {
 							if (empty($bannersArray[DA_MAIN_3]['filesrc'])) { ?>
-								<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_3]['fileDetSrc']; ?>");'>
-								</div>
-<?								
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_3][' fileDetSrc']; ?>");'>
+						</div>
+						<?								
 							} else {
 								$ext = substr(strrchr($bannersArray[DA_MAIN_3]['filesrc'], '.'), 1);
 								if ('swf' == $ext) {
 ?>
-									<div class="infoblock">
-										<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_3]['filesrc']; ?>" width="310" height="80">
-											<param name="move" value="<? echo $bannersArray[DA_MAIN_3]['filesrc']; ?>">
-										</object>
-									</div>
-<?								}
+						<div class="infoblock">
+							<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_3]['filesrc']; ?>" width="310" height="80">
+								<param name="move" value="<? echo $bannersArray[DA_MAIN_3]['filesrc']; ?>">
+							</object>
+						</div>
+						<?								}
 								else {
 ?>
-									<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_3]['filesrc']; ?>");'>
-									</div>
-<?
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_3][' filesrc']; ?>");'>
+						</div>
+						<?
 								}
 							}
 						}
@@ -603,13 +604,13 @@ $APPLICATION->IncludeComponent(
 					</div>
 				</div>
 				<div class="news-block-scroll segmentscroll" id='scrollBlock1'>
-				<?
+					<?
 					$GLOBALS['arrFilter'] = array("!PROPERTY_TOINDEX" => false);
 					$APPLICATION->IncludeFile('/tpl/include_area/comp_newsFeedOnMain.php', Array( "newsFeed_settingsList" => $newsFeedOnMain_settingsList )); ?>
 				</div>
 			</div> <!-- end div class="block-default newsblock mainblock block-shadow"> -->
-		</div> <!-- end div class="col-sm-6 col-xs-12 content-margin"> -->  
-		
+		</div> <!-- end div class="col-sm-6 col-xs-12 content-margin"> -->
+
 		<div class="col-sm-6 col-xs-12">
 			<div class="row">
 				<div class="col-xs-12 content-margin">
@@ -693,15 +694,15 @@ $APPLICATION->IncludeComponent(
 	false
 );
 						?>
-						</div>
 					</div>
-                </div>
-                
-                <!-- // Акции - замена на события -->
-				<div class="col-xs-12 content-margin">
-					<div class="block-default eventsblock mainblock block-shadow">
-			
-                    <?
+				</div>
+			</div>
+
+			<!-- // Акции - замена на события -->
+			<div class="col-xs-12 content-margin">
+				<div class="block-default eventsblock mainblock block-shadow">
+
+					<?
 
 $GLOBALS['arrFilterEvents'] = array('>=PROPERTY_dateEnd' => date('Y-m-d'));
 if (isset($_GET['companyId']) && !empty($_GET['companyId']))
@@ -785,11 +786,11 @@ array(
 false
 );
             ?>
-					</div> <!-- end div class="block-default stocksblock mainblock block-shadow"> -->
-				</div>
-				<div class="col-xs-12 content-margin">
-					<div class="block-default catalogblock mainblock block-shadow">
-<?
+				</div> <!-- end div class="block-default stocksblock mainblock block-shadow"> -->
+			</div>
+			<div class="col-xs-12 content-margin">
+				<div class="block-default catalogblock mainblock block-shadow">
+					<?
 // Каталоги.
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
@@ -868,11 +869,11 @@ $APPLICATION->IncludeComponent(
 	false
 );
 ?>
-					</div>
 				</div>
-				<div class="col-xs-12 content-margin">
-					<div class="block-default brandblock mainblock block-shadow">
-<?
+			</div>
+			<div class="col-xs-12 content-margin">
+				<div class="block-default brandblock mainblock block-shadow">
+					<?
 						// Бренды
 						$count = CIBlockElement::GetList(
 							array(),
@@ -964,39 +965,39 @@ $APPLICATION->IncludeComponent(
 	false
 );
 ?>
-					</div>
 				</div>
 			</div>
 		</div>
-<?
+	</div>
+	<?
 		if (isset($bannersArray[DA_MAIN_4]['ID']) || isset($bannersArray[DA_MAIN_5]['ID']) || isset($bannersArray[DA_MAIN_6]['ID']) || isset($bannersArray[DA_MAIN_7]['ID']))
 		{
 ?>
-		<div class="col-xs-3 content-margin">
-			<div id='<? echo $bannersArray[DA_MAIN_4]['ID']; ?>' class='bannerClick'>
-<?
+	<div class="col-xs-3 content-margin">
+		<div id='<? echo $bannersArray[DA_MAIN_4][' ID']; ?>' class='bannerClick'>
+			<?
 				if ('html' == $bannersArray[DA_MAIN_4]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_4]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_4]['filesrc'])) { ?>
-						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_4]['fileDetSrc']; ?>");'>
-						</div>
-<?
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_4][' fileDetSrc']; ?>");'>
+			</div>
+			<?
 					} else {
 						$ext = substr(strrchr($bannersArray[DA_MAIN_4]['filesrc'], '.'), 1);
 						if ('swf' == $ext) {
 ?>
-							<div class="infoblock mainBanner">
-								<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_4]['filesrc']; ?>" width="310" height="80">
-									<param name="move" value="<? echo $bannersArray[DA_MAIN_4]['filesrc']; ?>">
-								</object>
-							</div>
-<?						}
+			<div class="infoblock mainBanner">
+				<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_4]['filesrc']; ?>" width="310" height="80">
+					<param name="move" value="<? echo $bannersArray[DA_MAIN_4]['filesrc']; ?>">
+				</object>
+			</div>
+			<?						}
 						else {
 							?>
-							<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_4]['filesrc']; ?>");'>
-							</div>
-							<?
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_4][' filesrc']; ?>");'>
+			</div>
+			<?
 						}
 					}
 				}
@@ -1006,33 +1007,33 @@ $APPLICATION->IncludeComponent(
 					// viewsinc($bannersArray[DA_MAIN_4]['ID'], IBLOCK_ID_BANNERS, $bannersArray[DA_MAIN_4]['PROPERTY_COMPANYID_VALUE']);
 				}
 ?>
-			</div>
 		</div>
-		<div class="col-xs-3 content-margin">
-			<div id='<? echo $bannersArray[DA_MAIN_5]['ID']; ?>' class='bannerClick'>
-<?
+	</div>
+	<div class="col-xs-3 content-margin">
+		<div id='<? echo $bannersArray[DA_MAIN_5][' ID']; ?>' class='bannerClick'>
+			<?
 				if ('html' == $bannersArray[DA_MAIN_5]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_5]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_5]['filesrc'])) { ?>
-						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_5]['fileDetSrc']; ?>");'>
-						</div>
-<?
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_5][' fileDetSrc']; ?>");'>
+			</div>
+			<?
 					} else {
 						$ext = substr(strrchr($bannersArray[DA_MAIN_5]['filesrc'], '.'), 1);
 						if ('swf' == $ext) {
 ?>
-							<div class="infoblock mainBanner">
-								<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_5]['filesrc']; ?>" width="310" height="80">
-									<param name="move" value="<? echo $bannersArray[DA_MAIN_5]['filesrc']; ?>">
-								</object>
-							</div>
-<?						}
+			<div class="infoblock mainBanner">
+				<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_5]['filesrc']; ?>" width="310" height="80">
+					<param name="move" value="<? echo $bannersArray[DA_MAIN_5]['filesrc']; ?>">
+				</object>
+			</div>
+			<?						}
 						else {
 							?>
-							<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_5]['filesrc']; ?>");'>
-							</div>
-							<?
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_5][' filesrc']; ?>");'>
+			</div>
+			<?
 						}
 					}
 				}
@@ -1042,33 +1043,33 @@ $APPLICATION->IncludeComponent(
 					// viewsinc($bannersArray[DA_MAIN_5]['ID'], IBLOCK_ID_BANNERS, $bannersArray[DA_MAIN_5]['PROPERTY_COMPANYID_VALUE']);
 				}
 ?>
-			</div>
 		</div>
-		<div class="col-xs-3 content-margin">
-			<div id='<? echo $bannersArray[DA_MAIN_6]['ID']; ?>' class='bannerClick'>
-<?
+	</div>
+	<div class="col-xs-3 content-margin">
+		<div id='<? echo $bannersArray[DA_MAIN_6][' ID']; ?>' class='bannerClick'>
+			<?
 				if ('html' == $bannersArray[DA_MAIN_6]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_6]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_6]['filesrc'])) { ?>
-						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_6]['fileDetSrc']; ?>");'>
-						</div>
-<?
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_6][' fileDetSrc']; ?>");'>
+			</div>
+			<?
 					} else {
 						$ext = substr(strrchr($bannersArray[DA_MAIN_6]['filesrc'], '.'), 1);
 						if ('swf' == $ext) {
 ?>
-							<div class="infoblock mainBanner">
-								<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_6]['filesrc']; ?>" width="310" height="80">
-									<param name="move" value="<? echo $bannersArray[DA_MAIN_6]['filesrc']; ?>">
-								</object>
-							</div>
-<?						}
+			<div class="infoblock mainBanner">
+				<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_6]['filesrc']; ?>" width="310" height="80">
+					<param name="move" value="<? echo $bannersArray[DA_MAIN_6]['filesrc']; ?>">
+				</object>
+			</div>
+			<?						}
 						else {
 							?>
-							<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_6]['filesrc']; ?>");'>
-							</div>
-							<?
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_6][' filesrc']; ?>");'>
+			</div>
+			<?
 						}
 					}
 				}
@@ -1078,34 +1079,34 @@ $APPLICATION->IncludeComponent(
 					// viewsinc($bannersArray[DA_MAIN_6]['ID'], IBLOCK_ID_BANNERS, $bannersArray[DA_MAIN_6]['PROPERTY_COMPANYID_VALUE']);
 				}
 ?>
-			</div>
 		</div>
-		<div class="col-xs-3 content-margin">
-			<div id='<? echo $bannersArray[DA_MAIN_7]['ID']; ?>' class='bannerClick'>
-<?
+	</div>
+	<div class="col-xs-3 content-margin">
+		<div id='<? echo $bannersArray[DA_MAIN_7][' ID']; ?>' class='bannerClick'>
+			<?
 				if ('html' == $bannersArray[DA_MAIN_7]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_7]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				}
 				else {
 					if (empty($bannersArray[DA_MAIN_7]['filesrc'])) { ?>
-						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_7]['fileDetSrc']; ?>");'>
-						</div>
-<?
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_7][' fileDetSrc']; ?>");'>
+			</div>
+			<?
 					} else {
 						$ext = substr(strrchr($bannersArray[DA_MAIN_7]['filesrc'], '.'), 1);
 						if ('swf' == $ext) {
 ?>
-							<div class="infoblock mainBanner">
-								<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_7]['filesrc']; ?>" width="310" height="80">
-									<param name="move" value="<? echo $bannersArray[DA_MAIN_7]['filesrc']; ?>">
-								</object>
-							</div>
-<?						}
+			<div class="infoblock mainBanner">
+				<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_7]['filesrc']; ?>" width="310" height="80">
+					<param name="move" value="<? echo $bannersArray[DA_MAIN_7]['filesrc']; ?>">
+				</object>
+			</div>
+			<?						}
 						else {
 							?>
-							<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_7]['filesrc']; ?>");'>
-							</div>
-							<?
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_7][' filesrc']; ?>");'>
+			</div>
+			<?
 						}
 					}
 				}
@@ -1115,19 +1116,19 @@ $APPLICATION->IncludeComponent(
 					// viewsinc($bannersArray[DA_MAIN_7]['ID'], IBLOCK_ID_BANNERS, $bannersArray[DA_MAIN_7]['PROPERTY_COMPANYID_VALUE']);
 				}
 ?>
-			</div>
 		</div>
-<?		} // end if (isset($bannersArray[DA_MAIN_4]['ID']) || isset($bannersArray[DA_MAIN_5]['ID']) || isset($bannersArray[DA_MAIN_6]['ID']) || isset($bannersArray[DA_MAIN_7]['ID']))
+	</div>
+	<?		} // end if (isset($bannersArray[DA_MAIN_4]['ID']) || isset($bannersArray[DA_MAIN_5]['ID']) || isset($bannersArray[DA_MAIN_6]['ID']) || isset($bannersArray[DA_MAIN_7]['ID']))
 ?>
-		<div class="col-sm-6 col-xs-12">
-			<div class="row">
-				<div class="col-xs-12 content-margin">
-					<div class="block-default topblock block-shadow">
-						<div class="block-title nobmarrgin clearfix">
-							<a class="notitlestyle" href="/top100/">Топ 100</a><a class="floatright" href="/top100/">Весь топ-100<i class="icon-icons_main-10"></i></a>
-						</div>
-						<div class="row row-xs-flex">
-							<?
+	<div class="col-sm-6 col-xs-12">
+		<div class="row">
+			<div class="col-xs-12 content-margin">
+				<div class="block-default topblock block-shadow">
+					<div class="block-title nobmarrgin clearfix">
+						<a class="notitlestyle" href="/top100/">Топ 100</a><a class="floatright" href="/top100/">Весь топ-100<i class="icon-icons_main-10"></i></a>
+					</div>
+					<div class="row row-xs-flex">
+						<?
 							$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"top100OnMain", 
@@ -1204,14 +1205,14 @@ $APPLICATION->IncludeComponent(
 	false
 );
 							?>
-						</div>
 					</div>
 				</div>
-				<div class="col-xs-12">
-					<div class="row">
-						<div class="col-sm-6 col-xs-12 content-margin">
-							<div class="block-default block-default-images lifeblock mainblock block-shadow">
-								<?	// Жизнь отрасли
+			</div>
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="col-sm-6 col-xs-12 content-margin">
+						<div class="block-default block-default-images lifeblock mainblock block-shadow">
+							<?	// Жизнь отрасли
 								$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"analyticsOnMain", 
@@ -1288,11 +1289,11 @@ $APPLICATION->IncludeComponent(
 	false
 );
 								?>
-							</div>
 						</div>
-						<div class="col-sm-6 col-xs-12 content-margin">
-							<div class="block-default block-default-images lifeblock mainblock block-shadow">
-								<?	// Аналитика
+					</div>
+					<div class="col-sm-6 col-xs-12 content-margin">
+						<div class="block-default block-default-images lifeblock mainblock block-shadow">
+							<?	// Аналитика
 								$APPLICATION->IncludeComponent(
 									"bitrix:news.list", 
 									"analyticsOnMain", 
@@ -1370,37 +1371,37 @@ $APPLICATION->IncludeComponent(
 								);
 								?>
 
-							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12">
-					<div class="row">
-						<div class="col-sm-6 col-xs-12 content-margin double-banners">
-							<div id='<? echo $bannersArray[DA_MAIN_8]['ID']; ?>' class='bannerClick'>
-				<?
+			</div>
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="col-sm-6 col-xs-12 content-margin double-banners">
+						<div id='<? echo $bannersArray[DA_MAIN_8][' ID']; ?>' class='bannerClick'>
+							<?
 								if ('html' == $bannersArray[DA_MAIN_8]['PROPERTY_TYPE_VALUE']) {
 									echo $bannersArray[DA_MAIN_8]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 								} else {
 									if (empty($bannersArray[DA_MAIN_8]['filesrc'])) { ?>
-										<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_8]['fileDetSrc']; ?>");'>
-										</div>
-				<?
+							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_8][' fileDetSrc']; ?>");'>
+							</div>
+							<?
 									} else {
 										$ext = substr(strrchr($bannersArray[DA_MAIN_8]['filesrc'], '.'), 1);
 										if ('swf' == $ext) {
 				?>
-											<div class="infoblock infoblock60 mainBanner">
-												<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_8]['filesrc']; ?>" width="310" height="80">
-													<param name="move" value="<? echo $bannersArray[DA_MAIN_8]['filesrc']; ?>">
-												</object>
-											</div>
-				<?						}
+							<div class="infoblock infoblock60 mainBanner">
+								<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_8]['filesrc']; ?>" width="310" height="80">
+									<param name="move" value="<? echo $bannersArray[DA_MAIN_8]['filesrc']; ?>">
+								</object>
+							</div>
+							<?						}
 										else {
 											?>
-											<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_8]['filesrc']; ?>");'>
-											</div>
-											<?
+							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_8][' filesrc']; ?>");'>
+							</div>
+							<?
 										}
 									}
 								}
@@ -1410,33 +1411,33 @@ $APPLICATION->IncludeComponent(
 									// viewsinc($bannersArray[DA_MAIN_8]['ID'], IBLOCK_ID_BANNERS, $bannersArray[DA_MAIN_8]['PROPERTY_COMPANYID_VALUE']);
 								}
 				?>
-							</div>
 						</div>
-						<div class="col-sm-6 col-xs-12 content-margin double-banners">
-							<div id='<? echo $bannersArray[DA_MAIN_9]['ID']; ?>' class='bannerClick'>
-				<?
+					</div>
+					<div class="col-sm-6 col-xs-12 content-margin double-banners">
+						<div id='<? echo $bannersArray[DA_MAIN_9][' ID']; ?>' class='bannerClick'>
+							<?
 								if ('html' == $bannersArray[DA_MAIN_9]['PROPERTY_TYPE_VALUE']) {
 									echo $bannersArray[DA_MAIN_9]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 								} else {
 									if (empty($bannersArray[DA_MAIN_9]['filesrc'])) { ?>
-										<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_9]['fileDetSrc']; ?>");'>
-										</div>
-				<?
+							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_9][' fileDetSrc']; ?>");'>
+							</div>
+							<?
 									} else {
 										$ext = substr(strrchr($bannersArray[DA_MAIN_9]['filesrc'], '.'), 1);
 										if ('swf' == $ext) {
 				?>
-											<div class="infoblock infoblock60 mainBanner">
-												<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_9]['filesrc']; ?>" width="310" height="80">
-													<param name="move" value="<? echo $bannersArray[DA_MAIN_9]['filesrc']; ?>">
-												</object>
-											</div>
-				<?						}
+							<div class="infoblock infoblock60 mainBanner">
+								<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_9]['filesrc']; ?>" width="310" height="80">
+									<param name="move" value="<? echo $bannersArray[DA_MAIN_9]['filesrc']; ?>">
+								</object>
+							</div>
+							<?						}
 										else {
 											?>
-											<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_9]['filesrc']; ?>");'>
-											</div>
-											<?
+							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_9][' filesrc']; ?>");'>
+							</div>
+							<?
 										}
 									}
 								}
@@ -1446,15 +1447,15 @@ $APPLICATION->IncludeComponent(
 									// viewsinc($bannersArray[DA_MAIN_9]['ID'], IBLOCK_ID_BANNERS, $bannersArray[DA_MAIN_9]['PROPERTY_COMPANYID_VALUE']);
 								}
 ?>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3 col-xs-6 cell-12-xs">
-			<div class="block-default content-margin compnewsblock main block-shadow">
-<?	// Новости компаний 
+	</div>
+	<div class="col-sm-3 col-xs-6 cell-12-xs">
+		<div class="block-default content-margin compnewsblock main block-shadow">
+			<?	// Новости компаний 
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"newsListOnMain", 
@@ -1534,10 +1535,10 @@ $APPLICATION->IncludeComponent(
 	false
 );
 			?>
-			</div>
 		</div>
-		<div class="col-sm-3 col-xs-6 cell-12-xs">
-			<div class="block-default content-margin compnewsblock main block-shadow">
+	</div>
+	<div class="col-sm-3 col-xs-6 cell-12-xs">
+		<div class="block-default content-margin compnewsblock main block-shadow">
 			<?
 			// Новости отрасли
 			$APPLICATION->IncludeComponent(
@@ -1616,14 +1617,14 @@ $APPLICATION->IncludeComponent(
 	false
 );
 			?>
-			</div>
-        </div>
-        
-        <!-- // События - замена на Акции -->
-		<div class="col-sm-3 col-xs-6 cell-12-xs content-margin actionblock">
-			<div class="block-default defaulterblock mainblock block-shadow">
+		</div>
+	</div>
 
- 
+	<!-- // События - замена на Акции -->
+	<div class="col-sm-3 col-xs-6 cell-12-xs content-margin actionblock">
+		<div class="block-default defaulterblock mainblock block-shadow">
+
+
 			<?
 						// Акции
 						$APPLICATION->IncludeComponent(
@@ -1704,12 +1705,12 @@ $APPLICATION->IncludeComponent(
 	false
 );
                         ?>
-                        
-			</div>
+
 		</div>
-		<div class="col-sm-3 col-xs-6 cell-12-xs content-margin">
-			<div class="block-default defaulterblock mainblock block-shadow">
-					<?
+	</div>
+	<div class="col-sm-3 col-xs-6 cell-12-xs content-margin">
+		<div class="block-default defaulterblock mainblock block-shadow">
+			<?
 					$APPLICATION->IncludeComponent(
 						"bitrix:news.list", 
 						"defaultersOnMain", 
@@ -1784,11 +1785,11 @@ $APPLICATION->IncludeComponent(
 						false
 					);
 					?>
-			</div> <!-- end div class="block-default defaulterblock mainblock block-shadow"> -->
-		</div>
-		<div class="col-sm-3 col-xs-6 cell-12-xs content-margin">
-			<div class="block-default opinionblock mainblock block-shadow text-center">
-<?
+		</div> <!-- end div class="block-default defaulterblock mainblock block-shadow"> -->
+	</div>
+	<div class="col-sm-3 col-xs-6 cell-12-xs content-margin">
+		<div class="block-default opinionblock mainblock block-shadow text-center">
+			<?
 					// Мнение
 					$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
@@ -1866,41 +1867,41 @@ $APPLICATION->IncludeComponent(
 	false
 );
 			?>
-			</div>
 		</div>
-		<!-- Комментарии. -->
-		<div class="col-sm-3 col-xs-6 cell-12-xs content-margin">
-			<? $APPLICATION->IncludeFile('/tpl/include_area/comments.php', array(), array()); ?>
-		</div>
-<?
+	</div>
+	<!-- Комментарии. -->
+	<div class="col-sm-3 col-xs-6 cell-12-xs content-margin">
+		<? $APPLICATION->IncludeFile('/tpl/include_area/comments.php', array(), array()); ?>
+	</div>
+	<?
 		if (isset($bannersArray[DA_MAIN_10]['ID']) || isset($bannersArray[DA_MAIN_11]['ID']) || isset($bannersArray[DA_MAIN_12]['ID']) || isset($bannersArray[DA_MAIN_13]['ID']))
 		{
 ?>
-			<div class="col-xs-3 content-margin">
-				<div id='<? echo $bannersArray[DA_MAIN_10]['ID']; ?>' class='bannerClick'>
-<?
+	<div class="col-xs-3 content-margin">
+		<div id='<? echo $bannersArray[DA_MAIN_10][' ID']; ?>' class='bannerClick'>
+			<?
 					if ('html' == $bannersArray[DA_MAIN_10]['PROPERTY_TYPE_VALUE']) {
 						echo $bannersArray[DA_MAIN_10]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 					} else {
 						if (empty($bannersArray[DA_MAIN_10]['filesrc'])) { ?>
-							<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_10]['fileDetSrc']; ?>");'>
-							</div>
-<?
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_10][' fileDetSrc']; ?>");'>
+			</div>
+			<?
 						} else {
 							$ext = substr(strrchr($bannersArray[DA_MAIN_10]['filesrc'], '.'), 1);
 							if ('swf' == $ext) {
 ?>
-								<div class="infoblock mainBanner">
-									<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_10]['filesrc']; ?>" width="310" height="80">
-										<param name="move" value="<? echo $bannersArray[DA_MAIN_10]['filesrc']; ?>">
-									</object>
-								</div>
-<?							}
+			<div class="infoblock mainBanner">
+				<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_10]['filesrc']; ?>" width="310" height="80">
+					<param name="move" value="<? echo $bannersArray[DA_MAIN_10]['filesrc']; ?>">
+				</object>
+			</div>
+			<?							}
 							else {
 								?>
-								<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_10]['filesrc']; ?>");'>
-								</div>
-							<?
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_10][' filesrc']; ?>");'>
+			</div>
+			<?
 							}
 						}
 					}
@@ -1910,34 +1911,34 @@ $APPLICATION->IncludeComponent(
 						// viewsinc($bannersArray[DA_MAIN_10]['ID'], IBLOCK_ID_BANNERS, $bannersArray[DA_MAIN_10]['PROPERTY_COMPANYID_VALUE']);
 					}
 ?>
-				</div>
-			</div>
+		</div>
+	</div>
 
-			<div class="col-xs-3 content-margin">
-				<div id='<? echo $bannersArray[DA_MAIN_11]['ID']; ?>' class='bannerClick'>
-<?
+	<div class="col-xs-3 content-margin">
+		<div id='<? echo $bannersArray[DA_MAIN_11][' ID']; ?>' class='bannerClick'>
+			<?
 				if ('html' == $bannersArray[DA_MAIN_11]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_11]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_11]['filesrc'])) { ?>
-						<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_11]['fileDetSrc']; ?>");'>
-						</div>
-<?
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_11][' fileDetSrc']; ?>");'>
+			</div>
+			<?
 					} else {
 						$ext = substr(strrchr($bannersArray[DA_MAIN_11]['filesrc'], '.'), 1);
 						if ('swf' == $ext) {
 ?>
-							<div class="infoblock mainBanner">
-								<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_11]['filesrc']; ?>" width="310" height="80">
-									<param name="move" value="<? echo $bannersArray[DA_MAIN_11]['filesrc']; ?>">
-								</object>
-							</div>
-<?						}
+			<div class="infoblock mainBanner">
+				<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_11]['filesrc']; ?>" width="310" height="80">
+					<param name="move" value="<? echo $bannersArray[DA_MAIN_11]['filesrc']; ?>">
+				</object>
+			</div>
+			<?						}
 						else {
 							?>
-							<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_11]['filesrc']; ?>");'>
-							</div>
-							<?
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_11][' filesrc']; ?>");'>
+			</div>
+			<?
 						}
 					}
 				}
@@ -1947,33 +1948,33 @@ $APPLICATION->IncludeComponent(
 					// viewsinc($bannersArray[DA_MAIN_11]['ID'], IBLOCK_ID_BANNERS, $bannersArray[DA_MAIN_11]['PROPERTY_COMPANYID_VALUE']);
 				}
 ?>
-				</div>
-			</div>
-			<div class="col-xs-3 content-margin">
-				<div id='<? echo $bannersArray[DA_MAIN_12]['ID']; ?>' class='bannerClick'>
-<?
+		</div>
+	</div>
+	<div class="col-xs-3 content-margin">
+		<div id='<? echo $bannersArray[DA_MAIN_12][' ID']; ?>' class='bannerClick'>
+			<?
 				if ('html' == $bannersArray[DA_MAIN_12]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_12]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_12]['filesrc'])) { ?>
-						<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_12]['fileDetSrc']; ?>");'>
-						</div>
-<?
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_12][' fileDetSrc']; ?>");'>
+			</div>
+			<?
 					} else {
 						$ext = substr(strrchr($bannersArray[DA_MAIN_12]['filesrc'], '.'), 1);
 						if ('swf' == $ext) {
 ?>
-							<div class="infoblock mainBanner">
-								<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_12]['filesrc']; ?>" width="310" height="80">
-									<param name="move" value="<? echo $bannersArray[DA_MAIN_12]['filesrc']; ?>">
-								</object>
-							</div>
-<?						}
+			<div class="infoblock mainBanner">
+				<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_12]['filesrc']; ?>" width="310" height="80">
+					<param name="move" value="<? echo $bannersArray[DA_MAIN_12]['filesrc']; ?>">
+				</object>
+			</div>
+			<?						}
 						else {
 							?>
-							<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_12]['filesrc']; ?>");'>
-							</div>
-							<?
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_12][' filesrc']; ?>");'>
+			</div>
+			<?
 						}
 					}
 				}
@@ -1983,33 +1984,33 @@ $APPLICATION->IncludeComponent(
 					// viewsinc($bannersArray[DA_MAIN_12]['ID'], IBLOCK_ID_BANNERS, $bannersArray[DA_MAIN_12]['PROPERTY_COMPANYID_VALUE']);
 				}
 ?>
-				</div>
-			</div>
-			<div class="col-xs-3 content-margin">
-				<div id='<? echo $bannersArray[DA_MAIN_13]['ID']; ?>' class='bannerClick'>
-<?
+		</div>
+	</div>
+	<div class="col-xs-3 content-margin">
+		<div id='<? echo $bannersArray[DA_MAIN_13][' ID']; ?>' class='bannerClick'>
+			<?
 				if ('html' == $bannersArray[DA_MAIN_13]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_13]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_13]['filesrc'])) { ?>
-						<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_13]['fileDetSrc']; ?>");'>
-						</div>
-<?
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_13][' fileDetSrc']; ?>");'>
+			</div>
+			<?
 					} else {
 						$ext = substr(strrchr($bannersArray[DA_MAIN_13]['filesrc'], '.'), 1);
 						if ('swf' == $ext) {
 ?>
-							<div class="infoblock mainBanner">
-								<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_13]['filesrc']; ?>" width="310" height="80">
-									<param name="move" value="<? echo $bannersArray[DA_MAIN_13]['filesrc']; ?>">
-								</object>
-							</div>
-<?						}
+			<div class="infoblock mainBanner">
+				<object type="application/x-shockwave-flash" data="<? echo $bannersArray[DA_MAIN_13]['filesrc']; ?>" width="310" height="80">
+					<param name="move" value="<? echo $bannersArray[DA_MAIN_13]['filesrc']; ?>">
+				</object>
+			</div>
+			<?						}
 						else {
 							?>
-							<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_13]['filesrc']; ?>");'>
-							</div>
-							<?
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_13][' filesrc']; ?>");'>
+			</div>
+			<?
 						}
 					}
 				}
@@ -2019,13 +2020,13 @@ $APPLICATION->IncludeComponent(
 					// viewsinc($bannersArray[DA_MAIN_13]['ID'], IBLOCK_ID_BANNERS, $bannersArray[DA_MAIN_13]['PROPERTY_COMPANYID_VALUE']);
 				}
 ?>
-				</div>
-			</div>
-<?		} // end if (isset($bannersArray[DA_MAIN_10]['ID']) || isset($bannersArray[DA_MAIN_11]['ID']) || isset($bannersArray[DA_MAIN_12]['ID']) || isset($bannersArray[DA_MAIN_13]['ID']))
+		</div>
+	</div>
+	<?		} // end if (isset($bannersArray[DA_MAIN_10]['ID']) || isset($bannersArray[DA_MAIN_11]['ID']) || isset($bannersArray[DA_MAIN_12]['ID']) || isset($bannersArray[DA_MAIN_13]['ID']))
 ?>
-		<div class="col-sm-6 col-xs-12 content-margin">
-			<div class="block-default block-default-images goodsrewsblock block-shadow">
-<?
+	<div class="col-sm-6 col-xs-12 content-margin">
+		<div class="block-default block-default-images goodsrewsblock block-shadow">
+			<?
 				// Фотоальбомы.
 				$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
@@ -2105,10 +2106,10 @@ $APPLICATION->IncludeComponent(
 	false
 );
 				?>
-			</div>
 		</div>
-		<div class="col-sm-6 col-xs-12 content-margin">
-			<div class="block-default block-default-images goodsrewsblock block-shadow">
+	</div>
+	<div class="col-sm-6 col-xs-12 content-margin">
+		<div class="block-default block-default-images goodsrewsblock block-shadow">
 			<?
 				// Видеогалерея.
 				$APPLICATION->IncludeComponent(
@@ -2188,9 +2189,9 @@ $APPLICATION->IncludeComponent(
 );
 				?>
 
-			</div>
 		</div>
-		<div class="col-sm-6 col-xs-12 content-margin">
+	</div>
+	<div class="col-sm-6 col-xs-12 content-margin">
 		<?
 			// Прайс-листы.
 			$APPLICATION->IncludeComponent(
@@ -2261,66 +2262,45 @@ $APPLICATION->IncludeComponent(
 				false
 			);
 ?>
-		</div>
-		<div class="col-sm-6 col-xs-12 content-margin">
-			<div class="block-default interviewblock pricelistblock mainblock block-shadow">
-				<div class="block-title clearfix">
-					<a class="notitlestyle" href="/polls/">Опрос</a><a class="floatright" href="/polls/">Все опросы<i class="icon-icons_main-10"></i></a>
-				</div>
-				<div class="block-voiting-ajax">
-					<?$APPLICATION->IncludeFile('/polls/votingcurrent.php', array(), array());?>
-				</div>
+	</div>
+	<div class="col-sm-6 col-xs-12 content-margin">
+		<div class="block-default interviewblock pricelistblock mainblock block-shadow">
+			<div class="block-title clearfix">
+				<a class="notitlestyle" href="/polls/">Опрос</a><a class="floatright" href="/polls/">Все опросы<i class="icon-icons_main-10"></i></a>
+			</div>
+			<div class="block-voiting-ajax">
+				<?$APPLICATION->IncludeFile('/polls/votingcurrent.php', array(), array());?>
 			</div>
 		</div>
 	</div>
 </div>
+</div>
 
 <script>
-// Баннеры.
-/*
-	function checkFlash() {
-		var isFlashEnabled = false; 
-   // Проверка для всех браузеров, кроме IE 
-   if (typeof(navigator.plugins)!=="undefined" 
-       && typeof(navigator.plugins["Shockwave Flash"])=="object" 
-   ) { 
-      isFlashEnabled = true; 
-   } else if (typeof (window.ActiveXObject) !==  "undefined") { 
-      // Проверка для IE 
-      try { 
-         if (new ActiveXObject("ShockwaveFlash.ShockwaveFlash")) { 
-            isFlashEnabled = true; 
-         } 
-      } catch(e) {}; 
-   }; 
-   return isFlashEnabled; 
-		
-		
-		
-		
-		
-		var flashinstalled = false;
-		console.log(navigator.plugins);
-		if (navigator.plugins) {
-			if (navigator.plugins["Shockwave Flash"])
-				flashinstalled = true;
-			else if (navigator.plugins["Shockwave Flash 2.0"])
-				flashinstalled = true;
-		}
-		else if (navigator.mimeTypes) {
-			var x = navigator.mimeTypes['application/x-shockwave-flash'];
-			if (x && x.enabledPlugin)
-				flashinstalled = true;
-		}
-
-		return flashinstalled;
-	}
-
-	if (!checkFlash()) {
-		$('.altBanner').removeClass('hide');
-		$('.mainBanner').addClass('hide');
-	}
-	*/
+	var selectFilter = document.getElementsByClassName("selectpicker"); 
+	
+	for (var i = 0; i < selectFilter.length; i++) {
+		selectFilter[i].addEventListener('change', function() {
+			var selectIndex = this.selectedIndex;
+			var blockId = this.options[selectIndex].value;  
+ 
+			$.ajax({
+				type: 'POST',
+				dataType: 'html',
+				url: '/ajax/newAjax.php',
+				data: 'blockId=' + blockId,
+				success: function(request) {
+					document.getElementById('scrollBlock1').firstChild.firstChild.innerHTML = '';
+					document.getElementById('scrollBlock1').firstChild.firstChild.innerHTML = request;
+					document.getElementById('scrollBlock2').firstChild.firstChild.innerHTML = '';
+					document.getElementById('scrollBlock2').firstChild.firstChild.innerHTML = request;  
+				},
+				error: function(){
+					alert("ajax request Error");
+				}
+			});
+		});
+	}   
 </script>
 
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

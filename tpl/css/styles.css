@@ -953,6 +953,11 @@ textarea {
   color: #ffffff;
 }
 
+#author-change .dropdown-menu,
+#authorCompany-change .dropdown-menu {
+  left: auto;
+  right: 0;
+}
 /* line 675, ../../sass/styles.scss */
 
 .infoblock-head {

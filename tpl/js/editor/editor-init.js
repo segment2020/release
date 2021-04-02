@@ -193,7 +193,7 @@ const editor = new EditorJS({
 				},
 				"quote": {
 					"Left alignment": "По левой стороне",
-					"Center alignment": "По центру", 
+					"Center alignment": "По центру",
 				},
 			},
 			blockTunes: {
@@ -224,10 +224,11 @@ const editor = new EditorJS({
 	}
 });
 
-const testButton = document.getElementById("test-button");
-const output = document.getElementById("output");
-const detail_text = document.getElementById("detail_text");
-const jsonData = document.getElementById("jsonData");
+const testButton 	= document.getElementById("test-button");
+const output 		= document.getElementById("output");
+const detail_text 	= document.getElementById("detail_text");
+const jsonData 		= document.getElementById("jsonData");
+const authorPick 	= document.getElementById("author-pick");
 
 // Сохранить
 submitElement.addEventListener("click", () => {
@@ -271,17 +272,26 @@ $(document).on("click", ".newPreviewbtn", function (e) {
 
 });
 // // тест перед сохранением
-testButton.addEventListener("click", () => {
-	editor.save().then(savedData => {
-		savedDataInput = JSON.stringify(savedData, null, 4);
+if (testButton) { 
+	testButton.addEventListener("click", () => {
+		editor.save().then(savedData => {
+			savedDataInput = JSON.stringify(savedData, null, 4); 
+			detailText = jsonToHtml(savedData); 
+			console.log(savedDataInput);
 
-		detailText = jsonToHtml(savedData);
-
-		console.log(savedDataInput);
-		detail_text.innerHTML = detailText;
-		jsonData.innerHTML = savedDataInput;
+			detail_text.innerHTML = detailText;
+			jsonData.innerHTML = savedDataInput;
+		});
 	});
-});
+}
+// if (authorPick) { 
+// 	authorPick.onchange 
+// 	const pickAuthor = document.getElementById('author-change');
+// 	const pickCompany = document.getElementById('authorCompany-change');
+
+// 	https://betterprogramming.pub/how-onchange-differs-between-react-and-vanilla-javascript-90b56d6a340a
+// }
+ 
 
 /** <!--~~~~~~~ Чеклист ~~~~~~~~~-->
  *

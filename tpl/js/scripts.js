@@ -82,31 +82,7 @@ $(document).ready(function () {
 			console.log(getCookie(cookie_name));
 		}
 	});
-
-	var selectFilter = document.getElementsByClassName("selectpicker"); 
-	
-	for (var i = 0; i < selectFilter.length; i++) {
-		selectFilter[i].addEventListener('change', function() {
-			var selectIndex = this.selectedIndex;
-			var blockId = this.options[selectIndex].value;  
  
-			$.ajax({
-				type: 'POST',
-				dataType: 'html',
-				url: '/ajax/newAjax.php',
-				data: 'blockId=' + blockId,
-				success: function(request) {
-					document.getElementById('scrollBlock1').firstChild.firstChild.innerHTML = '';
-					document.getElementById('scrollBlock1').firstChild.firstChild.innerHTML = request;
-					document.getElementById('scrollBlock2').firstChild.firstChild.innerHTML = '';
-					document.getElementById('scrollBlock2').firstChild.firstChild.innerHTML = request;  
-				},
-				error: function(){
-					alert("ajax request Error");
-				}
-			});
-		});
-	}   
 	//	код до 24.09
 
 	$(document).on('change', '.vote_change', function () {

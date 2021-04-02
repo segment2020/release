@@ -41,7 +41,7 @@ $APPLICATION->SetTitle("Товарные обзоры");
 		"DETAIL_PAGER_TEMPLATE" => "",
 		"DETAIL_PAGER_TITLE" => "Страница",
 		"DETAIL_PROPERTY_CODE" => array(
-			0 => "companyId",
+			0 => "companyId", 
 			1 => "newsSource",
 			2 => "imgSource",
 			3 => "source",
