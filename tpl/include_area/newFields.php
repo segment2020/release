@@ -99,7 +99,7 @@
     ?>
         <div id="author-change" class="clearfix col-xs-9<?if ($fromCompanyValue=="Y") {?> hide<?}?>"> 
         <br>
-            <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="" name="PROPERTY[CREATED_BY]">
+            <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="" name="PROPERTY[CREATED_BY][0]">
                 <?
                 $arUsers = Bitrix\Main\UserTable::getList(Array( 
                     "select"=>Array("ID","NAME","LOGIN"), 
@@ -175,25 +175,25 @@
         <label for="active_prop" id="check_on-off" class="floatleft">
             <input type="checkbox" name="active_prop" id="fld-checkbox--activate" <? if ($isActiveMaterial) {?> checked
             <? }?>> Активировать
-            <input id="check_first-load" type="hidden" name="PROPERTY[ACTIVE]" value="<? if ($isActiveMaterial) {?>Y<?} else {?>N<?} ?>">
+            <input id="check_first-load" type="hidden" name="PROPERTY[ACTIVE][0]" value="<? if ($isActiveMaterial) {?>Y<?} else {?>N<?} ?>">
         </label>
         <script>
             $("#fld-checkbox--activate").click(function() {
                 if ($(this).prop("checked") == false) {
                     $(this).next().remove();
-                    $(this).after("<input type='hidden' name='PROPERTY[ACTIVE]' value='N'>")
+                    $(this).after("<input type='hidden' name='PROPERTY[ACTIVE][0]' value='N'>")
                 } else {
                     $(this).next().remove();
-                    $(this).after("<input type='hidden' name='PROPERTY[ACTIVE]' value='Y' checked>")
+                    $(this).after("<input type='hidden' name='PROPERTY[ACTIVE][0]' value='Y' checked>")
                 }
             });
         </script>
     </fieldset>
 
     <?  }   elseif (CSite::InGroup(array(5))) { ?>
-    <input type="hidden" name="PROPERTY[ACTIVE]" value="N">
+    <input type="hidden" name="PROPERTY[ACTIVE][0]" value="N">
     <?  }   elseif (CSite::InGroup(array(6))) { ?>
-    <input type="hidden" name="PROPERTY[ACTIVE]" value="N">
+    <input type="hidden" name="PROPERTY[ACTIVE][0]" value="N">
     <?  }   else    { ?>
     <? } ?>
 
