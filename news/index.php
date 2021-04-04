@@ -1,6 +1,5 @@
 <?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Новости");
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php"); 
 ?>
 <div class="container-fluid">
 	<div class="row row-flex">
@@ -24,7 +23,7 @@ $APPLICATION->SetTitle("Новости");
 		"NEWS_COUNT" => "20",
 		"SORT_BY1" => "PROPERTY_inTheTop",
 		"SORT_ORDER1" => "DESC",
-		"SORT_BY2" => "ID",
+		"SORT_BY2" => "TIMESTAMP_X",
 		"SORT_ORDER2" => "DESC",
 		"FILTER_NAME" => "",
 		"FIELD_CODE" => array(
@@ -101,7 +100,7 @@ $APPLICATION->SetTitle("Новости");
 		"NEWS_COUNT" => "20",
 		"SORT_BY1" => "PROPERTY_inTheTop",
 		"SORT_ORDER1" => "DESC",
-		"SORT_BY2" => "ID",
+		"SORT_BY2" => "TIMESTAMP_X",
 		"SORT_ORDER2" => "DESC",
 		"FILTER_NAME" => "",
 		"FIELD_CODE" => array(

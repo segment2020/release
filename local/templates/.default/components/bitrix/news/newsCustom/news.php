@@ -10,9 +10,7 @@
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
-$this->setFrameMode(true); 
-// Костыль - раздел почему-то не отображается в цепочке хлебных крошек
-$APPLICATION->AddChainItem($arParams["PAGER_TITLE"], "");
+$this->setFrameMode(true);  
 $elemNum = $arParams["NEWS_COUNT"];
 if (isset($_POST['elemNum']) && !empty($_POST['elemNum']))
 {
@@ -72,6 +70,7 @@ elseif (isset($_SESSION['elemNumNews']) && !empty($_SESSION['elemNumNews']))
 	}
 ?> 
 <?
+// console_log($arParams);
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list",
 	"", 

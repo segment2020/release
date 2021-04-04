@@ -10,10 +10,7 @@
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
-$this->setFrameMode(true); 
-
-// console_log($arParams);
-// console_log($arResult);
+$this->setFrameMode(true);  
  
 ?>
 
@@ -31,8 +28,6 @@ $this->setFrameMode(true);
 <?
 foreach($arResult["ITEMS"] as $arItem)
 {
-	// pre($arItem);
-	// pre($arItem['ID']);
 	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
 	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 
@@ -112,15 +107,18 @@ foreach($arResult["ITEMS"] as $arItem)
 					</div>
 				</div>
 			</a>
-			<? 
-			if (IBLOCK_ID_NOVETLY == $arItem['IBLOCK_ID'])
-				$title = 'Новинка компании ' . $arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE'];
-			else
+			<!-- zzz -->
+			<?  
+			if (!empty($arItem["PROPERTIES"]["fromCompany"]["VALUE"])) { 
+				$res = CUser::GetByID($arItem["CREATED_BY"]);
+				if($userAuthor = $res->GetNext()) 
+					$title = 'Новинка автора ' .$userAuthor["NAME"]; 
+				}
+			else { 
 				$title = 'Новость компании ' . $arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE'];
-
-			if (!empty($arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE'])) { ?>
-				<div class="newsbfirm"><? echo $title; ?></div>
-			<?}?>
+			} ?>
+			<div class="newsbfirm"><? echo $title; ?></div>  
+			<!-- zzz -->
 		</div>
 		<div class="seporator"></div>
 

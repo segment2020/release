@@ -12,6 +12,14 @@
     <meta http-equiv="msthemecompatible" content="no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="imagetoolbar" content="no">
+    <?
+if((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443){ //Получаем протокол сайта.
+	$protocol = 'https://';
+}else{
+	$protocol = 'http://';
+}
+$APPLICATION->AddHeadString('<meta property="og:image" content="'.$protocol.$_SERVER["SERVER_NAME"].$arFirstPhoto["SRC"].'"/>',true); //Ставим в шапку сайта тег на картинку товара.
+?>	
     <link href="/tpl/images/favicon.png" rel="icon" type="image/png">
     <link rel="stylesheet" href="/tpl/wow_book_plugin/wow_book.css" type="text/css" />
     <link rel="stylesheet" href="/tpl/css/jquery.fancybox.min.css" type="text/css" media="screen" /> 
@@ -306,15 +314,18 @@
                     <ul>
                         <?php
                         $APPLICATION->IncludeComponent(
-                            "bitrix:breadcrumb",
-                            "breadcrumbCustom",
-                            array(
-                                "COMPONENT_TEMPLATE" => "breadcrumbCustom",
-                                "PATH" => "",
-                                "SITE_ID" => "s1",
-                                "START_FROM" => "0"
-                            )
-                        ); ?>
+	"bitrix:breadcrumb", 
+	"breadcrumbCustom", 
+	array(
+		"COMPONENT_TEMPLATE" => "breadcrumbCustom",
+		"PATH" => "",
+		"SITE_ID" => "s1",
+		"START_FROM" => "0",
+		"COMPOSITE_FRAME_MODE" => "A",
+		"COMPOSITE_FRAME_TYPE" => "AUTO"
+	),
+	false
+); ?>
                     </ul>
                 </div>
             </div>

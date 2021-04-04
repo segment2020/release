@@ -35,7 +35,7 @@ $APPLICATION->SetTitle("Мнения");
 			0 => "TAGS",
 			1 => "SHOW_COUNTER",
 			2 => "DATE_CREATE",
-			3 => "",
+			3 => "CREATED_BY",
 		),
 		"DETAIL_PAGER_SHOW_ALL" => "Y",
 		"DETAIL_PAGER_TEMPLATE" => "",
@@ -63,7 +63,7 @@ $APPLICATION->SetTitle("Мнения");
 		"LIST_FIELD_CODE" => array(
 			0 => "SHOW_COUNTER",
 			1 => "DATE_CREATE",
-			2 => "",
+			2 => "CREATED_BY",
 		),
 		"LIST_PROPERTY_CODE" => array(
 			0 => "companyId",

@@ -98,7 +98,17 @@ elseif (IBLOCK_ID_NEWS_INDUSTRY == $arResult['IBLOCK_ID'])
 	<h1><? echo $arResult["~NAME"]; ?></h1>
 
 		<div class="detailinfofirm">
-			<span class="detailinfo_author">Автор новости / ньюсмейкер</span> <? echo $companyName; ?>
+			<span class="detailinfo_author">Автор новости / ньюсмейкер</span> 
+			<? 
+			console_log($arResult);
+			if (!empty($arResult["PROPERTIES"]["fromCompany"]["VALUE"])) { 
+				$res = CUser::GetByID($arResult["CREATED_BY"]);
+				if ($userAuthor = $res->GetNext()) 
+					echo $userAuthor["NAME"]; 
+			}
+			else {  
+				echo $companyName;
+			} ?>
 		</div> 
 		 
 	<div class="infotvc">

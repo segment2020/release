@@ -45,7 +45,7 @@ use Bitrix\Main\Page\Asset;
 		'createNewMaterial' => true,  
 		'iBlockId' => $_GET['iBlockId'],
 		'editorDataId' => $jsonDataId,
-		'moveToId' => $moveToId,
+		'moveToId' => $moveToId, 
 		), array()
 	);  
 //*********************************************************************************************************************************
@@ -65,30 +65,29 @@ use Bitrix\Main\Page\Asset;
 			</div>
 		</div>
 
-		<? }
-		if (!($_GET['iBlockId'] == IBLOCK_ID_PRODUCTS_REVIEW)) {   
-			if (isset($arResult['PROPERTIES']['source'])) { ?> 
-				<div class="col-xs-12">
-					<div class="form-group">
-						<label class="control-label mainlabel" for="lk_newsSource">Источник</label>
-						<input type="text" class="form-control" id="lk_newsSource" name='PROPERTY[<? echo $arResult['PROPERTIES']['source']['ID']; ?>][0]' value="<? echo $arResult['PROPERTIES']['source']['VALUE']; ?>">
-					</div>
-				</div>
-			<? } 
-			if (isset($arResult['PROPERTIES']['imgSource'])) { ?> 
-			<div class="col-xs-12">
-				<div class="form-group">
-					<label class="control-label mainlabel" for="lk_photoSource">Источник фото</label>
-					<input type="text" class="form-control" id="lk_photoSource" name='PROPERTY[<? echo $arResult['PROPERTIES']['imgSource']['ID']; ?>][0]' value="<? echo $arResult['PROPERTIES']['imgSource']['VALUE']; ?>">
-				</div>
+		<?  }
+	if (($arResult["IBLOCK_ID"] == IBLOCK_ID_NEWS_COMPANY) || ($arResult["IBLOCK_ID"] == IBLOCK_ID_NEWS_INDUSTRY) || ($arResult["IBLOCK_ID"] == IBLOCK_ID_VIEWPOINT) || ($arResult["IBLOCK_ID"] == IBLOCK_ID_PRODUCTS_REVIEW) || ($arResult["IBLOCK_ID"] == IBLOCK_ID_NOVETLY)) {  ?>  
+		<div class="col-xs-12">
+			<div class="form-group">
+				<label class="control-label mainlabel" for="lk_newsSource">Источник</label>
+				<input type="text" class="form-control" id="lk_newsSource" name='PROPERTY[<? echo $arResult['PROPERTIES']['newsSource']['ID']; ?>][0]' value="<? echo $arResult['PROPERTIES']['newsSource']['VALUE']; ?>">
 			</div>
-
-		<? 	}   
-	}  
+		</div> 
+		<div class="col-xs-12">
+			<div class="form-group">
+				<label class="control-label mainlabel" for="lk_photoSource">Источник фото</label>
+				<input type="text" class="form-control" id="lk_photoSource" name='PROPERTY[<? echo $arResult['PROPERTIES']['imgSource']['ID']; ?>][0]' value="<? echo $arResult['PROPERTIES']['imgSource']['VALUE']; ?>">
+			</div>
+		</div> 
+	<?   
+	} 
 	 	 $APPLICATION->IncludeFile('/tpl/include_area/tags.php', array(), array()); ?>
 			</div> 
 	</div> 
-	
+	 
+		<!-- тестовая кнопка просто закомментируй не обязательно каждый раз удалять -->
+		<!-- <input type="submit" name="test-button" value="тест" class="btn btn-blue-full minbr" id='test-button' />   -->
+		<!-- /end тестовая кнопка просто закомментируй не обязательно каждый раз удалять -->
 		<input type="submit" name="iblock_submit" value="Сохранить" class="btn btn-blue-full minbr" id='addElement' />
 		<button class="btn btn-blue-full minbr newPreviewbtn">Предварительный просмотр</button>
 		<input type="hidden" name="iBlockId" value="<? echo $_GET['iBlockId']; ?>">

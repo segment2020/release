@@ -1,4 +1,4 @@
-<div class="col-xs-12">
+<div class="col-xs-12"> 
     <?
         global $USER;
         $moderatorID = $USER->GetID();
@@ -55,33 +55,36 @@
     <div id="js-editor"></div>
     <div class="detailinfofirm">
         <? 
+        
+    ?>
+    </div>
+ 
+    <? if ( CSite::InGroup(array(1)) && $moderation ) {
+        $property_enums = CIBlockPropertyEnum::GetList(Array("DEF"=>"DESC", "SORT"=>"ASC"), Array("PROPERTY_ID"=>$fromCompanyId, "VALUE"=> 1));
+        while($enum_fields = $property_enums->GetNext())
+            $listFromCompanyValue = $enum_fields["ID"];
+    ?>
+    <span class="detailinfo_author"> Текущий автор новости / ньюсмейкер:</span>
+    <? 
+    if (!empty($fromCompanyValue))  {
+        $res = CUser::GetByID($createdBy);
+        if($userAuthor = $res->GetNext())
+            echo "Пользователь ".$userAuthor["ID"]." - ".$userAuthor["NAME"] . " (" . $userAuthor["LOGIN"] . ")";
+    } else {
         $res = CIBlockElement::GetByID($companyId);
         if($companyAuthor = $res->GetNext()) 
-        echo "<br> компания: ".$companyAuthor['NAME'];
-    ?>
-        <br>
-        <span class="detailinfo_author">Автор новости / ньюсмейкер</span>
-        <? echo ($fromCompanyValue=="Y") ? "Компания" : "Автор"; ?>
-        <b>
-            <? echo ($fromCompanyValue=="Y") ? $companyId : $createdBy; ?>
-        </b>
-    </div>
+        echo "Компания ".$companyAuthor['NAME'];
+    }  ?> 
 
-    Автор:
-    <? $rsUser = CUser::GetByID($createdBy);
-                $arUser = $rsUser->Fetch();
-                echo $arUser["ID"]." - ".$arUser["NAME"] . ' (' . $arUser["LOGIN"] . ')'; ?>
-    <? /*if ( CSite::InGroup(array(1)) && $moderation ) { */ ?>
-    <? if ( CSite::InGroup(array(1)) ) {
-                ?>
+
     <div class="row">
         <div id="author-pick" class="clearfix col-xs-3">
-            Сменить автора на:
+            Опубликовать от имени:
             <select onchange="toggleAuthorType()" class="selectpicker selectboxbtn form-control minbr" id="toggleAuthor" name="PROPERTY[<?= $fromCompanyId ?>][0]">
-                <option value="Y" <?if ($fromCompanyValue=="Y" ) {?> selected
-                    <?}?>>Компанию
+                <option value="" <?if (empty($fromCompanyValue)) {?> selected
+                    <?}?>>Компании
                 </option>
-                <option value="N" <?if ($fromCompanyValue=="N" ) {?> selected
+                <option value="<?= $listFromCompanyValue ?>" <?if (!empty($fromCompanyValue)) {?> selected
                     <?}?>>Автора
                 </option>
             </select>
@@ -97,7 +100,7 @@
         )
     );
     ?>
-        <div id="author-change" class="clearfix col-xs-9<?if ($fromCompanyValue=="Y") {?> hide<?}?>"> 
+        <div id="author-change" class="clearfix col-xs-9<?if (empty($fromCompanyValue)) {?> hide<?}?>"> 
         <br>
             <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="" name="PROPERTY[CREATED_BY][0]">
                 <?
@@ -121,7 +124,7 @@
                 ?>
             </select>
         </div>
-        <div id="authorCompany-change" class="clearfix col-xs-9<?if ($fromCompanyValue == "N") {?> hide<?}?>"> 
+        <div id="authorCompany-change" class="clearfix col-xs-9<?if (!empty($fromCompanyValue)) {?> hide<?}?>"> 
             <div class="clearfix">
                 <br>
                 <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="listLookupAvailableItems" name="PROPERTY[<?= $companyToId ?>][0]">
@@ -140,6 +143,9 @@
         </div>
 
     </div>
+     
+    <? } ?>
+    <? if ( CSite::InGroup(array(1)) ) { ?>
     <div class="block-moveTo clearfix">Поместить материал в:
         <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="moveTo" name="PROPERTY[<?= $moveToId ?>][0]">
             <option value="<?= IBLOCK_ID_ALL_MATERIALS ?>" <?if ($moveToValue==IBLOCK_ID_ALL_MATERIALS) {?> selected
@@ -221,6 +227,7 @@
 <script src="/tpl/js/editor/editor-marker.js"></script>
 <script src="/tpl/js/editor/editor-strike.js"></script>
 <script src="/tpl/js/editor/editor-quote.js"></script>
+<script src="/tpl/js/editor/editor-Hyperlink.js"></script> 
 <script src="/tpl/js/editor/editor.js"></script>
 <script>
     var decodeEntities = (function() {
@@ -466,16 +473,14 @@
     const companyOptions = document.getElementById("authorCompany-change");
     const authorOptions = document.getElementById("author-change"); 
     function toggleAuthorType() { 
-        changeToCompany = (document.getElementById("toggleAuthor").value == "Y") ? true : false;
-        companyAlreadyHided = companyOptions.classList.contains('hide'); 
-
-        console.log(companyOptions);
-        console.log(authorOptions);
+        changeToCompany = (document.getElementById("toggleAuthor")[0].selected) ? true : false;
+        companyAlreadyHided = companyOptions.classList.contains('hide');  
 
         if ((changeToCompany && companyAlreadyHided) || (!changeToCompany && !companyAlreadyHided)) {
             companyOptions.classList.toggle("hide");
             authorOptions.classList.toggle("hide");
         }
-    }
+    } 
+
 </script>
 <script src="/tpl/js/editor/editor-init.js" type="module"></script>

@@ -21,7 +21,7 @@ if (isset($_GET['iBlockId']))
 else
 	$iBlockId = $arParams['IBLOCK_ID'];  
 	
-if (isset($arParams["LIST_URL"])) {
+if (isset($arParams["LIST_URL"])) { // этот костыль лучше заменить, вдруг будет использоваться 
 	$location = '/personal/moderation/';
 } else {
 	switch ($iBlockId)

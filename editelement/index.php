@@ -36,7 +36,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 			$newsSrcPropId     = PROPERTY_ID_NEWS_SRC_IN_NEWS_COMPANY;
 			$photoSrcPropId    = PROPERTY_ID_PHOTO_SRC_IN_NEWS_COMPANY;
 			$textOnImgPropId   = PROPERTY_ID_TEXT_IMG_SRC_IN_NEWS_COMPANY;
-			$archiveSvnPropId  = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY;
+			$postFromCompanyPropId  = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY;
 			$showCompanyLogo   = PROPERTY_ID_SHOW_LOGO_IN_NEWS_COMPANY;
 			$markedPropId      = PROPERTY_ID_MARKED_IN_NEWS_COMPANY;
 			$markedToPropId    = PROPERTY_ID_MARKED_TO_IN_NEWS_COMPANY;
@@ -51,7 +51,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 			$newsSrcPropId     = PROPERTY_ID_NEWS_SRC_IN_NEWS_INDUSTRY;
 			$photoSrcPropId    = PROPERTY_ID_PHOTO_SRC_IN_NEWS_INDUSTRY;
 			$textOnImgPropId   = PROPERTY_ID_TEXT_IMG_SRC_IN_NEWS_INDUSTRY;
-			$archiveSvnPropId  = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY;
+			$postFromCompanyPropId  = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY;
 			$showCompanyLogo   = PROPERTY_ID_SHOW_LOGO_IN_NEWS_INDUSTRY;
 			$markedPropId      = PROPERTY_ID_MARKED_IN_NEWS_INDUSTRY;
 			$markedToPropId    = PROPERTY_ID_MARKED_TO_IN_NEWS_INDUSTRY;
@@ -63,7 +63,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 
 		case IBLOCK_ID_STOCK:
 		{
-			$archiveSvnPropId  = PROPERTY_ID_ARCHIVE_IN_STOCK;
+			$postFromCompanyPropId  = PROPERTY_ID_ARCHIVE_IN_STOCK;
 			$showCompanyLogo   = PROPERTY_ID_SHOW_LOGO_IN_STOCK;
 			$addMaterialPropId = PROPERTY_ID_ADD_MATERIAL_IN_STOCK;
 			$markedPropId      = PROPERTY_ID_MARKED_IN_NEWS_STOCK;
@@ -76,7 +76,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 
 		case IBLOCK_ID_LICENSE:
 		{
-			$archiveSvnPropId = PROPERTY_ID_ARCHIVE_IN_LICENSE;
+			$postFromCompanyPropId = PROPERTY_ID_ARCHIVE_IN_LICENSE;
 			$textOnImgPropId  = PROPERTY_ID_TEXT_IMG_SRC_IN_LICENSE;
 			$countryPropId    = PROPERTY_ID_COUNTRY_IN_LICENSE;
 			$payModePropId    = PROPERTY_ID_PAY_MODE_IN_LICENSE;
@@ -86,7 +86,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 
 		case IBLOCK_ID_BRANDS:
 		{
-			$archiveSvnPropId = PROPERTY_ID_ARCHIVE_IN_BRANDS;
+			$postFromCompanyPropId = PROPERTY_ID_ARCHIVE_IN_BRANDS;
 			$countryPropId    = PROPERTY_ID_COUNTRY_IN_BRANDS;
 			$payModePropId    = PROPERTY_ID_PAY_MODE_IN_BRANDS;
 			$typePropId       = PROPERTY_ID_TYPE_IN_BRANDS;
@@ -96,14 +96,14 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 
 		case IBLOCK_ID_GALLERY_PHOTO:
 		{
-			$archiveSvnPropId = PROPERTY_ID_ARCHIVE_IN_GALLERY_PHOTO;
+			$postFromCompanyPropId = PROPERTY_ID_ARCHIVE_IN_GALLERY_PHOTO;
 			$imagesPropId     = PROPERTY_ID_IMAGES_IN_GALLERY_PHOTO;
 			break;
 		}
 
 		case IBLOCK_ID_GALLERY_VIDEO:
 		{
-			$archiveSvnPropId = PROPERTY_ID_ARCHIVE_IN_GALLERY_VIDEO;
+			$postFromCompanyPropId = PROPERTY_ID_ARCHIVE_IN_GALLERY_VIDEO;
 			$videoLinkPropId  = PROPERTY_ID_VIDEO_LINK_IN_GALLERY_VIDEO;
 			$videoFilePropId  = PROPERTY_ID_VIDEO_FILE_IN_GALLERY_VIDEO;
 			break;
@@ -111,7 +111,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 
 		case IBLOCK_ID_VIEWPOINT:
 		{
-			$archiveSvnPropId = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT;
+			$postFromCompanyPropId = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT;
 			$namePropId       = PROPERTY_ID_NAME_IN_VIEWPOINT;
 			$sourcePropId     = PROPERTY_ID_SOURCE_IN_VIEWPOINT;
 			$addBlockIdPropId = PROPERTY_ID_ADD_BLOCKID_IN_VIEWPOINT;
@@ -135,7 +135,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 			$timePropId = PROPERTY_ID_BEGIN_TIME_IN_EVENTS;
 			$textOnImgPropId  = PROPERTY_ID_TEXT_IN_EVENTS;
 			$vkLinkPropId  = PROPERTY_ID_VK_LINK_IN_EVENTS;
-			$archiveSvnPropId = PROPERTY_ID_ARCHIVE_IN_EVENTS;
+			$postFromCompanyPropId = PROPERTY_ID_ARCHIVE_IN_EVENTS;
 			$googlekLinkPropId = PROPERTY_ID_GOOGLE_LINK_IN_EVENTS;
 			$twitterkLinkPropId = PROPERTY_ID_TWITTER_LINK_IN_EVENTS;
 			$facebookLinkPropId = PROPERTY_ID_FACEBOOK_LINK_IN_EVENTS;
@@ -149,7 +149,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 
 		case IBLOCK_ID_PRODUCTS_REVIEW:
 		{ 
-			$archiveSvnPropId = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW;
+			$postFromCompanyPropId = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW;
 			$textOnImgPropId  = PROPERTY_ID_TEXT_IMG_SRC_IN_PRODUCTS_REVIEW;
 			$newsSrcPropId    = PROPERTY_ID_NEWS_SRC_IN_PRODUCTS_REVIEW;
 			$showCompanyLogo  = PROPERTY_ID_SHOW_LOGO_IN_PRODUCTS_REVIEW;
@@ -183,7 +183,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 			$newsSrcPropId     = PROPERTY_ID_NEWS_SRC_IN_NOVETLY;
 			$photoSrcPropId    = PROPERTY_ID_PHOTO_SRC_IN_NOVETLY;
 			$textOnImgPropId   = PROPERTY_ID_TEXT_IMG_SRC_IN_NOVETLY;
-			$archiveSvnPropId  = PROPERTY_ID_ARCHIVE_IN_NOVETLY;
+			$postFromCompanyPropId  = PROPERTY_ID_ARCHIVE_IN_NOVETLY;
 			$showCompanyLogo   = PROPERTY_ID_SHOW_LOGO_IN_NOVETLY;
 			$markedPropId      = PROPERTY_ID_MARKED_IN_NEWS_NOVETLY;
 			$markedToPropId    = PROPERTY_ID_MARKED_TO_IN_NEWS_NOVETLY;
@@ -300,7 +300,7 @@ $APPLICATION->IncludeComponent(
 			29 => "DETAIL_TEXT_TYPE",
 			30 => $payModePropId,
 			31 => $typePropId,
-			32 => $archiveSvnPropId,
+			32 => $postFromCompanyPropId,
 			33 => $showCompanyLogo,
 			34 => $priceFile,
 			35 => $registrationLinkPropId,

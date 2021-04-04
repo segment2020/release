@@ -55,7 +55,7 @@ if ($arResult['ACTIVE'] == "Y") {
 		<div class="row">
 			
 <?     
-console_log($arResult["PROPERTIES"]["fromCompany"]["ACTIVE"]);
+console_log($arResult["PROPERTIES"]);
 //********************************************************************************************************************************* 
 $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 	'createNewMaterial' => false,  
@@ -77,7 +77,7 @@ $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 	'companyId' => $arResult["PROPERTIES"]["companyId"]["VALUE"], 
 	'companyToId' => $arResult["PROPERTIES"]["companyId"]["ID"],  
 	'fromCompanyId' => $arResult["PROPERTIES"]["fromCompany"]["ID"], 
-	'fromCompanyValue' => $arResult["PROPERTIES"]["fromCompany"]["ACTIVE"],  
+	'fromCompanyValue' => $arResult["PROPERTIES"]["fromCompany"]["VALUE"],  
 	),
 	array()); 
 	   
@@ -94,32 +94,27 @@ $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 		</div>
 
 	<? }
- 	if (!($arResult["IBLOCK_ID"] == IBLOCK_ID_PRODUCTS_REVIEW)) {   
-		if (isset($arResult['PROPERTIES']['source'])) { ?> 
-			<div class="col-xs-12">
-				<div class="form-group">
-					<label class="control-label mainlabel" for="lk_newsSource">Источник</label>
-					<input type="text" class="form-control" id="lk_newsSource" name='PROPERTY[<? echo $arResult['PROPERTIES']['source']['ID']; ?>][0]' value="<? echo $arResult['PROPERTIES']['source']['VALUE']; ?>">
-				</div>
+	if (($arResult["IBLOCK_ID"] == IBLOCK_ID_NEWS_COMPANY) || ($arResult["IBLOCK_ID"] == IBLOCK_ID_NEWS_INDUSTRY) || ($arResult["IBLOCK_ID"] == IBLOCK_ID_VIEWPOINT) || ($arResult["IBLOCK_ID"] == IBLOCK_ID_PRODUCTS_REVIEW) || ($arResult["IBLOCK_ID"] == IBLOCK_ID_NOVETLY)) {  ?>  
+		<div class="col-xs-12">
+			<div class="form-group">
+				<label class="control-label mainlabel" for="lk_newsSource">Источник</label>
+				<input type="text" class="form-control" id="lk_newsSource" name='PROPERTY[<? echo $arResult['PROPERTIES']['newsSource']['ID']; ?>][0]' value="<? echo $arResult['PROPERTIES']['newsSource']['VALUE']; ?>">
 			</div>
-		<? } 
-		if (isset($arResult['PROPERTIES']['imgSource'])) { ?> 
-			<div class="col-xs-12">
-				<div class="form-group">
-					<label class="control-label mainlabel" for="lk_photoSource">Источник фото</label>
-					<input type="text" class="form-control" id="lk_photoSource" name='PROPERTY[<? echo $arResult['PROPERTIES']['imgSource']['ID']; ?>][0]' value="<? echo $arResult['PROPERTIES']['imgSource']['VALUE']; ?>">
-				</div>
+		</div> 
+		<div class="col-xs-12">
+			<div class="form-group">
+				<label class="control-label mainlabel" for="lk_photoSource">Источник фото</label>
+				<input type="text" class="form-control" id="lk_photoSource" name='PROPERTY[<? echo $arResult['PROPERTIES']['imgSource']['ID']; ?>][0]' value="<? echo $arResult['PROPERTIES']['imgSource']['VALUE']; ?>">
 			</div>
-
-		<? }   
-	}   
-	
+		</div> 
+	<?   
+	}
 	$APPLICATION->IncludeFile('/tpl/include_area/tags.php', array( 'value' => $arResult['TAGS'], ), array()); ?>
 
 		</div>  
 		</div> 
 		<!-- тестовая кнопка просто закомментируй не обязательно каждый раз удалять -->
-		<input type="submit" name="test-button" value="тест" class="btn btn-blue-full minbr" id='test-button' />  
+		<!-- <input type="submit" name="test-button" value="тест" class="btn btn-blue-full minbr" id='test-button' />   -->
 		<!-- /end тестовая кнопка просто закомментируй не обязательно каждый раз удалять -->
 		<input type="submit" name="iblock_submit" value="Сохранить" class="btn btn-blue-full minbr" id='updateElement' /> 
 		<button class="btn btn-blue-full minbr newPreviewbtn">Предварительный просмотр</button> 

@@ -52,12 +52,25 @@ if (!newMaterial && !isJsonError) {
 
 }
 
-const ImageTool = window.ImageTool;
+const ImageTool = window.ImageTool; 
+
 const editor = new EditorJS({
 	holder: "js-editor",
-	autofocus: true,
+	autofocus: false,
 	hideToolbar: true,
-	tools: {
+	inlineToolbar: ['bold', 'italic', 'hyperlink', 'Marker', 'strikethrough' ],
+	tools: { 
+		hyperlink: {
+			class: Hyperlink,
+			config: {
+			  shortcut: 'CMD+L',
+			  target: '_blank',
+			  rel: 'nofollow',
+			  availableTargets: ['_blank', ],
+			  availableRels: ['author', 'noreferrer'],
+			  validate: false,
+			}
+		},
 		quote: {
 			class: Quote,
 			inlineToolbar: true,
@@ -170,6 +183,7 @@ const editor = new EditorJS({
 				"Bold": "Полужирный",
 				"Italic": "Курсив",
 				"InlineCode": "Моноширинный",
+				"Hyperlink": "Ссылка"
 			},
 			tools: {
 				"warning": {
@@ -195,6 +209,11 @@ const editor = new EditorJS({
 					"Left alignment": "По левой стороне",
 					"Center alignment": "По центру",
 				},
+				"hyperlink": {
+					"Save": "Сохранить",
+					"Select target": "Выбрать target",
+					"Select rel": "Выброать rel"
+				  }
 			},
 			blockTunes: {
 				"delete": {

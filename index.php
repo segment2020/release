@@ -1466,7 +1466,7 @@ $APPLICATION->IncludeComponent(
 		"NEWS_COUNT" => "5",
 		"SORT_BY1" => "PROPERTY_inTheTop",
 		"SORT_ORDER1" => "DESC",
-		"SORT_BY2" => "ID",
+		"SORT_BY2" => "TIMESTAMP_X",
 		"SORT_ORDER2" => "DESC",
 		"FILTER_NAME" => "",
 		"FIELD_CODE" => array(
@@ -1549,7 +1549,7 @@ $APPLICATION->IncludeComponent(
 		"IBLOCK_TYPE" => "-",
 		"IBLOCK_ID" => "5",
 		"NEWS_COUNT" => "5",
-		"SORT_BY1" => "ID",
+		"SORT_BY1" => "TIMESTAMP_X",
 		"SORT_ORDER1" => "DESC",
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER2" => "ASC",

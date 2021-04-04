@@ -16,14 +16,7 @@ $APPLICATION->SetTitle("Мои публикации");
             "myMaterialsFeed",
             array(
             "IBLOCKS" => array(   // Код информационного блока
-                0 => IBLOCK_ID_NEWS_COMPANY,
-                1 => IBLOCK_ID_NEWS_INDUSTRY,
-                2 => IBLOCK_ID_LIFE_INDUSTRY,
-                3 => IBLOCK_ID_VIEWPOINT,
-                4 => IBLOCK_ID_PRODUCTS_REVIEW,
-                5 => IBLOCK_ID_STOCK, 
-                6 => IBLOCK_ID_NOVETLY, 
-                7 => IBLOCK_ID_ALL_MATERIALS, 
+                0 => IBLOCK_ID_ALL_MATERIALS
             ),
             "NEWS_COUNT" => "5",   // Количество новостей в каждом блоке
             "IBLOCK_SORT_BY" => "SORT",   // Поле для cортировки информационных блоков
