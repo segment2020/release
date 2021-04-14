@@ -65,9 +65,13 @@ const editor = new EditorJS({
 			config: {
 			  shortcut: 'CMD+L',
 			  target: '_blank',
+<<<<<<< Updated upstream
 			  rel: 'nofollow',
 			  availableTargets: ['_blank'],
 			  availableRels: ['nofollow'],
+=======
+			  rel: 'nofollow',  
+>>>>>>> Stashed changes
 			  validate: false,
 			}
 		},
