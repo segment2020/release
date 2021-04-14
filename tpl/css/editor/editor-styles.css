@@ -431,8 +431,14 @@
 } 
 .ce-inline-tool-hyperlink--select-rel,
 .ce-inline-tool-hyperlink--select-target {
-  display: none;
-}
+  height: 0;
+  width: 0!important;
+  opacity: 0;
+  visibility: hidden;
+  padding: 0!important;
+  margin: 0!important;
+  border-width: 0px!important;
+} 
 
 /* #author-change .lds-facebook,
 #authorCompany-change .lds-facebook { 

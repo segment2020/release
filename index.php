@@ -123,13 +123,13 @@ while ($ob = $res->GetNextElement()) {
 				</div>
 
 				<div class="col-sm-6 col-xs-6 cell-12-xs content-margin double-banners">
-					<div id='<? echo $bannersArray[DA_MAIN_1][' ID']; ?>' class='bannerClick'>
+					<div id='<? echo $bannersArray[DA_MAIN_1]['ID']; ?>' class='bannerClick'>
 						<?
 						if ('html' == $bannersArray[DA_MAIN_1]['PROPERTY_TYPE_VALUE']) {
 							echo $bannersArray[DA_MAIN_1]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 						} else {
 							if (empty($bannersArray[DA_MAIN_1]['filesrc'])) { ?>
-						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_1][' fileDetSrc']; ?>");'>
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_1]['fileDetSrc']; ?>");'>
 						</div>
 						<?
 							} else {
@@ -144,7 +144,7 @@ while ($ob = $res->GetNextElement()) {
 						<?								}
 								else {
 ?>
-						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_1][' filesrc']; ?>");'>
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_1]['filesrc']; ?>");'>
 						</div>
 						<?
 								}
@@ -159,13 +159,13 @@ while ($ob = $res->GetNextElement()) {
 					</div>
 				</div>
 				<div class="col-sm-6 col-xs-6 cell-12-xs content-margin double-banners">
-					<div id='<? echo $bannersArray[DA_MAIN_2][' ID']; ?>' class='bannerClick'>
+					<div id='<? echo $bannersArray[DA_MAIN_2]['ID']; ?>' class='bannerClick'>
 						<?
 						if ('html' == $bannersArray[DA_MAIN_2]['PROPERTY_TYPE_VALUE']) {
 							echo $bannersArray[DA_MAIN_2]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 						} else {
 							if (empty($bannersArray[DA_MAIN_2]['filesrc'])) { ?>
-						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_2][' fileDetSrc']; ?>");'>
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_2]['fileDetSrc']; ?>");'>
 						</div>
 						<?								
 							} else {
@@ -180,7 +180,7 @@ while ($ob = $res->GetNextElement()) {
 						<?								}
 								else {
 ?>
-						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_2][' filesrc']; ?>");'>
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_2]['filesrc']; ?>");'>
 						</div>
 						<?
 								}
@@ -548,13 +548,13 @@ $APPLICATION->IncludeComponent(
 					</div>
 				</div>
 				<div class="col-xs-12 content-margin">
-					<div id='<? echo $bannersArray[DA_MAIN_3][' ID']; ?>' class='bannerClick'>
+					<div id='<? echo $bannersArray[DA_MAIN_3]['ID']; ?>' class='bannerClick'>
 						<?
 						if ('html' == $bannersArray[DA_MAIN_3]['PROPERTY_TYPE_VALUE']) {
 							echo $bannersArray[DA_MAIN_3]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 						} else {
 							if (empty($bannersArray[DA_MAIN_3]['filesrc'])) { ?>
-						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_3][' fileDetSrc']; ?>");'>
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_3]['fileDetSrc']; ?>");'>
 						</div>
 						<?								
 							} else {
@@ -569,7 +569,7 @@ $APPLICATION->IncludeComponent(
 						<?								}
 								else {
 ?>
-						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_3][' filesrc']; ?>");'>
+						<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_3]['filesrc']; ?>");'>
 						</div>
 						<?
 								}
@@ -974,13 +974,13 @@ $APPLICATION->IncludeComponent(
 		{
 ?>
 	<div class="col-xs-3 content-margin">
-		<div id='<? echo $bannersArray[DA_MAIN_4][' ID']; ?>' class='bannerClick'>
+		<div id='<? echo $bannersArray[DA_MAIN_4]['ID']; ?>' class='bannerClick'>
 			<?
 				if ('html' == $bannersArray[DA_MAIN_4]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_4]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_4]['filesrc'])) { ?>
-			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_4][' fileDetSrc']; ?>");'>
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_4]['fileDetSrc']; ?>");'>
 			</div>
 			<?
 					} else {
@@ -995,7 +995,7 @@ $APPLICATION->IncludeComponent(
 			<?						}
 						else {
 							?>
-			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_4][' filesrc']; ?>");'>
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_4]['filesrc']; ?>");'>
 			</div>
 			<?
 						}
@@ -1010,13 +1010,13 @@ $APPLICATION->IncludeComponent(
 		</div>
 	</div>
 	<div class="col-xs-3 content-margin">
-		<div id='<? echo $bannersArray[DA_MAIN_5][' ID']; ?>' class='bannerClick'>
+		<div id='<? echo $bannersArray[DA_MAIN_5]['ID']; ?>' class='bannerClick'>
 			<?
 				if ('html' == $bannersArray[DA_MAIN_5]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_5]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_5]['filesrc'])) { ?>
-			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_5][' fileDetSrc']; ?>");'>
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_5]['fileDetSrc']; ?>");'>
 			</div>
 			<?
 					} else {
@@ -1031,7 +1031,7 @@ $APPLICATION->IncludeComponent(
 			<?						}
 						else {
 							?>
-			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_5][' filesrc']; ?>");'>
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_5]['filesrc']; ?>");'>
 			</div>
 			<?
 						}
@@ -1046,13 +1046,13 @@ $APPLICATION->IncludeComponent(
 		</div>
 	</div>
 	<div class="col-xs-3 content-margin">
-		<div id='<? echo $bannersArray[DA_MAIN_6][' ID']; ?>' class='bannerClick'>
+		<div id='<? echo $bannersArray[DA_MAIN_6]['ID']; ?>' class='bannerClick'>
 			<?
 				if ('html' == $bannersArray[DA_MAIN_6]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_6]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_6]['filesrc'])) { ?>
-			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_6][' fileDetSrc']; ?>");'>
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_6]['fileDetSrc']; ?>");'>
 			</div>
 			<?
 					} else {
@@ -1067,7 +1067,7 @@ $APPLICATION->IncludeComponent(
 			<?						}
 						else {
 							?>
-			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_6][' filesrc']; ?>");'>
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_6]['filesrc']; ?>");'>
 			</div>
 			<?
 						}
@@ -1082,14 +1082,14 @@ $APPLICATION->IncludeComponent(
 		</div>
 	</div>
 	<div class="col-xs-3 content-margin">
-		<div id='<? echo $bannersArray[DA_MAIN_7][' ID']; ?>' class='bannerClick'>
+		<div id='<? echo $bannersArray[DA_MAIN_7]['ID']; ?>' class='bannerClick'>
 			<?
 				if ('html' == $bannersArray[DA_MAIN_7]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_7]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				}
 				else {
 					if (empty($bannersArray[DA_MAIN_7]['filesrc'])) { ?>
-			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_7][' fileDetSrc']; ?>");'>
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_7]['fileDetSrc']; ?>");'>
 			</div>
 			<?
 					} else {
@@ -1104,7 +1104,7 @@ $APPLICATION->IncludeComponent(
 			<?						}
 						else {
 							?>
-			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_7][' filesrc']; ?>");'>
+			<div class="infoblock altBanner" style='background-image: url("<? echo $bannersArray[DA_MAIN_7]['filesrc']; ?>");'>
 			</div>
 			<?
 						}
@@ -1378,13 +1378,13 @@ $APPLICATION->IncludeComponent(
 			<div class="col-xs-12">
 				<div class="row">
 					<div class="col-sm-6 col-xs-12 content-margin double-banners">
-						<div id='<? echo $bannersArray[DA_MAIN_8][' ID']; ?>' class='bannerClick'>
+						<div id='<? echo $bannersArray[DA_MAIN_8]['ID']; ?>' class='bannerClick'>
 							<?
 								if ('html' == $bannersArray[DA_MAIN_8]['PROPERTY_TYPE_VALUE']) {
 									echo $bannersArray[DA_MAIN_8]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 								} else {
 									if (empty($bannersArray[DA_MAIN_8]['filesrc'])) { ?>
-							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_8][' fileDetSrc']; ?>");'>
+							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_8]['fileDetSrc']; ?>");'>
 							</div>
 							<?
 									} else {
@@ -1399,7 +1399,7 @@ $APPLICATION->IncludeComponent(
 							<?						}
 										else {
 											?>
-							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_8][' filesrc']; ?>");'>
+							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_8]['filesrc']; ?>");'>
 							</div>
 							<?
 										}
@@ -1414,13 +1414,13 @@ $APPLICATION->IncludeComponent(
 						</div>
 					</div>
 					<div class="col-sm-6 col-xs-12 content-margin double-banners">
-						<div id='<? echo $bannersArray[DA_MAIN_9][' ID']; ?>' class='bannerClick'>
+						<div id='<? echo $bannersArray[DA_MAIN_9]['ID']; ?>' class='bannerClick'>
 							<?
 								if ('html' == $bannersArray[DA_MAIN_9]['PROPERTY_TYPE_VALUE']) {
 									echo $bannersArray[DA_MAIN_9]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 								} else {
 									if (empty($bannersArray[DA_MAIN_9]['filesrc'])) { ?>
-							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_9][' fileDetSrc']; ?>");'>
+							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_9]['fileDetSrc']; ?>");'>
 							</div>
 							<?
 									} else {
@@ -1435,7 +1435,7 @@ $APPLICATION->IncludeComponent(
 							<?						}
 										else {
 											?>
-							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_9][' filesrc']; ?>");'>
+							<div class="infoblock infoblock60" style='background-image: url("<? echo $bannersArray[DA_MAIN_9]['filesrc']; ?>");'>
 							</div>
 							<?
 										}
@@ -1878,13 +1878,13 @@ $APPLICATION->IncludeComponent(
 		{
 ?>
 	<div class="col-xs-3 content-margin">
-		<div id='<? echo $bannersArray[DA_MAIN_10][' ID']; ?>' class='bannerClick'>
+		<div id='<? echo $bannersArray[DA_MAIN_10]['ID']; ?>' class='bannerClick'>
 			<?
 					if ('html' == $bannersArray[DA_MAIN_10]['PROPERTY_TYPE_VALUE']) {
 						echo $bannersArray[DA_MAIN_10]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 					} else {
 						if (empty($bannersArray[DA_MAIN_10]['filesrc'])) { ?>
-			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_10][' fileDetSrc']; ?>");'>
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_10]['fileDetSrc']; ?>");'>
 			</div>
 			<?
 						} else {
@@ -1899,7 +1899,7 @@ $APPLICATION->IncludeComponent(
 			<?							}
 							else {
 								?>
-			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_10][' filesrc']; ?>");'>
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_10]['filesrc']; ?>");'>
 			</div>
 			<?
 							}
@@ -1915,13 +1915,13 @@ $APPLICATION->IncludeComponent(
 	</div>
 
 	<div class="col-xs-3 content-margin">
-		<div id='<? echo $bannersArray[DA_MAIN_11][' ID']; ?>' class='bannerClick'>
+		<div id='<? echo $bannersArray[DA_MAIN_11]['ID']; ?>' class='bannerClick'>
 			<?
 				if ('html' == $bannersArray[DA_MAIN_11]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_11]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_11]['filesrc'])) { ?>
-			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_11][' fileDetSrc']; ?>");'>
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_11]['fileDetSrc']; ?>");'>
 			</div>
 			<?
 					} else {
@@ -1936,7 +1936,7 @@ $APPLICATION->IncludeComponent(
 			<?						}
 						else {
 							?>
-			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_11][' filesrc']; ?>");'>
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_11]['filesrc']; ?>");'>
 			</div>
 			<?
 						}
@@ -1951,13 +1951,13 @@ $APPLICATION->IncludeComponent(
 		</div>
 	</div>
 	<div class="col-xs-3 content-margin">
-		<div id='<? echo $bannersArray[DA_MAIN_12][' ID']; ?>' class='bannerClick'>
+		<div id='<? echo $bannersArray[DA_MAIN_12]['ID']; ?>' class='bannerClick'>
 			<?
 				if ('html' == $bannersArray[DA_MAIN_12]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_12]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_12]['filesrc'])) { ?>
-			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_12][' fileDetSrc']; ?>");'>
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_12]['fileDetSrc']; ?>");'>
 			</div>
 			<?
 					} else {
@@ -1972,7 +1972,7 @@ $APPLICATION->IncludeComponent(
 			<?						}
 						else {
 							?>
-			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_12][' filesrc']; ?>");'>
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_12]['filesrc']; ?>");'>
 			</div>
 			<?
 						}
@@ -1987,13 +1987,13 @@ $APPLICATION->IncludeComponent(
 		</div>
 	</div>
 	<div class="col-xs-3 content-margin">
-		<div id='<? echo $bannersArray[DA_MAIN_13][' ID']; ?>' class='bannerClick'>
+		<div id='<? echo $bannersArray[DA_MAIN_13]['ID']; ?>' class='bannerClick'>
 			<?
 				if ('html' == $bannersArray[DA_MAIN_13]['PROPERTY_TYPE_VALUE']) {
 					echo $bannersArray[DA_MAIN_13]['PROPERTY_HTMLCODE_VALUE']['TEXT'];
 				} else {
 					if (empty($bannersArray[DA_MAIN_13]['filesrc'])) { ?>
-			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_13][' fileDetSrc']; ?>");'>
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_13]['fileDetSrc']; ?>");'>
 			</div>
 			<?
 					} else {
@@ -2008,7 +2008,7 @@ $APPLICATION->IncludeComponent(
 			<?						}
 						else {
 							?>
-			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_13][' filesrc']; ?>");'>
+			<div class="infoblock" style='background-image: url("<? echo $bannersArray[DA_MAIN_13]['filesrc']; ?>");'>
 			</div>
 			<?
 						}

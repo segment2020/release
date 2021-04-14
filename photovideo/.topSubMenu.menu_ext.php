@@ -1,7 +1,7 @@
 <?
 $aMenuLinks = Array(
 	Array(
-		"Фотогалереи", 
+		"Фото", 
 		"/photogallery/", 
 		Array(), 
 		Array(), 

@@ -130,13 +130,16 @@
                 <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="listLookupAvailableItems" name="PROPERTY[<?= $companyToId ?>][0]">
                     <?   
                 $db_res = CIBlockElement::GetList(array("ID" => "DESC"), Array("IBLOCK_ID"=> "1", "ACTIVE"=>"Y"), false, false, Array("ID","NAME"));
-    
+                    console_log($db_res);
 		        while ($comp_res = $db_res->Fetch()) {  
                     $selected = '';
                     if ($companyId == $comp_res["ID"])
                         $selected = 'selected';
                     echo '<option value="'.$comp_res["ID"].'" ' . $selected .'> ['.$comp_res["ID"].'] '.$comp_res["NAME"]. '</option>'; 
                 } 
+                // while ($comp_res = $db_res->Fetch()) {  
+                //     console_log($comp_res["NAME"]); 
+                // } 
                 ?>
                 </select>
             </div>
@@ -144,6 +147,20 @@
 
     </div>
      
+    <? } elseif ($createNewMaterial) { 
+           
+    $rsUser = CUser::GetByID(20631); 
+    $arUser = $rsUser->Fetch();  
+	if (!empty($arUser["UF_ID_COMPANY"]) && CModule::IncludeModule("iblock"))
+	{
+		$arSelect = array("ID", "NAME");
+		$arFilter = array("IBLOCK_ID" => IBLOCK_ID_COMPANY, "ID" => $arUser["UF_ID_COMPANY"]);
+		$res = CIBlockElement::GetList(array(), $arFilter, false, array(), $arSelect);
+		if ($ob = $res->GetNextElement())
+			$arFields = $ob->GetFields();
+	} 
+?>  <div>
+    <input type="hidden" name="PROPERTY[<?= $companyToId ?>][0]" value="<?= $arFields['ID'] ?>"></div>
     <? } ?>
     <? if ( CSite::InGroup(array(1)) ) { ?>
     <div class="block-moveTo clearfix">Поместить материал в:

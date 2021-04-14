@@ -66,8 +66,8 @@ const editor = new EditorJS({
 			  shortcut: 'CMD+L',
 			  target: '_blank',
 			  rel: 'nofollow',
-			  availableTargets: ['_blank', ],
-			  availableRels: ['author', 'noreferrer'],
+			  availableTargets: ['_blank'],
+			  availableRels: ['nofollow'],
 			  validate: false,
 			}
 		},
