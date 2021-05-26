@@ -358,32 +358,5 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
 </script>
-
-
-<?
-if((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443){ //Получаем протокол сайта.
-	$protocol = 'https://';
-} else {
-	$protocol = 'http://';
-}
-$title = $APPLICATION->GetPageProperty("title");
-if ($title == ''){
-    $title = $APPLICATION->GetTitle();
-}
-if ($title == ''){
-    $title = $APPLICATION->GetDirProperty("title");
-}
-
-$description = $APPLICATION->GetPageProperty("description");
-if($description == ''){
-	$description = $APPLICATION->GetDirProperty("description");
-}
-
-$APPLICATION->AddHeadString('<meta property="og:title" content="'.$title.'"/>',true);  
-$APPLICATION->AddHeadString('<meta property="og:type" content="website"/>',true);  
-$APPLICATION->AddHeadString('<meta property="og:url" content="'.$protocol.$_SERVER["SERVER_NAME"].$APPLICATION->GetCurPage(false).'" />',true);  
-if($description != ''){
-	$APPLICATION->AddHeadString('<meta property="og:description" content="'.$description.'"/>',true); 
-}
-?>
+ 
 </html>

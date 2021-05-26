@@ -170,10 +170,25 @@ $this->setFrameMode(true);
 										<a href="<? echo $sorted_arItem['DETAIL_PAGE_URL'] ?>" class="btn btn-blue-full minbr">Просмотреть</a>					
 									<? }
 								} 
-						?>
-						<a href="/personal/moderation/edit/?elementId=<? echo $sorted_arItem["ID"]; ?>" class="btn btn-blue-full minbr">
-							Редактировать
-						</a>
+								if ($sorted_arItem['IBLOCK_ID'] == IBLOCK_ID_GALLERY_PHOTO){
+									?> 
+									<a href="/personal/company/gallery/edit/?elementId=<? echo $sorted_arItem["ID"]; ?>&iBlockId=11" class="btn btn-blue-full minbr">
+										Редактировать
+									</a>
+									<?
+								} elseif ( ($sorted_arItem['IBLOCK_ID'] == IBLOCK_ID_GALLERY_VIDEO)) {
+									?>
+									<a href="/personal/company/gallery/edit/?elementId=<? echo $sorted_arItem["ID"]; ?>&iBlockId=12" class="btn btn-blue-full minbr">
+										Редактировать
+									</a>
+								<?
+								} else {
+										?>
+									<a href="/personal/moderation/edit/?elementId=<? echo $sorted_arItem["ID"]; ?>" class="btn btn-blue-full minbr">
+										Редактировать
+									</a>
+									<? }?>
+						
 					</div>
 				</div> <!-- end div class="block-default in block-shadow content-margin corpnewsblock"> -->
 				

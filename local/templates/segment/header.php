@@ -11,15 +11,40 @@
     <meta name="format-detection" content="address=no">
     <meta http-equiv="msthemecompatible" content="no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta http-equiv="imagetoolbar" content="no">
-    <?
-if((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443){ //Получаем протокол сайта.
-	$protocol = 'https://';
-}else{
-	$protocol = 'http://';
-}
-$APPLICATION->AddHeadString('<meta property="og:image" content="'.$protocol.$_SERVER["SERVER_NAME"].$arFirstPhoto["SRC"].'"/>',true); //Ставим в шапку сайта тег на картинку товара.
-?>	
+    <meta http-equiv="imagetoolbar" content="no"> 
+   <?
+   if((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443){ //Получаем протокол сайта.
+       $protocol = 'https://';
+   }else{
+       $protocol = 'http://';
+   }  
+   $APPLICATION->ShowProperty('og-image');
+   $APPLICATION->ShowProperty('og-description');
+   ?>
+   <meta property="og:title" content="<?$APPLICATION->ShowTitle(false);?>"/>
+   <meta property="og:url" content="<?=$protocol?><?=SITE_SERVER_NAME?><?=$APPLICATION->GetCurPage(false);?>" />
+   <?
+   
+        $title = $APPLICATION->GetPageProperty("title");
+        if ($title == ''){
+            $title = $APPLICATION->GetTitle();
+        }
+        if ($title == ''){
+            $title = $APPLICATION->GetDirProperty("title");
+        }
+
+        $description = $APPLICATION->GetPageProperty("description");
+        if($description == ''){
+            $description = $APPLICATION->GetDirProperty("description");
+        }
+
+        $APPLICATION->AddHeadString('<meta property="og:title" content="'.$title.'"/>',true);   
+        $APPLICATION->AddHeadString('<meta property="og:url" content="'.$protocol.$_SERVER["SERVER_NAME"].$APPLICATION->GetCurPage(false).'" />',true);  
+        if($description != ''){
+            $APPLICATION->AddHeadString('<meta property="og:description" content="'.$description.'"/>',true); 
+        }
+   ?>
+   <meta property="og:type" content="website"/> 
     <link href="/tpl/images/favicon.png" rel="icon" type="image/png">
     <link rel="stylesheet" href="/tpl/wow_book_plugin/wow_book.css" type="text/css" />
     <link rel="stylesheet" href="/tpl/css/jquery.fancybox.min.css" type="text/css" media="screen" /> 
