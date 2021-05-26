@@ -109,14 +109,19 @@ foreach($arResult["ITEMS"] as $arItem)
 			</a>
 			<!-- zzz -->
 			<?  
-			if (!empty($arItem["PROPERTIES"]["fromCompany"]["VALUE"])) { 
-				$res = CUser::GetByID($arItem["CREATED_BY"]);
-				if($userAuthor = $res->GetNext()) 
-					$title = 'Новинка автора ' .$userAuthor["NAME"]; 
-				}
-			else { 
-				$title = 'Новость компании ' . $arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE'];
-			} ?>
+			if ($arItem["IBLOCK_ID"] == 10) {
+				$title = 'Мнение автора ' . $arItem['PROPERTIES']['name']['VALUE'];
+			} else { 
+				if (!empty($arItem["PROPERTIES"]["fromCompany"]["VALUE"])) { 
+					$res = CUser::GetByID($arItem["CREATED_BY"]);
+					if($userAuthor = $res->GetNext()) 
+						$title = 'Новинка автора ' .$userAuthor["NAME"]; 
+					}
+				else { 
+					$title = 'Новость компании ' . $arItem['DISPLAY_PROPERTIES']['companyId']['DISPLAY_VALUE'];
+				} 
+			} 
+			?>
 			<div class="newsbfirm"><? echo $title; ?></div>  
 			<!-- zzz -->
 		</div>

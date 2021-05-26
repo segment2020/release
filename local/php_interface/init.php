@@ -203,7 +203,7 @@ define('PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY', 295);    	 // Json данные
 // IBLOCK_ID_VIEWPOINT
 define('PROPERTY_ID_NAME_IN_VIEWPOINT', 28); // Имя.
 define('PROPERTY_ID_SOURCE_IN_VIEWPOINT', 29); // Источник.
-define('PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT', 79); // id компании.
+define('PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT', 79); // id компании. 
 define('PROPERTY_ID_ARCHIVE_IN_VIEWPOINT', 109); // Архив - история изменений.
 define('PROPERTY_ID_ADD_BLOCKID_IN_VIEWPOINT', 129); // Доп. материал - id блока.
 define('PROPERTY_ID_ADD_ELEMENTID_IN_VIEWPOINT', 130); // Доп. материал - id элемента.
@@ -375,932 +375,931 @@ define('PROPERTY_ID_COUNTRY_IN_CATALOGS_PDF', 236);    // Страна.
 define('PROPERTY_ID_OLD_ID_IN_CATALOGS_PDF', 266);     // Старый ID.
 
 // IBLOCK_ID_ALL_MATERIALS 
+define('PROPERTY_ID_COMPANY_ID_ALL_MATERIALS', 302); 			// id компании
 define('PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS', 309);       	// Json данные
-define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 308); 			// Перенести в.
+define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 308); 			// Перенести в. (функционал сохранения и переноса не доделан)
+
+ // FROM_USERTRUE_IDs 
+define('FROM_USERTRUE_ID_IN_NEWS_COMPANY', 16);  
+define('FROM_USERTRUE_ID_IN_NEWS_INDUSTRY', 15); 
+define('FROM_USERTRUE_ID_IN_STOCK', 17);  
+define('FROM_USERTRUE_ID_IN_VIEWPOINT', 19);  
+define('FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW', 20);  
+define('FROM_USERTRUE_ID_IN_NOVETLY', 56);  
+define('FROM_USERTRUE_ID_IN_ALL_MATERIALS', 131);    
 
 	// file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/tpl/log.log', '444'); 
  
-AddEventHandler("iblock", "OnStartIBlockElementAdd", Array("AddTaranslitCodeName", "OnStartIBlockElementAddHandler"));
-AddEventHandler("iblock", "OnStartIBlockElementUpdate", Array("AddTaranslitCodeName", "OnStartIBlockElementUpdateHandler"));
-
-class AddTaranslitCodeName
-{
-    function OnStartIBlockElementAddHandler(&$arFields)
-    {
-		// return true;
-		// pre($arFields, EXIT_PRE);
-		// pre($arFields);
-
-		if (!isset($arFields['API']))
-		{	
-			$arFields["CODE"] = Cutil::translit($arFields["NAME"], "ru", array());
-
-			$count = null;
-			$count = CIBlockElement::GetList(
-				array(),
-				array('IBLOCK_ID' => $arFields['IBLOCK_ID'], 'CODE' => $arFields["CODE"]),
-				array(),
-				false,
-				array('ID', 'CODE')
-			);
-
-			if (0 !== (int)$count && null !== $count)
-				$arFields["CODE"] .= '_' . time();
-		}
-
-		global $USER;
-		$rsUser = CUser::GetByID($USER->GetID()); //$USER->GetID() - получаем ID авторизованного пользователя и сразу же его поля 
-		$arUser = $rsUser->Fetch();
-
-		$companyId = $arUser['UF_ID_COMPANY'];
-
-		switch ($arFields['IBLOCK_ID']) {
-			case IBLOCK_ID_NEWS_COMPANY:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NEWS_COMPANY;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NEWS_COMPANY;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NEWS_COMPANY;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
-				
-				$companyIdProp		= PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную
-				break;
-			}
-
-			case IBLOCK_ID_NEWS_INDUSTRY:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NEWS_INDUSTRY;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NEWS_INDUSTRY;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NEWS_INDUSTRY;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY; 
-
-				$companyIdProp		= PROPERTY_ID_COMPANY_ID_NEWS_INDUSTRY;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
-				break;
-			}
-
-			case IBLOCK_ID_STOCK:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_STOCK;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_STOCK;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_STOCK;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_STOCK;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_STOCK;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_STOCK; 
-
-				$companyIdProp		= PROPERTY_ID_COMPANY_IN_STOCK;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
-				break;
-			}
-
-			case IBLOCK_ID_BRANDS:
-			{
-				$propertyId = PROPERTY_ID_COMPANY_ID_IN_BRANDS;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_BRANDS;
-				$rejPropertyId = PROPERTY_ID_PUB_REJECTED_IN_BRANDS;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_BRANDS;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_BRANDS;
-				break;
-			}
-
-			case IBLOCK_ID_LICENSE:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_LICENSE;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_LICENSE;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_LICENSE;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_LICENSE;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_LICENSE;
-				break;
-			}
-
-			case IBLOCK_ID_GALLERY_PHOTO:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_GALLERY_PHOTO;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_GALLERY_PHOTO;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_GALLERY_PHOTO;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_GALLERY_PHOTO;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_GALLERY_PHOTO;
-				break;
-			}
-
-			case IBLOCK_ID_GALLERY_VIDEO:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_GALLERY_VIDEO;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_GALLERY_VIDEO;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_GALLERY_VIDEO;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_GALLERY_VIDEO;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_GALLERY_VIDEO;
-				break;
-			}
-
-			case IBLOCK_ID_VIEWPOINT:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_VIEWPOINT;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_VIEWPOINT;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_VIEWPOINT;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;  
-
-				$companyIdProp		= PROPERTY_ID_COMPANY_IN_VIEWPOINT;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
-				break;
-			}
-
-			case IBLOCK_ID_EVENTS:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_EVENTS;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_EVENTS;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_EVENTS;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_EVENTS;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_EVENTS;
-				break;
-			}
-
-			case IBLOCK_ID_PRODUCTS_REVIEW:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_PRODUCTS_REVIEW;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_PRODUCTS_REVIEW;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_PRODUCTS_REVIEW;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
-
-				$companyIdProp		= PROPERTY_ID_COMPANY_IN_PRODUCTS_REVIEW;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
-				break;
-			}
-
-			case IBLOCK_ID_LIFE_INDUSTRY:
-			{
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
-			}
-
-			case IBLOCK_ID_ANALYTICS:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_ANALYTICS;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ANALYTICS;
-			}
-
-			case IBLOCK_ID_NOVETLY:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NOVETLY;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NOVETLY;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NOVETLY;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
-
-				$companyIdProp		= PROPERTY_ID_COMPANY_IN_NOVETLY;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
-				break;
-			}
-			case IBLOCK_ID_ALL_MATERIALS:
-			{ 
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
-				break;
-			}
-		}
-
-		// Если добавлям элемент из ЛК 
-		global $DB;
-		if ($USER->IsAdmin() && (!isset($arFields['IPROPERTY_TEMPLATES']))) {  
-
-			// Если поле старого материала не было заполнено
-			if (empty($arFields["PROPERTY_VALUES"][$moveToPropertyId])) {  
-				$arFields["PROPERTY_VALUES"][$moveToPropertyId] = $arFields['IBLOCK_ID'];
-			} 
-			$move = $_POST["PROPERTY"][$moveToPropertyId][0];
-			//Если надо перенести элемент...
-			if (!empty($move) && $move !== $arFields['IBLOCK_ID']) {
-				// Узнаем ID инфоблока куда надо перенести.
-				$res = CIBlock::GetByID($move); 
-				if ($ar_res = $res->GetNext()) {
-					// Узнаем ID свойства у инфоблока в который переносим (moveToIdCopy).
-					switch ($move) {
-						case IBLOCK_ID_NEWS_COMPANY:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_NEWS_INDUSTRY:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_LIFE_INDUSTRY:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_LIFE_INDUSTRY;
-							break;
-						} 
-						case IBLOCK_ID_STOCK:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_IN_STOCK; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_VIEWPOINT:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_PRODUCTS_REVIEW:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_NOVETLY:
-						{ 
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
-							break;
-						}
-						case IBLOCK_ID_ALL_MATERIALS: 
-						{ 
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
-							$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
-							$companyIdPropCopy = ""; 
-							break;
-						}
-					}    
-						$arFieldsCopy = array(
-							"IBLOCK_ID"      			=> $move, 
-							"NAME"                    	=> $arFields['NAME'],
-							"ACTIVE"  					=> $arFields['ACTIVE'],
-							"TAGS"  					=> $arFields['TAGS'],
-							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
-							"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
-							"MODIFIED_BY"               => $USER->GetID(),   
-							"ACTIVE_FROM"				=> date("d.m.Y H:i:s"), 
-							"DETAIL_TEXT_TYPE"			=> $arFields['DETAIL_TEXT_TYPE'],
-						);  
-
-						if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
-							if (!empty($arFields['PREVIEW_PICTURE']['name'])) {
-								$arFieldsCopy['PREVIEW_PICTURE'] = $arFields['PREVIEW_PICTURE'];
-							} else {
-								$arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']); 
-							}
-						}
-
-						if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) { 
-							if (!empty($arFields['DETAIL_PICTURE']['name'])) {
-								$arFieldsCopy['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE'];
-							} else {
-                                $arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
-                            }
-						}
-
-						$arFieldsCopy["PROPERTY_VALUES"][$moveToIdCopy] = $move;
-						$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
-						
-						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy] = $arFields["PROPERTY_VALUES"][$fromCompanyId]; 
-						if (!empty($companyId)) { 
-							$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $companyId;
-						} else {
-							$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $arFields["PROPERTY_VALUES"][$companyIdProp];
-						}
-						// pre($arFieldsCopy);
-						// Создаём новый элемент.
-						$el = new CIBlockElement();
-						$DB->StartTransaction();
-						if ($NEW_ID = $el->Add($arFieldsCopy)) {
-						// Удаляем текущий элемент.
-							if (CIBlock::GetPermission($arFields['IBLOCK_ID']) >= 'W') {
-								if (!CIBlockElement::Delete($arFields['ID'])) {
-									$strWarning .= 'Error!';
-									$DB->Rollback();
-								} else {
-									$DB->Commit();
-								}
-							}
-						} else {
-						echo "Error: ".$el->LAST_ERROR;
-						}
-					} 
-
-				return;
-			} 
-		} 
-		// Заменим кирилическое имя файла (wowbook plugin не работает с кирилицей).
-		if (IBLOCK_ID_CATALOGS_PDF == $arFields['IBLOCK_ID'])
-		{
-			$fileName = Cutil::translit($arFields['PROPERTY_VALUES'][PROPERTY_ID_FILE_IN_CATALOGS_PDF][0]['name'], "ru", array());
-			$arFields['PROPERTY_VALUES'][PROPERTY_ID_FILE_IN_CATALOGS_PDF][0]['name'] = $fileName;
-		}
- 
-		if (!empty($arFields['PROPERTY_VALUES'][$paidPropId]))
-		{
-			$resource = CIBlockElement::GetByID($companyId); // Выберем свойства компании.
-			if ($ob = $resource->GetNextElement())
-			{
-				//$arFieldsExisting = $ob->GetFields();
-				$arProps = $ob->GetProperties(false, array('ID' => $countPaidPropId)); // Узнаем, сколько осталось платных елементов.
-				if (!empty($arProps[$paidPropCode]['VALUE']) && ($arProps[$paidPropCode]['VALUE']) > 0)
-				{
-					$paidNum = (int)$arProps[$paidPropCode]['VALUE'] - 1;
-
-					// Установим новое значение для данного свойства данного элемента.
-					CIBlockElement::SetPropertyValuesEx($companyId, IBLOCK_ID_COMPANY, array($paidPropCode => $paidNum));
-				}
-				else
-				{
-					$arFields['PROPERTY_VALUES'][$paidPropId] = '';
-				}
-			}
-		} 
-
-		if (empty($arFields['PROPERTY_VALUES'][$propertyId]) && !isset($arFields['API']))
-			$arFields['PROPERTY_VALUES'][$propertyId] = $companyId;
-
-		if (!isset($arFields['IPROPERTY_TEMPLATES'])) {
-			if (CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') {
-				$arFields['ACTIVE'] = 'Y';  
-			} elseif (!CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') { 
-				$arFields['ACTIVE'] = 'N'; 
-			}
-		}
-
-		if (IBLOCK_ID_COMPANY == $arFields['IBLOCK_ID'])
-		{
-			$arFields['PROPERTY_VALUES'][PROPERTY_ID_USER_ID] = $USER->GetID();
-			$arFields['ACTIVE'] = 'Y';
+	AddEventHandler("iblock", "OnStartIBlockElementAdd", Array("AddTaranslitCodeName", "OnStartIBlockElementAddHandler"));
+	AddEventHandler("iblock", "OnStartIBlockElementUpdate", Array("AddTaranslitCodeName", "OnStartIBlockElementUpdateHandler"));
+	  
+	class AddTaranslitCodeName
+	{
+		function OnStartIBlockElementAddHandler(&$arFields)
+		{ 
+	
 			if (!isset($arFields['API']))
-				$arFields['PROPERTY_VALUES'][PROPERTY_ID_IN_MODERATION]['VALUE'] = 83;
-		}
-
-		if (isset($arFields['API']))
-			$arFields['ACTIVE'] = 'Y';
-
-		// pre($arFields, EXIT_PRE);
-		return;
-    } 
-	//---------------------------------------------------------------------------------------------------------------------------------
-	// Update элемента
-	//---------------------------------------------------------------------------------------------------------------------------------
-    function OnStartIBlockElementUpdateHandler(&$arFields)
-    { 
-		
-        if (IBLOCK_ID_COMPANY == $arFields['IBLOCK_ID']) {
-            // Если редактировали компанию, то поставим галку в свойство НА МОДЕРАЦИИ.
-            // Связано с магазином - если карточка компании не активна,
-            // то ругается при добавлении товара в корзину, что не все поля заполнены.
-
-            // Костыль.
-            // Если массив свойств из админки, то прилетает IPROPERTY_TEMPLATES.
-            if (!isset($arFields['IPROPERTY_TEMPLATES'])) {
-                $arFields['PROPERTY_VALUES'][PROPERTY_ID_IN_MODERATION]['VALUE'] = 83;
-
-                // Уведомим админа сайта, что был отредактирован метериал.
-                $res = CIBlockElement::GetByID($arFields['ID']);
-                if ($ar_res = $res->GetNext()) {
-                    $arEventFields = array(
-                        "ELEMENT_ID" => $arFields['ID'],
-                        "IBLOCK_TYPE" => $ar_res['IBLOCK_TYPE_ID'],
-                        "IBLOCK_ID" => $ar_res['IBLOCK_ID'],
-                    );
-
-                    $res = CEvent::Send("updateElement", SITE_ID, $arEventFields, 'Y');
-                }
-            }
-
-            return true;
-        }
-
-        switch ($arFields['IBLOCK_ID']) {
-			case IBLOCK_ID_NEWS_COMPANY:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NEWS_COMPANY;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NEWS_COMPANY;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NEWS_COMPANY;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
-				
-				$companyIdProp		= PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную
-				break;
+			{	
+				$arFields["CODE"] = Cutil::translit($arFields["NAME"], "ru", array());
+	
+				$count = null;
+				$count = CIBlockElement::GetList(
+					array(),
+					array('IBLOCK_ID' => $arFields['IBLOCK_ID'], 'CODE' => $arFields["CODE"]),
+					array(),
+					false,
+					array('ID', 'CODE')
+				);
+	
+				if (0 !== (int)$count && null !== $count)
+					$arFields["CODE"] .= '_' . time();
 			}
-
-			case IBLOCK_ID_NEWS_INDUSTRY:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NEWS_INDUSTRY;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NEWS_INDUSTRY;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NEWS_INDUSTRY;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY; 
-
-				$companyIdProp		= PROPERTY_ID_COMPANY_ID_NEWS_INDUSTRY;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
-				break;
+	
+			global $USER;
+			$rsUser = CUser::GetByID($USER->GetID()); //$USER->GetID() - получаем ID авторизованного пользователя и сразу же его поля 
+			$arUser = $rsUser->Fetch();
+			$companyId = $arUser['UF_ID_COMPANY'];
+	
+			switch ($arFields['IBLOCK_ID']) {
+				case IBLOCK_ID_NEWS_COMPANY:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NEWS_COMPANY;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NEWS_COMPANY;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NEWS_COMPANY;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
+					
+					$companyIdProp		= PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную
+					break;
+				}
+	
+				case IBLOCK_ID_NEWS_INDUSTRY:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NEWS_INDUSTRY;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NEWS_INDUSTRY;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NEWS_INDUSTRY;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY; 
+	
+					$companyIdProp		= PROPERTY_ID_COMPANY_ID_NEWS_INDUSTRY;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
+					break;
+				}
+	
+				case IBLOCK_ID_STOCK:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_STOCK;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_STOCK;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_STOCK;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_STOCK;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_STOCK;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_STOCK; 
+	
+					$companyIdProp		= PROPERTY_ID_COMPANY_IN_STOCK;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
+					break;
+				}
+	
+				case IBLOCK_ID_BRANDS:
+				{
+					$propertyId = PROPERTY_ID_COMPANY_ID_IN_BRANDS;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_BRANDS;
+					$rejPropertyId = PROPERTY_ID_PUB_REJECTED_IN_BRANDS;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_BRANDS;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_BRANDS;
+					break;
+				}
+	
+				case IBLOCK_ID_LICENSE:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_LICENSE;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_LICENSE;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_LICENSE;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_LICENSE;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_LICENSE;
+					break;
+				}
+	
+				case IBLOCK_ID_GALLERY_PHOTO:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_GALLERY_PHOTO;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_GALLERY_PHOTO;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_GALLERY_PHOTO;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_GALLERY_PHOTO;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_GALLERY_PHOTO;
+					break;
+				}
+	
+				case IBLOCK_ID_GALLERY_VIDEO:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_GALLERY_VIDEO;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_GALLERY_VIDEO;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_GALLERY_VIDEO;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_GALLERY_VIDEO;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_GALLERY_VIDEO;
+					break;
+				}
+	
+				case IBLOCK_ID_VIEWPOINT:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_VIEWPOINT;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_VIEWPOINT;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_VIEWPOINT;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;  
+	
+					$companyIdProp		= PROPERTY_ID_COMPANY_IN_VIEWPOINT;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
+					break;
+				}
+	
+				case IBLOCK_ID_EVENTS:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_EVENTS;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_EVENTS;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_EVENTS;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_EVENTS;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_EVENTS;
+					break;
+				}
+	
+				case IBLOCK_ID_PRODUCTS_REVIEW:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_PRODUCTS_REVIEW;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_PRODUCTS_REVIEW;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_PRODUCTS_REVIEW;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
+	
+					$companyIdProp		= PROPERTY_ID_COMPANY_IN_PRODUCTS_REVIEW;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
+					break;
+				}
+	
+				case IBLOCK_ID_LIFE_INDUSTRY:
+				{
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
+				}
+	
+				case IBLOCK_ID_ANALYTICS:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_ANALYTICS;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ANALYTICS;
+				}
+	
+				case IBLOCK_ID_NOVETLY:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NOVETLY;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NOVETLY;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NOVETLY;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
+	
+					$companyIdProp		= PROPERTY_ID_COMPANY_IN_NOVETLY;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
+					break;
+				}
+				case IBLOCK_ID_ALL_MATERIALS:
+				{ 
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+					break;
+				}
 			}
-
-			case IBLOCK_ID_STOCK:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_STOCK;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_STOCK;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_STOCK;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_STOCK;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_STOCK;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_STOCK; 
-
-				$companyIdProp		= PROPERTY_ID_COMPANY_IN_STOCK;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
-				break;
-			}
-
-			case IBLOCK_ID_BRANDS:
-			{
-				$propertyId = PROPERTY_ID_COMPANY_ID_IN_BRANDS;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_BRANDS;
-				$rejPropertyId = PROPERTY_ID_PUB_REJECTED_IN_BRANDS;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_BRANDS;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_BRANDS;
-				break;
-			}
-
-			case IBLOCK_ID_LICENSE:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_LICENSE;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_LICENSE;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_LICENSE;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_LICENSE;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_LICENSE;
-				break;
-			}
-
-			case IBLOCK_ID_GALLERY_PHOTO:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_GALLERY_PHOTO;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_GALLERY_PHOTO;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_GALLERY_PHOTO;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_GALLERY_PHOTO;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_GALLERY_PHOTO;
-				break;
-			}
-
-			case IBLOCK_ID_GALLERY_VIDEO:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_GALLERY_VIDEO;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_GALLERY_VIDEO;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_GALLERY_VIDEO;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_GALLERY_VIDEO;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_GALLERY_VIDEO;
-				break;
-			}
-
-			case IBLOCK_ID_VIEWPOINT:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_VIEWPOINT;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_VIEWPOINT;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_VIEWPOINT;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;  
-
-				$companyIdProp		= PROPERTY_ID_COMPANY_IN_VIEWPOINT;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
-				break;
-			}
-
-			case IBLOCK_ID_EVENTS:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_EVENTS;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_EVENTS;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_EVENTS;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_EVENTS;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_EVENTS;
-				break;
-			}
-
-			case IBLOCK_ID_PRODUCTS_REVIEW:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_PRODUCTS_REVIEW;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_PRODUCTS_REVIEW;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_PRODUCTS_REVIEW;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
-
-				$companyIdProp		= PROPERTY_ID_COMPANY_IN_PRODUCTS_REVIEW;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
-				break;
-			}
-
-			case IBLOCK_ID_LIFE_INDUSTRY:
-			{
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
-			}
-
-			case IBLOCK_ID_ANALYTICS:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_ANALYTICS;
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ANALYTICS;
-			}
-
-			case IBLOCK_ID_NOVETLY:
-			{
-				$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
-				$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NOVETLY;
-				$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NOVETLY;
-				$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NOVETLY;
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
-
-				$companyIdProp		= PROPERTY_ID_COMPANY_IN_NOVETLY;
-				$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
-				break;
-			}
-			case IBLOCK_ID_ALL_MATERIALS:
-			{ 
-				$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
-				$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
-				break;
-			}
-		} 
-
-		// Редактируем эл. из ЛК 
-		global $USER;
-		global $DB;
-        if ($USER->IsAdmin() && (!isset($arFields['IPROPERTY_TEMPLATES']))) {  
-
-			// Если поле старого материала не было заполнено
-			if (empty($arFields["PROPERTY_VALUES"][$moveToPropertyId])) {  
-				$arFields["PROPERTY_VALUES"][$moveToPropertyId] = $arFields['IBLOCK_ID'];
-			} 
-			$move = $_POST["PROPERTY"][$moveToPropertyId][0];
-			//Если надо перенести элемент...
-			if (!empty($move) && $move !== $arFields['IBLOCK_ID']) {
-				// Узнаем ID инфоблока куда надо перенести.
-				$res = CIBlock::GetByID($move);  
-				if ($ar_res = $res->GetNext()) {     
-					// Узнаем ID свойства у инфоблока в который переносим (moveToIdCopy).
-					switch ($move) {
-						case IBLOCK_ID_NEWS_COMPANY:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_NEWS_INDUSTRY:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_LIFE_INDUSTRY:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_LIFE_INDUSTRY;
-							break;
-						} 
-						case IBLOCK_ID_STOCK:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_IN_STOCK; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_VIEWPOINT:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_PRODUCTS_REVIEW:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_NOVETLY:
-						{ 
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
-							break;
-						}
-						case IBLOCK_ID_ALL_MATERIALS: 
-						{ 
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
-							$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
-							$companyIdPropCopy = ""; 
-							break;
-						}
-					}      
-						$arFieldsCopy = array(
-							"IBLOCK_ID"      			=> $move, 
-							"NAME"                    	=> $arFields['NAME'],
-							"ACTIVE"  					=> $arFields['ACTIVE'],
-							"TAGS"  					=> $arFields['TAGS'],
-							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
-							"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
-							"MODIFIED_BY"               => $USER->GetID(),   
-							"ACTIVE_FROM"				=> date("d.m.Y H:i:s"), 
-							"DETAIL_TEXT_TYPE"			=> $arFields['DETAIL_TEXT_TYPE'],
-						); 
-
-						if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
-							if (!empty($arFields['PREVIEW_PICTURE']['name'])) {
-								$arFieldsCopy['PREVIEW_PICTURE'] = $arFields['PREVIEW_PICTURE'];
-							} else {
-								$arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']); 
+	
+			// Если добавлям элемент из ЛК 
+			global $DB;
+			if ($USER->IsAdmin() && (!isset($arFields['IPROPERTY_TEMPLATES']))) {  
+	
+				// Если поле старого материала не было заполнено
+				if (empty($arFields["PROPERTY_VALUES"][$moveToPropertyId])) {  
+					$arFields["PROPERTY_VALUES"][$moveToPropertyId] = $arFields['IBLOCK_ID'];
+				} 
+				$move = $_POST["PROPERTY"][$moveToPropertyId][0];
+				//Если надо перенести элемент...
+				if (!empty($move) && $move !== $arFields['IBLOCK_ID']) {
+					// Узнаем ID инфоблока куда надо перенести.
+					$res = CIBlock::GetByID($move); 
+					if ($ar_res = $res->GetNext()) {
+						// Узнаем ID свойства у инфоблока в который переносим (moveToIdCopy).
+						switch ($move) {
+							case IBLOCK_ID_NEWS_COMPANY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную 
+								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
+								break;
+							} 
+							case IBLOCK_ID_NEWS_INDUSTRY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
+								break;
+							} 
+							case IBLOCK_ID_LIFE_INDUSTRY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_LIFE_INDUSTRY;
+								break;
+							} 
+							case IBLOCK_ID_STOCK:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_STOCK;
+								break;
+							} 
+							case IBLOCK_ID_VIEWPOINT:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_VIEWPOINT;
+								break;
+							} 
+							case IBLOCK_ID_PRODUCTS_REVIEW:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
+								break;
+							} 
+							case IBLOCK_ID_NOVETLY:
+							{ 
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_NOVETLY;
+								break;
 							}
-						}
-
-						if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) { 
-							if (!empty($arFields['DETAIL_PICTURE']['name'])) {
-								$arFieldsCopy['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE'];
-							} else {
-                                $arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
-                            }
-						}
-
-						$arFieldsCopy["PROPERTY_VALUES"][$moveToIdCopy] = $move;
-						$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
-						
-						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy] = $arFields["PROPERTY_VALUES"][$fromCompanyId]; 
-						if (!empty($companyId)) { 
-							$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $companyId;
-						} else {
-							$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $arFields["PROPERTY_VALUES"][$companyIdProp];
-						}
-  
-						// Создаём новый элемент.
-						$el = new CIBlockElement();
-						$DB->StartTransaction();
-						if ($NEW_ID = $el->Add($arFieldsCopy)) {
-						// Удаляем текущий элемент.
-							if (CIBlock::GetPermission($arFields['IBLOCK_ID']) >= 'W') {
-								if (!CIBlockElement::Delete($arFields['ID'])) {
-									$strWarning .= 'Error!';
-									$DB->Rollback();
+							case IBLOCK_ID_ALL_MATERIALS: 
+							{ 
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+								$companyIdPropCopy = ""; 
+								
+ 								// переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_ALL_MATERIALS;
+								break;
+							}
+						}    
+							$arFieldsCopy = array(
+								"IBLOCK_ID"      			=> $move, 
+								"NAME"                    	=> $arFields['NAME'],
+								"ACTIVE"  					=> $arFields['ACTIVE'],
+								"TAGS"  					=> $arFields['TAGS'],
+								"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
+								"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
+								"CREATED_BY"               	=> $arFields['CREATED_BY'],   
+								"MODIFIED_BY"               => $USER->GetID(),   
+								"ACTIVE_FROM"				=> date("d.m.Y H:i:s"), 
+								"DETAIL_TEXT_TYPE"			=> $arFields['DETAIL_TEXT_TYPE'],
+							);  
+	
+							if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
+								if (!empty($arFields['PREVIEW_PICTURE']['name'])) {
+									$arFieldsCopy['PREVIEW_PICTURE'] = $arFields['PREVIEW_PICTURE'];
 								} else {
-									$DB->Commit();
+									$arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']); 
 								}
 							}
-						} else {
-						echo "Error: ".$el->LAST_ERROR;
-						}
-					} 
-
-				return;
-			} 
-		} 
-
-        // Если элемент редактируется из админки
-		
-        if ($USER->IsAdmin() && (isset($arFields['IPROPERTY_TEMPLATES']))) {
-            $key = array_keys($arFields['PROPERTY_VALUES'][$moveToPropertyId]);
-            $move = $arFields['PROPERTY_VALUES'][$moveToPropertyId][$key[0]]['VALUE'];
- 
-            // Если надо перенести элемент... 
-            if (!empty($move) && $move !== $arFields['IBLOCK_ID']) {
-				// Узнаем ID инфоблока куда надо перенести.
-				$res = CIBlock::GetByID($move);  
-				if ($ar_res = $res->GetNext()) {     
-					// Узнаем ID свойства у инфоблока в который переносим (moveToIdCopy).
-					switch ($move) {
-						case IBLOCK_ID_NEWS_COMPANY:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_NEWS_INDUSTRY:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_LIFE_INDUSTRY:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_LIFE_INDUSTRY;
-							break;
-						} 
-						case IBLOCK_ID_STOCK:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_IN_STOCK; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_VIEWPOINT:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_PRODUCTS_REVIEW:
-						{
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
-							break;
-						} 
-						case IBLOCK_ID_NOVETLY:
-						{ 
-							$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
-							$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
-							$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
-							break;
-						}
-						case IBLOCK_ID_ALL_MATERIALS: 
-						{ 
-							$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
-							$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
-							$companyIdPropCopy = ""; 
-							break;
-						}
-					}      
-						$arFieldsCopy = array(
-							"IBLOCK_ID"      			=> $move, 
-							"NAME"                    	=> $arFields['NAME'],
-							"ACTIVE"  					=> $arFields['ACTIVE'],
-							"TAGS"  					=> $arFields['TAGS'],
-							"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
-							"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
-							"MODIFIED_BY"               => $USER->GetID(),   
-							"ACTIVE_FROM"				=> date("d.m.Y H:i:s"), 
-							"DETAIL_TEXT_TYPE"			=> $arFields['DETAIL_TEXT_TYPE'],
-						); 
-
-						if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
-							if (!empty($arFields['PREVIEW_PICTURE']['name'])) {
-								$arFieldsCopy['PREVIEW_PICTURE'] = $arFields['PREVIEW_PICTURE'];
-							} else {
-								$arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']); 
-							}
-						}
-
-						if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) { 
-							if (!empty($arFields['DETAIL_PICTURE']['name'])) {
-								$arFieldsCopy['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE'];
-							} else {
-                                $arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
-                            }
-						}
-
-						$arFieldsCopy["PROPERTY_VALUES"][$moveToIdCopy] = $move;
-						$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
-						
-						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy] = $arFields["PROPERTY_VALUES"][$fromCompanyId]; 
-						if (!empty($companyId)) { 
-							$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $companyId;
-						} else {
-							$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $arFields["PROPERTY_VALUES"][$companyIdProp];
-						}
-  
-						// pre($arFieldsCopy);
-						// Создаём новый элемент.
-						$el = new CIBlockElement();
-						$DB->StartTransaction();
-						if ($NEW_ID = $el->Add($arFieldsCopy)) {
-						// Удаляем текущий элемент.
-							if (CIBlock::GetPermission($arFields['IBLOCK_ID']) >= 'W') {
-								if (!CIBlockElement::Delete($arFields['ID'])) {
-									$strWarning .= 'Error!';
-									$DB->Rollback();
+	
+							if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) { 
+								if (!empty($arFields['DETAIL_PICTURE']['name'])) {
+									$arFieldsCopy['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE'];
 								} else {
-									$DB->Commit();
+									$arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
 								}
 							}
-						} else {
-						echo "Error: ".$el->LAST_ERROR;
+	
+							$arFieldsCopy["PROPERTY_VALUES"][$moveToIdCopy] = $move;
+							$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
+							
+							if ($arFields["PROPERTY_VALUES"][$fromCompanyId][0] != "") { 
+								$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = $booleanTrueId; 
+							} else {
+								$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = ""; 
+							}
+							if (!empty($companyId)) { 
+								$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $companyId;
+							} else {
+								$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $arFields["PROPERTY_VALUES"][$companyIdProp];
+							}
+							// pre($arFieldsCopy);
+							// Создаём новый элемент.
+							$el = new CIBlockElement();
+							$DB->StartTransaction();
+							if ($NEW_ID = $el->Add($arFieldsCopy)) {
+							// Удаляем текущий элемент.
+								if (CIBlock::GetPermission($arFields['IBLOCK_ID']) >= 'W') {
+									if (!CIBlockElement::Delete($arFields['ID'])) {
+										$strWarning .= 'Error!';
+										$DB->Rollback();
+									} else {
+										$DB->Commit();
+									}
+								}
+							} else {
+							echo "Error: ".$el->LAST_ERROR;
+							}
+						} 
+	
+					return;
+				} 
+			} 
+			// Заменим кирилическое имя файла (wowbook plugin не работает с кирилицей).
+			if (IBLOCK_ID_CATALOGS_PDF == $arFields['IBLOCK_ID'])
+			{
+				$fileName = Cutil::translit($arFields['PROPERTY_VALUES'][PROPERTY_ID_FILE_IN_CATALOGS_PDF][0]['name'], "ru", array());
+				$arFields['PROPERTY_VALUES'][PROPERTY_ID_FILE_IN_CATALOGS_PDF][0]['name'] = $fileName;
+			}
+	 
+			if (!empty($arFields['PROPERTY_VALUES'][$paidPropId]))
+			{
+				$resource = CIBlockElement::GetByID($companyId); // Выберем свойства компании.
+				if ($ob = $resource->GetNextElement())
+				{
+					//$arFieldsExisting = $ob->GetFields();
+					$arProps = $ob->GetProperties(false, array('ID' => $countPaidPropId)); // Узнаем, сколько осталось платных елементов.
+					if (!empty($arProps[$paidPropCode]['VALUE']) && ($arProps[$paidPropCode]['VALUE']) > 0)
+					{
+						$paidNum = (int)$arProps[$paidPropCode]['VALUE'] - 1;
+	
+						// Установим новое значение для данного свойства данного элемента.
+						CIBlockElement::SetPropertyValuesEx($companyId, IBLOCK_ID_COMPANY, array($paidPropCode => $paidNum));
+					}
+					else
+					{
+						$arFields['PROPERTY_VALUES'][$paidPropId] = '';
+					}
+				}
+			} 
+	
+			if (empty($arFields['PROPERTY_VALUES'][$propertyId]) && !isset($arFields['API']))
+				$arFields['PROPERTY_VALUES'][$propertyId] = $companyId;
+	
+			if (!isset($arFields['IPROPERTY_TEMPLATES'])) {
+				if (CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') {
+					$arFields['ACTIVE'] = 'Y';  
+				} elseif (!CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') { 
+					$arFields['ACTIVE'] = 'N'; 
+				}
+			}
+	
+			if (IBLOCK_ID_COMPANY == $arFields['IBLOCK_ID'])
+			{
+				$arFields['PROPERTY_VALUES'][PROPERTY_ID_USER_ID] = $USER->GetID();
+				$arFields['ACTIVE'] = 'Y';
+				if (!isset($arFields['API']))
+					$arFields['PROPERTY_VALUES'][PROPERTY_ID_IN_MODERATION]['VALUE'] = 83;
+			}
+	
+			if (isset($arFields['API']))
+				$arFields['ACTIVE'] = 'Y';
+	
+			// pre($arFields, EXIT_PRE);
+			return;
+		} 
+		//---------------------------------------------------------------------------------------------------------------------------------
+		// Update элемента
+		//---------------------------------------------------------------------------------------------------------------------------------
+		function OnStartIBlockElementUpdateHandler(&$arFields)
+		{ 
+			
+			if (IBLOCK_ID_COMPANY == $arFields['IBLOCK_ID']) {
+				// Если редактировали компанию, то поставим галку в свойство НА МОДЕРАЦИИ.
+				// Связано с магазином - если карточка компании не активна,
+				// то ругается при добавлении товара в корзину, что не все поля заполнены.
+	
+				// Костыль.
+				// Если массив свойств из админки, то прилетает IPROPERTY_TEMPLATES.
+				if (!isset($arFields['IPROPERTY_TEMPLATES'])) {
+					$arFields['PROPERTY_VALUES'][PROPERTY_ID_IN_MODERATION]['VALUE'] = 83;
+	
+					// Уведомим админа сайта, что был отредактирован метериал.
+					$res = CIBlockElement::GetByID($arFields['ID']);
+					if ($ar_res = $res->GetNext()) {
+						$arEventFields = array(
+							"ELEMENT_ID" => $arFields['ID'],
+							"IBLOCK_TYPE" => $ar_res['IBLOCK_TYPE_ID'],
+							"IBLOCK_ID" => $ar_res['IBLOCK_ID'],
+						);
+	
+						$res = CEvent::Send("updateElement", SITE_ID, $arEventFields, 'Y');
+					}
+				}
+	
+				return true;
+			}
+	
+			switch ($arFields['IBLOCK_ID']) {
+				case IBLOCK_ID_NEWS_COMPANY:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NEWS_COMPANY;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NEWS_COMPANY;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NEWS_COMPANY;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
+					
+					$companyIdProp		= PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную
+					break;
+				}
+	
+				case IBLOCK_ID_NEWS_INDUSTRY:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NEWS_INDUSTRY;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NEWS_INDUSTRY;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NEWS_INDUSTRY;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY; 
+	
+					$companyIdProp		= PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
+					break;
+				}
+	
+				case IBLOCK_ID_STOCK:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_STOCK;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_STOCK;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_STOCK;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_STOCK;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_STOCK;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_STOCK; 
+	
+					$companyIdProp		= PROPERTY_ID_COMPANY_ID_IN_STOCK;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
+					break;
+				}
+	
+				case IBLOCK_ID_BRANDS:
+				{
+					$propertyId = PROPERTY_ID_COMPANY_ID_IN_BRANDS;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_BRANDS;
+					$rejPropertyId = PROPERTY_ID_PUB_REJECTED_IN_BRANDS;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_BRANDS;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_BRANDS;
+					break;
+				}
+	
+				case IBLOCK_ID_LICENSE:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_LICENSE;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_LICENSE;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_LICENSE;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_LICENSE;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_LICENSE;
+					break;
+				}
+	
+				case IBLOCK_ID_GALLERY_PHOTO:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_GALLERY_PHOTO;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_GALLERY_PHOTO;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_GALLERY_PHOTO;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_GALLERY_PHOTO;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_GALLERY_PHOTO;
+					break;
+				}
+	
+				case IBLOCK_ID_GALLERY_VIDEO:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_GALLERY_VIDEO;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_GALLERY_VIDEO;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_GALLERY_VIDEO;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_GALLERY_VIDEO;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_GALLERY_VIDEO;
+					break;
+				}
+	
+				case IBLOCK_ID_VIEWPOINT:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_VIEWPOINT;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_VIEWPOINT;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_VIEWPOINT;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;  
+	
+					$companyIdProp		= PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
+					break;
+				}
+	
+				case IBLOCK_ID_EVENTS:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_EVENTS;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_EVENTS;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_EVENTS;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_EVENTS;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_EVENTS;
+					break;
+				}
+	
+				case IBLOCK_ID_PRODUCTS_REVIEW:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_PRODUCTS_REVIEW;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_PRODUCTS_REVIEW;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_PRODUCTS_REVIEW;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
+	
+					$companyIdProp		= PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
+					break;
+				}
+	
+				case IBLOCK_ID_LIFE_INDUSTRY:
+				{
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
+				}
+	
+				case IBLOCK_ID_ANALYTICS:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_ANALYTICS;
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ANALYTICS;
+				}
+	
+				case IBLOCK_ID_NOVETLY:
+				{
+					$propertyId         = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
+					$rejPropertyId      = PROPERTY_ID_PUB_REJECTED_IN_NOVETLY;
+					$sendMessPropertyId = PROPERTY_ID_SEND_MESS_IN_NOVETLY;
+					$rejMessPropertyId  = PROPERTY_ID_REJ_MESS_IN_NOVETLY;
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
+	
+					$companyIdProp		= PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
+					break;
+				}
+				case IBLOCK_ID_ALL_MATERIALS:
+				{ 
+					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+					break;
+				}
+			} 
+	
+			// Редактируем эл. из ЛК 
+			global $USER;
+			global $DB;
+			if ($USER->IsAdmin() && (!isset($arFields['IPROPERTY_TEMPLATES']))) {  
+	
+				// $rsUser = CUser::GetByID($USER->GetID()); //$USER->GetID() - получаем ID авторизованного пользователя и сразу же его поля 
+				// $arUser = $rsUser->Fetch();
+				// $companyId = $arUser['UF_ID_COMPANY'];
+	
+				// Если поле старого материала не было заполнено
+				if (empty($arFields["PROPERTY_VALUES"][$moveToPropertyId])) {  
+					$arFields["PROPERTY_VALUES"][$moveToPropertyId] = $arFields['IBLOCK_ID'];
+				} 
+				$move = $_POST["PROPERTY"][$moveToPropertyId][0];
+				//Если надо перенести элемент...
+				if (!empty($move) && $move !== $arFields['IBLOCK_ID']) {
+					// Узнаем ID инфоблока куда надо перенести.
+					$res = CIBlock::GetByID($move);  
+					if ($ar_res = $res->GetNext()) {     
+						// Узнаем ID свойства у инфоблока в который переносим (moveToIdCopy).
+						switch ($move) {
+							case IBLOCK_ID_NEWS_COMPANY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную 
+								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
+								break;
+							} 
+							case IBLOCK_ID_NEWS_INDUSTRY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
+								break;
+							} 
+							case IBLOCK_ID_LIFE_INDUSTRY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_LIFE_INDUSTRY;
+								break;
+							} 
+							case IBLOCK_ID_STOCK:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_STOCK;
+								break;
+							} 
+							case IBLOCK_ID_VIEWPOINT:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_VIEWPOINT;
+								break;
+							} 
+							case IBLOCK_ID_PRODUCTS_REVIEW:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
+								break;
+							} 
+							case IBLOCK_ID_NOVETLY:
+							{ 
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_NOVETLY;
+								break;
+							}
+							case IBLOCK_ID_ALL_MATERIALS: 
+							{ 
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+								$companyIdPropCopy = ""; 
+								
+ 								// переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_ALL_MATERIALS;
+								break;
+							}
+						}     
+							$arFieldsCopy = array(
+								"IBLOCK_ID"      			=> $move, 
+								"NAME"                    	=> $arFields['NAME'],
+								"ACTIVE"  					=> $arFields['ACTIVE'],
+								"TAGS"  					=> $arFields['TAGS'],
+								"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
+								"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
+								"CREATED_BY"               	=> $arFields['CREATED_BY'],   
+								"MODIFIED_BY"               => $USER->GetID(),   
+								"ACTIVE_FROM"				=> date("d.m.Y H:i:s"), 
+								"DETAIL_TEXT_TYPE"			=> $arFields['DETAIL_TEXT_TYPE'],
+							); 
+	
+							if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
+								if (!empty($arFields['PREVIEW_PICTURE']['name'])) {
+									$arFieldsCopy['PREVIEW_PICTURE'] = $arFields['PREVIEW_PICTURE'];
+								} else {
+									$arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']); 
+								}
+							}
+	
+							if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) { 
+								if (!empty($arFields['DETAIL_PICTURE']['name'])) {
+									$arFieldsCopy['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE'];
+								} else {
+									$arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
+								}
+							}
+	
+							$arFieldsCopy["PROPERTY_VALUES"][$moveToIdCopy] = $move;
+							$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
+							
+							if ($arFields["PROPERTY_VALUES"][$fromCompanyId][0] != "") { 
+								$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = $booleanTrueId; 
+							} else {
+								$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = ""; 
+							}
+							if (!empty($companyId)) { 
+								$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $companyId;
+							} else {
+								$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $arFields["PROPERTY_VALUES"][$companyIdProp];
+							}
+	  
+							// Создаём новый элемент.
+							$el = new CIBlockElement();
+							$DB->StartTransaction();
+							if ($NEW_ID = $el->Add($arFieldsCopy)) {
+							// Удаляем текущий элемент.
+								if (CIBlock::GetPermission($arFields['IBLOCK_ID']) >= 'W') {
+									if (!CIBlockElement::Delete($arFields['ID'])) {
+										$strWarning .= 'Error!';
+										$DB->Rollback();
+									} else {
+										$DB->Commit();
+									}
+								}
+							} else {
+							echo "Error: ".$el->LAST_ERROR;
+							}
 						}
-					} 
-
-				return;
+					return;
+				} 
 			} 
+	
+			// Если элемент редактируется из админки
+			
+			if ($USER->IsAdmin() && (isset($arFields['IPROPERTY_TEMPLATES']))) {
+				$key = array_keys($arFields['PROPERTY_VALUES'][$moveToPropertyId]);
+				$move = $arFields['PROPERTY_VALUES'][$moveToPropertyId][$key[0]]['VALUE'];
+	 
+				// Если надо перенести элемент... 
+				if (!empty($move) && $move !== $arFields['IBLOCK_ID']) {
+					// Узнаем ID инфоблока куда надо перенести.
+					$res = CIBlock::GetByID($move);  
+					if ($ar_res = $res->GetNext()) {     
+						// Узнаем ID свойства у инфоблока в который переносим (moveToIdCopy).
+						switch ($move) {
+							case IBLOCK_ID_NEWS_COMPANY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную 
+								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
+								break;
+							} 
+							case IBLOCK_ID_NEWS_INDUSTRY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
+								break;
+							} 
+							case IBLOCK_ID_LIFE_INDUSTRY:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_LIFE_INDUSTRY;
+								break;
+							} 
+							case IBLOCK_ID_STOCK:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_STOCK;
+								break;
+							} 
+							case IBLOCK_ID_VIEWPOINT:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_VIEWPOINT;
+								break;
+							} 
+							case IBLOCK_ID_PRODUCTS_REVIEW:
+							{
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
+								break;
+							} 
+							case IBLOCK_ID_NOVETLY:
+							{ 
+								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY; 
+								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
+								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_NOVETLY;
+								break;
+							}
+							case IBLOCK_ID_ALL_MATERIALS: 
+							{ 
+								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS; 
+								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+								$companyIdPropCopy = ""; 
 
-
-            // Если публикация отклонена сделаем элемент неактивным.
-            if (!empty($arFields['PROPERTY_VALUES'][$rejPropertyId][0]['VALUE'])) {
-                $arFields['ACTIVE'] = 'N';
-            }
-
-            // Если публикация отклонена и требуется оповестить пользователя.
-            if (!empty($arFields['PROPERTY_VALUES'][$sendMessPropertyId][0]['VALUE'])) {
-                $tmpKeys = array_keys($arFields['PROPERTY_VALUES'][$rejMessPropertyId]);
-                $tmpKeys = $tmpKeys[0];
-
-                $res = CIBlockElement::GetByID($arFields['ID']);
-                if ($ar_res = $res->GetNext()) {
-                    $rsUser = CUser::GetByID($ar_res['CREATED_BY']);
-                    $arUser = $rsUser->Fetch();
-                    $arEventFields = array(
-                            "PUBLICATION_ID" => $arFields['ID'],
-                            "IBLOCK_TYPE" => $ar_res['IBLOCK_TYPE_ID'],
-                            "IBLOCK_ID" => $arFields['IBLOCK_ID'],
-                            "USER_EMAIL" => $arUser['EMAIL'],
-                            "REJ_MESSAGE" => $arFields['PROPERTY_VALUES'][$rejMessPropertyId][$tmpKeys]['VALUE']['TEXT']
-                        );
-
-                    //CEvent::Send("PUBLICATION_REJECTED", SITE_ID_FOR_SEND_EVENT, $arEventFields);
-
-                    // Снимем признак что требуется уведомить пользователя чтоб не отправлялись сообщения повторно.
-                    $arFields['PROPERTY_VALUES'][$sendMessPropertyId][0]['VALUE'] = '';
-                }
-            }
-        }
-
-        // Костыль.
-        // Если массив свойств из админки, то прилетает IPROPERTY_TEMPLATES.
-        // Соответственно, проверим на его наличие - если его нет, то значит элемент редактировал пользователь.
-        // Установим елемент неактивным, если материал отклонён - снимим эту галку и галку уведомить пользователя.
-        if (!isset($arFields['IPROPERTY_TEMPLATES']) && !isset($arFields['SORT']) && !isset($arFields['CODE'])) {
-
-			// "Не-костыльное" решение
-			// Проверка пользователя, состоит ли он в группе админов, если нет - тогда редактирование элемента делает его неактивным, несмотря на значение активности прилетающее из формы
-			if (CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') {
-				$arFields['ACTIVE'] = 'Y';  
-			} elseif (!CSite::InGroup(array(1)) && $arFields['ACTIVE'] == 'Y') { 
-				$arFields['ACTIVE'] = 'N'; 
-			} 
- 
-            if (!empty($arFields['PROPERTY_VALUES']) && !empty($arFields['PROPERTY_VALUES'][$rejPropertyId]['VALUE'])) {
-                $arFields['PROPERTY_VALUES'][$rejPropertyId]['VALUE'] = '';
-            }
-
-            // Уведомим админа сайта, что был отредактирован метериал.
-            $res = CIBlockElement::GetByID($arFields['ID']);
-            if ($ar_res = $res->GetNext()) {
-                $arEventFields = array(
-                        "ELEMENT_ID" => $arFields['ID'],
-                        "IBLOCK_TYPE" => $ar_res['IBLOCK_TYPE_ID'],
-                        "IBLOCK_ID" => $ar_res['IBLOCK_ID'],
-                    );
-
-                $res = CEvent::Send("updateElement", SITE_ID, $arEventFields, 'Y');
-            }
-        }
-
-        // pre($arFields, EXIT_PRE);
-        if (IBLOCK_ID_CATALOG == $arFields['IBLOCK_ID']) {
-            $ppID = false;
-            $res = CPrice::GetList(array(), array("PRODUCT_ID" => $arFields['ID'], "CATALOG_GROUP_ID" => 1));
-            if ($arr = $res->Fetch()) {
-                $ppID = $arr["ID"];
-                $currentPrice = $arr["PRICE"];
-            }
-
-            if ($currentPrice != $arFields['PROPERTY_VALUES'][PROPERTY_ID_PRICE_IN_CATALOG]) {
-                // собираем массив
-                $arPrice = array(
-                        "PRICE" => $arFields['PROPERTY_VALUES'][PROPERTY_ID_PRICE_IN_CATALOG]    // значение цены
-                    );
-                if ($ppID) {
-                    // обновляем
-                    CPrice::Update($ppID, $arPrice);
-                }
-            }
-        }
+ 								// переназвать переменную
+								$booleanTrueId = FROM_USERTRUE_ID_IN_ALL_MATERIALS;
+								break;
+							}
+						}      
+							$arFieldsCopy = array(
+								"IBLOCK_ID"      			=> $move, 
+								"NAME"                    	=> $arFields['NAME'],
+								"ACTIVE"  					=> $arFields['ACTIVE'],
+								"TAGS"  					=> $arFields['TAGS'],
+								"PREVIEW_TEXT"				=> $arFields['PREVIEW_TEXT'], 
+								"DETAIL_TEXT"				=> $arFields['DETAIL_TEXT'],
+								"CREATED_BY"               	=> $arFields['CREATED_BY'],   
+								"MODIFIED_BY"               => $USER->GetID(),   
+								"ACTIVE_FROM"				=> date("d.m.Y H:i:s"), 
+								"DETAIL_TEXT_TYPE"			=> $arFields['DETAIL_TEXT_TYPE'],
+							); 
+	
+							if (isset($arFields['PREVIEW_PICTURE']) && !empty($arFields['PREVIEW_PICTURE'])) {
+								if (!empty($arFields['PREVIEW_PICTURE']['name'])) {
+									$arFieldsCopy['PREVIEW_PICTURE'] = $arFields['PREVIEW_PICTURE'];
+								} else {
+									$arFieldsCopy['PREVIEW_PICTURE'] = CFile::MakeFileArray($arFields['PREVIEW_PICTURE']); 
+								}
+							}
+	
+							if (isset($arFields['DETAIL_PICTURE']) && !empty($arFields['DETAIL_PICTURE'])) { 
+								if (!empty($arFields['DETAIL_PICTURE']['name'])) {
+									$arFieldsCopy['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE'];
+								} else {
+									$arFieldsCopy['DETAIL_PICTURE'] = CFile::MakeFileArray($arFields['DETAIL_PICTURE']);
+								}
+							}
+	
+							$arFieldsCopy["PROPERTY_VALUES"][$moveToIdCopy] = $move;
+							$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
+							
+							if ($arFields["PROPERTY_VALUES"][$fromCompanyId][0] != "") { 
+								$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = $booleanTrueId; 
+							} else {
+								$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = ""; 
+							}
+							if (!empty($companyId)) { 
+								$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $companyId;
+							} else {
+								$arFieldsCopy["PROPERTY_VALUES"][$companyIdPropCopy] = $arFields["PROPERTY_VALUES"][$companyIdProp];
+							}
+	  
+							// pre($arFieldsCopy);
+							// Создаём новый элемент.
+							$el = new CIBlockElement();
+							$DB->StartTransaction();
+							if ($NEW_ID = $el->Add($arFieldsCopy)) {
+							// Удаляем текущий элемент.
+								if (CIBlock::GetPermission($arFields['IBLOCK_ID']) >= 'W') {
+									if (!CIBlockElement::Delete($arFields['ID'])) {
+										$strWarning .= 'Error!';
+										$DB->Rollback();
+									} else {
+										$DB->Commit();
+									}
+								}
+							} else {
+							echo "Error: ".$el->LAST_ERROR;
+							}
+						} 
+	
+					return;
+				} 
+	
+	
+				// Если публикация отклонена сделаем элемент неактивным.
+				if (!empty($arFields['PROPERTY_VALUES'][$rejPropertyId][0]['VALUE'])) {
+					$arFields['ACTIVE'] = 'N';
+				}
+	
+				// Если публикация отклонена и требуется оповестить пользователя.
+				if (!empty($arFields['PROPERTY_VALUES'][$sendMessPropertyId][0]['VALUE'])) {
+					$tmpKeys = array_keys($arFields['PROPERTY_VALUES'][$rejMessPropertyId]);
+					$tmpKeys = $tmpKeys[0];
+	
+					$res = CIBlockElement::GetByID($arFields['ID']);
+					if ($ar_res = $res->GetNext()) {
+						$rsUser = CUser::GetByID($ar_res['CREATED_BY']);
+						$arUser = $rsUser->Fetch();
+						$arEventFields = array(
+								"PUBLICATION_ID" => $arFields['ID'],
+								"IBLOCK_TYPE" => $ar_res['IBLOCK_TYPE_ID'],
+								"IBLOCK_ID" => $arFields['IBLOCK_ID'],
+								"USER_EMAIL" => $arUser['EMAIL'],
+								"REJ_MESSAGE" => $arFields['PROPERTY_VALUES'][$rejMessPropertyId][$tmpKeys]['VALUE']['TEXT']
+							);
+	
+						//CEvent::Send("PUBLICATION_REJECTED", SITE_ID_FOR_SEND_EVENT, $arEventFields);
+	
+						// Снимем признак что требуется уведомить пользователя чтоб не отправлялись сообщения повторно.
+						$arFields['PROPERTY_VALUES'][$sendMessPropertyId][0]['VALUE'] = '';
+					}
+				}
+			}
 
         // pre($arFields, EXIT_PRE);
         //*********************************************************************************************************

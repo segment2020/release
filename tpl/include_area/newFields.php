@@ -58,7 +58,7 @@
         
     ?>
     </div>
- 
+    
     <? if ( CSite::InGroup(array(1)) && $moderation ) {
         $property_enums = CIBlockPropertyEnum::GetList(Array("DEF"=>"DESC", "SORT"=>"ASC"), Array("PROPERTY_ID"=>$fromCompanyId, "VALUE"=> 1));
         while($enum_fields = $property_enums->GetNext())
@@ -397,7 +397,7 @@
                 case "carousel":
                     articleHTML += `<div class="post_gallery"><div class="post_gallery__wrap squares">`;
                     for (var i = 0; i < obj.data.length; i++) {
-                        articleHTML += `<a class="post_gallery__item" rel="group" title="${obj.data[i].caption}" href="${obj.data[i].url}"><img src="${obj.data[i].url}" /></a>`;
+                        articleHTML += `<a class="post_gallery__item" rel="group" title="${obj.data[i].caption}" href="${obj.data[i].url}"  data-fancybox="gallery"><img src="${obj.data[i].url}" /></a>`;
                     }
                     articleHTML += `</div></div>`;
                     break;
@@ -409,7 +409,7 @@
                     withBorder = obj.data.withBorder ? " post_image--withBorder" : "";
                     withBackground = obj.data.withBackground ? " post_image--withBackground" : "";
                     caption = obj.data.caption ? `<div class="post_image--caption"> <i>${obj.data.caption}</i> </div>` : "";
-                    articleHTML += `<div class="post_image${stretched}${withBorder}${withBackground}"> <img src="${obj.data.file.url}" alt="${obj.data.caption}"/> ${caption}</div>`;
+                    articleHTML += `<a href="${obj.data.file.url}" data-fancybox="gallery"><div class="post_image${stretched}${withBorder}${withBackground}"> <img src="${obj.data.file.url}" alt="${obj.data.caption}"/> ${caption}</div></a>`;
                     break;
                 case "delimiter":
                     articleHTML += `<div class="post_delimiter post_block"></div>`

@@ -6,13 +6,17 @@
 						$val = isset($value)? $value: '';
 						$textTags = isset($text)? $text: ''; // удалить?
 
+                        console_log("---1---");
+                        console_log($val);
+                        console_log($text);
+
 						$APPLICATION->IncludeComponent(
 							"bitrix:search.tags.input",
 							"tagsInAddNews",
 							array(
 								"VALUE" => $val,
 								"NAME" => "PROPERTY[TAGS][0]",
-								"TEXT" => $text, // удалить?
+								"TEXT" => $text,
 							), null, array("HIDE_ICONS"=>"Y")
 						);
 ?>
