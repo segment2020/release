@@ -54,8 +54,7 @@ if ($arResult['ACTIVE'] == "Y") {
 	<div class="block-default in block-shadow content-margin">  
 		<div class="row">
 			
-<?     
-console_log($arResult["PROPERTIES"]);
+<?      
 //********************************************************************************************************************************* 
 $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 	'createNewMaterial' => false,  
@@ -109,7 +108,7 @@ $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 		</div> 
 	<?   
 	}
-	$APPLICATION->IncludeFile('/tpl/include_area/tags.php', array( 'value' => $arResult['TAGS'], ), array()); ?>
+	$APPLICATION->IncludeFile('/tpl/include_area/tags.php', array( 'value' => $arResult['TAGS'], 'text' => 'size="'.$arResult["PROPERTY_LIST_FULL"]["TAGS"]["COL_COUNT"].'"'), array()); ?>
 
 		</div>  
 		</div> 
