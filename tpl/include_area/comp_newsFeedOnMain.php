@@ -1,6 +1,8 @@
   
-<? $APPLICATION->IncludeComponent("bitrix:news.list", "newsFeedOnMain", 
-	Array(
+<? $APPLICATION->IncludeComponent(
+	"bitrix:news.list",
+	"newsFeedOnMain",
+	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",		// Формат показа даты
 		"ADD_SECTIONS_CHAIN" => "N",			// Включать раздел в цепочку навигации
 		"AJAX_MODE" => "N",						// Включить режим AJAX
@@ -14,6 +16,6 @@
 		"CACHE_TYPE" => "N",					// Тип кеширования
 		"CHECK_DATES" => "Y",					// Показывать только активные на данный момент элементы 
 		"SETTINGS_LIST" => $newsFeed_settingsList,	// Вставляем свои настройки 
-	), 
+	),
 	false
 ); ?> 

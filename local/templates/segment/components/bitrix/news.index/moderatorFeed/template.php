@@ -164,10 +164,10 @@ $this->setFrameMode(true);
 								$res = CIBlockElement::GetByID($arElement["ID"]);
 								if ($ar_res = $res->GetNext()) { 					
 									?>	
-										<a href="<? echo $path; ?>" class="btn btn-blue-full minbr">Просмотреть</a>
+										<a href="<? echo $path; ?>" target="_blank" class="btn btn-blue-full minbr">Просмотреть</a>
 									
 									<? } else { ?>
-										<a href="<? echo $sorted_arItem['DETAIL_PAGE_URL'] ?>" class="btn btn-blue-full minbr">Просмотреть</a>					
+										<a href="<? echo $sorted_arItem['DETAIL_PAGE_URL'] ?>" target="_blank" class="btn btn-blue-full minbr">Просмотреть</a>					
 									<? }
 								} 
 								if ($sorted_arItem['IBLOCK_ID'] == IBLOCK_ID_GALLERY_PHOTO){

@@ -21,7 +21,8 @@ for ($i = 0; $i <= count($IBlocksList); $i++) {
 		"IBLOCK_ID"=>IntVal($IBlocksList[$i]["iBlock__id"]),  
 		"ACTIVE"=>"Y" 
 		);
-	$arSelect = Array("ID", "IBLOCK_ID", "CODE", "NAME", "PREVIEW_PICTURE", "ACTIVE_FROM", "DATE_CREATE", "DETAIL_PAGE_URL", "SHOW_COUNTER", "PROPERTIES");
+	$arSelect = Array("ID", "IBLOCK_ID", "CODE", "NAME", "PREVIEW_PICTURE", "ACTIVE_FROM", "DATE_CREATE", "DETAIL_PAGE_URL", "PROPERTIES");
+	
 	$res = CIBlockElement::GetList(Array("ID"=>"DESC"), $arFilter, $arSelect, Array ("nTopCount" => $IBlocksList[$i]["iBlock__limit"])); 
  
 	while($ob = $res->GetNextElement())
@@ -42,8 +43,8 @@ for ($i = 0; $i <= count($IBlocksList); $i++) {
 		endif;
 		$pictureId 		= $ar_res['PREVIEW_PICTURE'];
 		$file 			= CFile::ResizeImageGet($pictureId, array('width'=>100, 'height'=>90), BX_RESIZE_IMAGE_PROPORTIONAL, true);
-		$iblock_el_img 	= $file["src"];
-		$showCounter 	= (isset($ar_res['SHOW_COUNTER']) && !empty($ar_res['SHOW_COUNTER']))? $ar_res["SHOW_COUNTER"]: 0; 
+		$iblock_el_img 	= $file["src"];  
+		$showCounter 	= showviews($ar_res['ID']);  
 		$msgCounter 	= !empty($ar_res['PROPERTIES']['FORUM_MESSAGE_CNT']['VALUE'])? $ar_res['PROPERTIES']['FORUM_MESSAGE_CNT']['VALUE']: 0; 
 		++$elNum;
 		$tmpArray[$elNum] = array(
