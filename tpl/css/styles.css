@@ -5210,6 +5210,7 @@ a.list-group-item:focus {
 
 .scrollup {
   position: fixed;
+  z-index: 99;
   right: 30px;
   bottom: 45px;
   cursor: pointer;

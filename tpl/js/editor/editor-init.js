@@ -65,13 +65,7 @@ const editor = new EditorJS({
 			config: {
 			  shortcut: 'CMD+L',
 			  target: '_blank',
-<<<<<<< Updated upstream
-			  rel: 'nofollow',
-			  availableTargets: ['_blank'],
-			  availableRels: ['nofollow'],
-=======
 			  rel: 'nofollow',  
->>>>>>> Stashed changes
 			  validate: false,
 			}
 		},
@@ -88,7 +82,7 @@ const editor = new EditorJS({
 			class: Marker,
 			shortcut: 'CMD+SHIFT+M',
 		},
-		Incut: Incut, 	// разработка
+		// Incut: Incut, 	// модуль для тестов и разработки
 		carousel: {
 			class: Carousel,
 			config: {
