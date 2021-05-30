@@ -13,24 +13,26 @@
 $this->setFrameMode(true); 
 CJSCore::Init(array("ajax"));
 
-console_log("---2---");
-console_log($arResult); 
+// Отладка тегов
+// console_log("---2---"); 
+// console_log($arResult);  
+
 //подключение модуля поиска
-if(CModule::IncludeModule('search'))
-{
-    $rsTags = CSearchTags::GetList(
-        array(),
-        array(
-            "MODULE_ID" => "iblock",
-        ),
-        array(
-            "CNT" => "DESC",
-        ),
-        10
-    );
-    while($arTag = $rsTags->Fetch())
-	console_log($arTag);
-} 
+// if(CModule::IncludeModule('search'))
+// {
+//     $rsTags = CSearchTags::GetList(
+//         array(),
+//         array(
+//             "MODULE_ID" => "iblock",
+//         ),
+//         array(
+//             "CNT" => "DESC",
+//         ),
+//         10
+//     );
+//     while($arTag = $rsTags->Fetch())
+// 	// console_log($arTag);
+// } 
 ?>
 <script>
 	BX.ready(function(){

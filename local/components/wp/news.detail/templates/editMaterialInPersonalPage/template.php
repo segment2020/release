@@ -55,6 +55,7 @@ if ($arResult['ACTIVE'] == "Y") {
 		<div class="row">
 			
 <?      
+console_log($arResult);
 //********************************************************************************************************************************* 
 $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 	'createNewMaterial' => false,  
@@ -112,9 +113,9 @@ $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 
 		</div>  
 		</div> 
-		<!-- тестовая кнопка просто закомментируй не обязательно каждый раз удалять -->
+		<!-- тестовая кнопка  -->
 		<!-- <input type="submit" name="test-button" value="тест" class="btn btn-blue-full minbr" id='test-button' />   -->
-		<!-- /end тестовая кнопка просто закомментируй не обязательно каждый раз удалять -->
+		<!-- /end тестовая кнопка  -->
 		<input type="submit" name="iblock_submit" value="Сохранить" class="btn btn-blue-full minbr" id='updateElement' /> 
 		<button class="btn btn-blue-full minbr newPreviewbtn">Предварительный просмотр</button> 
 		<input type="hidden" name="iBlockId" value="<? echo $arResult['IBLOCK_ID']; ?>">

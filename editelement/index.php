@@ -221,6 +221,7 @@ if ( (isset($_POST['iBlockId']) && !empty($_POST['iBlockId'])) && (isset($_POST[
 		} 
 		case IBLOCK_ID_ALL_MATERIALS:
 		{  
+			$postFromCompanyPropId = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW;
 			$displayJsonDataId = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
 			$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
 			$companyIdProp = PROPERTY_ID_COMPANY_ID_IN_ALL_MATERIALS;

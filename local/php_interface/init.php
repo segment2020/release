@@ -120,7 +120,7 @@ define('PROPERTY_ID_TEXT_IMG_SRC_IN_NEWS_COMPANY', 2);      // Текст на �
 define('PROPERTY_ID_NEWS_SRC_IN_NEWS_COMPANY', 3);          // Источник новости.
 define('PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY', 72);       // id компании.
 define('PROPERTY_ID_PHOTO_SRC_IN_NEWS_COMPANY', 95);        // Источник фото.
-define('PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY', 101);         // Архив - история изменений.
+define('PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY', 101);         // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 define('PROPERTY_ID_PUB_REJECTED_IN_NEWS_COMPANY', 121);    // Публикация отклонена.
 define('PROPERTY_ID_SEND_MESS_IN_NEWS_COMPANY', 122);       // Отправить уведомление пользователю.
 define('PROPERTY_ID_REJ_MESS_IN_NEWS_COMPANY', 123);        // Причина отклонения публикации.
@@ -147,7 +147,7 @@ define('PROPERTY_ID_TEXT_IMG_SRC_IN_NEWS_INDUSTRY', 4);      // Текст на 
 define('PROPERTY_ID_NEWS_SRC_IN_NEWS_INDUSTRY', 5);          // Источник новости.
 define('PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY', 87);       // id компании.
 define('PROPERTY_ID_PHOTO_SRC_IN_NEWS_INDUSTRY', 96);        // Источник фото.
-define('PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY', 102);         // Архив - история изменений.
+define('PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY', 102);         // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 define('PROPERTY_ID_PUB_REJECTED_IN_NEWS_INDUSTRY', 155);    // Публикация отклонена.
 define('PROPERTY_ID_SEND_MESS_IN_NEWS_INDUSTRY', 156);       // Отправить уведомление пользователю.
 define('PROPERTY_ID_REJ_MESS_IN_NEWS_INDUSTRY', 157);        // Причина отклонения публикации.
@@ -175,7 +175,7 @@ define('PROPERTY_ID_OLD_ID_IN_DEFAULTERS', 271);             // Старый Id.
 
 // IBLOCK_ID_STOCK
 define('PROPERTY_ID_COMPANY_ID_IN_STOCK', 76);               // id компании.
-define('PROPERTY_ID_ARCHIVE_IN_STOCK', 107);                 // Архив - история изменений.
+define('PROPERTY_ID_ARCHIVE_IN_STOCK', 107);                 // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 define('PROPERTY_ID_PUB_REJECTED_IN_STOCK', 133);            // Публикация отклонена.
 define('PROPERTY_ID_SEND_MESS_IN_STOCK', 135);               // Отправить уведомление пользователю.
 define('PROPERTY_ID_REJ_MESS_IN_STOCK', 134);                // Причина отклонения публикации.
@@ -205,7 +205,7 @@ define('PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY', 295);    	 // Json данные
 define('PROPERTY_ID_NAME_IN_VIEWPOINT', 28); // Имя.
 define('PROPERTY_ID_SOURCE_IN_VIEWPOINT', 29); // Источник.
 define('PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT', 79); // id компании. 
-define('PROPERTY_ID_ARCHIVE_IN_VIEWPOINT', 109); // Архив - история изменений.
+define('PROPERTY_ID_ARCHIVE_IN_VIEWPOINT', 109); // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 define('PROPERTY_ID_ADD_BLOCKID_IN_VIEWPOINT', 129); // Доп. материал - id блока.
 define('PROPERTY_ID_ADD_ELEMENTID_IN_VIEWPOINT', 130); // Доп. материал - id элемента.
 define('PROPERTY_ID_PUB_REJECTED_IN_VIEWPOINT', 145); // Публикация отклонена.
@@ -220,7 +220,7 @@ define('PROPERTY_ID_JSON_DATA_IN_VIEWPOINT', 296);    	// Json данные
 // IBLOCK_ID_GALLERY_PHOTO
 define('PROPERTY_ID_IMAGES_IN_GALLERY_PHOTO', 33); // Изображения.
 define('PROPERTY_ID_COMPANY_ID_IN_GALLERY_PHOTO', 74); // id компании.
-define('PROPERTY_ID_ARCHIVE_IN_GALLERY_PHOTO', 272); // Архив - история изменений.
+define('PROPERTY_ID_ARCHIVE_IN_GALLERY_PHOTO', 272); // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 define('PROPERTY_ID_PUB_REJECTED_IN_GALLERY_PHOTO', 136); // Публикация отклонена.
 define('PROPERTY_ID_SEND_MESS_IN_GALLERY_PHOTO', 137); // Отправить уведомление пользователю.
 define('PROPERTY_ID_REJ_MESS_IN_GALLERY_PHOTO', 138); // Причина отклонения публикации.
@@ -230,7 +230,7 @@ define('PROPERTY_ID_OLD_ID_IN_GALLERY_PHOTO', 261); // Старый Id.
 define('PROPERTY_ID_VIDEO_FILE_IN_GALLERY_VIDEO', 276); // ВидеоФайл.
 define('PROPERTY_ID_VIDEO_LINK_IN_GALLERY_VIDEO', 275); // Ссылка на видео iFrame.
 define('PROPERTY_ID_COMPANY_ID_IN_GALLERY_VIDEO', 73); // id компании.
-define('PROPERTY_ID_ARCHIVE_IN_GALLERY_VIDEO', 273); // Архив - история изменений.
+define('PROPERTY_ID_ARCHIVE_IN_GALLERY_VIDEO', 273); // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 define('PROPERTY_ID_PUB_REJECTED_IN_GALLERY_VIDEO', 142); // Публикация отклонена.
 define('PROPERTY_ID_SEND_MESS_IN_GALLERY_VIDEO', 143); // Отправить уведомление пользователю.
 define('PROPERTY_ID_REJ_MESS_IN_GALLERY_VIDEO', 144); // Причина отклонения публикации.
@@ -251,7 +251,7 @@ define('PROPERTY_ID_GOOGLE_LINK_IN_EVENTS', 103); // Ссылка Google+.
 define('PROPERTY_ID_TWITTER_LINK_IN_EVENTS', 104); // Ссылка Twitter.
 define('PROPERTY_ID_INSTAGRAMM_LINK_IN_EVENTS', 105); // Ссылка Instagram.
 define('PROPERTY_ID_FACEBOOK_LINK_IN_EVENTS', 106); // Ссылка Facebook.
-define('PROPERTY_ID_ARCHIVE_IN_EVENTS', 112); // Архив - история изменений.
+define('PROPERTY_ID_ARCHIVE_IN_EVENTS', 112); // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 define('PROPERTY_ID_REG_LINK_IN_EVENTS', 131); // Ссылка на регистрацию.
 define('PROPERTY_ID_SCHEME_IN_EVENTS', 132); // Схема выставки.
 define('PROPERTY_ID_SITE_EMAIL_IN_EVENTS', 153); // Email.
@@ -266,7 +266,7 @@ define('PROPERTY_ID_OLD_ID_IN_EVENTS', 264); // Старый Id.
 define('PROPERTY_ID_TEXT_IMG_SRC_IN_PRODUCTS_REVIEW', 61);     // Текст на картинке.
 define('PROPERTY_ID_NEWS_SRC_IN_PRODUCTS_REVIEW', 62);         // Источник новости.
 define('PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW', 75);       // id компании.
-define('PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW', 111);         // Архив - история изменений.
+define('PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW', 111);         // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 define('PROPERTY_ID_PUB_REJECTED_IN_PRODUCTS_REVIEW', 148);    // Публикация отклонена.
 define('PROPERTY_ID_SEND_MESS_IN_PRODUCTS_REVIEW', 150);       // Отправить уведомление пользователю.
 define('PROPERTY_ID_REJ_MESS_IN_PRODUCTS_REVIEW', 149);        // Причина отклонения публикации.
@@ -284,7 +284,7 @@ define('PROPERTY_ID_OLD_ID_IN_PRICE_LIST', 267);               // Старый i
 // IBLOCK_ID_BRANDS
 define('PROPERTY_ID_COMPANY_ID_IN_BRANDS', 77); // id компании.
 define('PROPERTY_ID_COUNTRY_IN_BRANDS', 78); // Страна.
-define('PROPERTY_ID_ARCHIVE_IN_BRANDS', 109); // Архив - история изменений.
+define('PROPERTY_ID_ARCHIVE_IN_BRANDS', 109); // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 define('PROPERTY_ID_PAY_MODE_IN_BRANDS', 124); // Платный режим.
 define('PROPERTY_ID_TYPE_IN_BRANDS', 125); // Тип.
 define('PROPERTY_ID_PUB_REJECTED_IN_BRANDS', 126); // Публикация отклонена.
@@ -296,7 +296,7 @@ define('PROPERTY_ID_OLD_ID_IN_BRANDS', 256);          // Старый id.
 // IBLOCK_ID_LICENSE
 define('PROPERTY_ID_COMPANY_ID_IN_LICENSE', 91);       // id компании.
 define('PROPERTY_ID_TEXT_IMG_SRC_IN_LICENSE', 92);     // Текст на картинке.
-define('PROPERTY_ID_ARCHIVE_IN_LICENSE', 108);         // Архив - история изменений.
+define('PROPERTY_ID_ARCHIVE_IN_LICENSE', 108);         // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 define('PROPERTY_ID_PUB_REJECTED_IN_LICENSE', 139);    // Публикация отклонена.
 define('PROPERTY_ID_SEND_MESS_IN_LICENSE', 141);       // Отправить уведомление пользователю.
 define('PROPERTY_ID_REJ_MESS_IN_LICENSE', 140);        // Причина отклонения публикации.
@@ -311,7 +311,7 @@ define('PROPERTY_ID_TEXT_IMG_SRC_IN_NOVETLY', 216);    // Текст на кар
 define('PROPERTY_ID_NEWS_SRC_IN_NOVETLY', 214);        // Источник новости.
 define('PROPERTY_ID_COMPANY_ID_IN_NOVETLY', 213);      // id компании.
 define('PROPERTY_ID_PHOTO_SRC_IN_NOVETLY', 215);       // Источник фото.
-define('PROPERTY_ID_ARCHIVE_IN_NOVETLY', 218);         // Архив - история изменений.
+define('PROPERTY_ID_ARCHIVE_IN_NOVETLY', 218);         // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 define('PROPERTY_ID_SHOW_LOGO_IN_NOVETLY', 219);       // Показывать лого компании на главной.
 define('PROPERTY_ID_PUB_REJECTED_IN_NOVETLY', 220);    // Публикация отклонена.
 define('PROPERTY_ID_SEND_MESS_IN_NOVETLY', 221);       // Отправить уведомление пользователю.
@@ -379,6 +379,7 @@ define('PROPERTY_ID_OLD_ID_IN_CATALOGS_PDF', 266);     // Старый ID.
 define('PROPERTY_ID_COMPANY_ID_ALL_MATERIALS', 302); 			// id компании
 define('PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS', 309);       	// Json данные
 define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 308); 			// Перенести в. (функционал сохранения и переноса не доделан)
+define('PROPERTY_ID_ARCHIVE_IN_ALL_MATERIALS', 310);         // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 
 // FROM_USERTRUE_IDs 
 define('FROM_USERTRUE_ID_IN_NEWS_COMPANY', 16);
@@ -553,8 +554,13 @@ class AddTaranslitCodeName
 					break;
 				}
 			case IBLOCK_ID_ALL_MATERIALS: {
+					$propertyId         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS; // deprecated - propertyId меняем на companyIdProp
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_ALL_MATERIALS; // переназвать переменную
+
+					$companyIdProp		= PROPERTY_ID_COMPANY_ID_ALL_MATERIALS;
 					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
 					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
+
 					break;
 				}
 		}
@@ -579,16 +585,16 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную 
-								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
+								
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
 								break;
 							}
 						case IBLOCK_ID_NEWS_INDUSTRY: {
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
+								
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
 								break;
 							}
 						case IBLOCK_ID_LIFE_INDUSTRY: {
@@ -601,41 +607,41 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_STOCK;
+								
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_STOCK;
 								break;
 							}
 						case IBLOCK_ID_VIEWPOINT: {
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_VIEWPOINT;
+								
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_VIEWPOINT;
 								break;
 							}
 						case IBLOCK_ID_PRODUCTS_REVIEW: {
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
+								
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
 								break;
 							}
 						case IBLOCK_ID_NOVETLY: {
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_NOVETLY;
+								
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NOVETLY;
 								break;
 							}
 						case IBLOCK_ID_ALL_MATERIALS: {
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
-								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
-								$companyIdPropCopy = "";
+								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
 
-								// переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_ALL_MATERIALS;
+								$companyIdPropCopy         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS; 
+								$fromCompanyIdCopy 		= FROM_USERTRUE_ID_IN_ALL_MATERIALS; // переназвать переменную
+
 								break;
 							}
 					}
@@ -672,7 +678,7 @@ class AddTaranslitCodeName
 					$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
 
 					if ($arFields["PROPERTY_VALUES"][$fromCompanyId][0] != "") {
-						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = $booleanTrueId;
+						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = $fromCompanyIdCopy;
 					} else {
 						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = "";
 					}
@@ -916,6 +922,11 @@ class AddTaranslitCodeName
 			case IBLOCK_ID_ALL_MATERIALS: {
 					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
 					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
+ 
+					$propertyId         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS; // deprecated - propertyId меняем на companyIdProp
+					
+					$companyIdProp		= PROPERTY_ID_COMPANY_ID_ALL_MATERIALS;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
 					break;
 				}
 		}
@@ -946,7 +957,7 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную 
-								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
 								break;
 							}
 						case IBLOCK_ID_NEWS_INDUSTRY: {
@@ -954,7 +965,7 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
 								break;
 							}
 						case IBLOCK_ID_LIFE_INDUSTRY: {
@@ -968,7 +979,7 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_STOCK;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_STOCK;
 								break;
 							}
 						case IBLOCK_ID_VIEWPOINT: {
@@ -976,7 +987,7 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_VIEWPOINT;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_VIEWPOINT;
 								break;
 							}
 						case IBLOCK_ID_PRODUCTS_REVIEW: {
@@ -984,7 +995,7 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
 								break;
 							}
 						case IBLOCK_ID_NOVETLY: {
@@ -992,16 +1003,15 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_NOVETLY;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NOVETLY;
 								break;
 							}
 						case IBLOCK_ID_ALL_MATERIALS: {
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
 								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
-								$companyIdPropCopy = "";
-
-								// переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_ALL_MATERIALS;
+								
+								$companyIdPropCopy         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS; 
+								$fromCompanyIdCopy 		= FROM_USERTRUE_ID_IN_ALL_MATERIALS; // переназвать переменную
 								break;
 							}
 					}
@@ -1038,7 +1048,7 @@ class AddTaranslitCodeName
 					$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
 
 					if ($arFields["PROPERTY_VALUES"][$fromCompanyId][0] != "") {
-						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = $booleanTrueId;
+						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = $fromCompanyIdCopy;
 					} else {
 						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = "";
 					}
@@ -1087,7 +1097,7 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную 
-								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
 								break;
 							}
 						case IBLOCK_ID_NEWS_INDUSTRY: {
@@ -1095,7 +1105,7 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
 								break;
 							}
 						case IBLOCK_ID_LIFE_INDUSTRY: {
@@ -1109,7 +1119,7 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_STOCK;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_STOCK;
 								break;
 							}
 						case IBLOCK_ID_VIEWPOINT: {
@@ -1117,7 +1127,7 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_VIEWPOINT;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_VIEWPOINT;
 								break;
 							}
 						case IBLOCK_ID_PRODUCTS_REVIEW: {
@@ -1125,7 +1135,7 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
 								break;
 							}
 						case IBLOCK_ID_NOVETLY: {
@@ -1133,16 +1143,15 @@ class AddTaranslitCodeName
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
 								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_NOVETLY;
+								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NOVETLY;
 								break;
 							}
 						case IBLOCK_ID_ALL_MATERIALS: {
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
 								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
-								$companyIdPropCopy = "";
-
-								// переназвать переменную
-								$booleanTrueId = FROM_USERTRUE_ID_IN_ALL_MATERIALS;
+								
+								$companyIdPropCopy         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS; 
+								$fromCompanyIdCopy 		= FROM_USERTRUE_ID_IN_ALL_MATERIALS; // переназвать переменную
 								break;
 							}
 					}
@@ -1179,7 +1188,7 @@ class AddTaranslitCodeName
 					$arFieldsCopy["PROPERTY_VALUES"][$jsonDataIdCopy] = $arFields["PROPERTY_VALUES"][$jsonDataId];
 
 					if ($arFields["PROPERTY_VALUES"][$fromCompanyId][0] != "") {
-						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = $booleanTrueId;
+						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = $fromCompanyIdCopy;
 					} else {
 						$arFieldsCopy["PROPERTY_VALUES"][$fromCompanyIdCopy][0] = "";
 					}

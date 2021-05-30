@@ -4,11 +4,8 @@
         <div class='lk_userinfobtn'>
             <? 
 						$val = isset($value)? $value: '';
-						$textTags = isset($text)? $text: ''; // удалить?
-
-                        console_log("---1---");
-                        console_log($val);
-                        console_log($text);
+						$textTags = isset($text)? $text: ''; 
+                        // теги не работают попробовать отладить  ---1--- 
 
 						$APPLICATION->IncludeComponent(
 							"bitrix:search.tags.input",

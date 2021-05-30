@@ -1,6 +1,6 @@
 <?
 use Bitrix\Main\Page\Asset;   
-console_log("iBlockType: ".$iBlockType." - iBlockId: ".$iBlockId." - jsonDataId: ".$jsonDataId." - elementCode: ".$elementCode);
+console_log("iBlockType: ".$iBlockType." - iBlockId: ".$iBlockId);
 
 $APPLICATION->IncludeComponent(
 	"wp:news.detail", 
@@ -27,8 +27,7 @@ $APPLICATION->IncludeComponent(
 		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
 		"ELEMENT_CODE" => $elementCode,	// Код новости
-		"ELEMENT_ID" => $_REQUEST["elementId"],
-		"EDITOR_DATA_ID" => $jsonDataId,
+		"ELEMENT_ID" => $_REQUEST["elementId"], 
 		"IBLOCK_ID" => $iBlockId,
 		"IBLOCK_TYPE" => $iBlockType,
 		"IBLOCK_URL" => "",

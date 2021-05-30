@@ -130,7 +130,7 @@
                 <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="listLookupAvailableItems" name="PROPERTY[<?= $companyToId ?>][0]">
                     <?   
                 $db_res = CIBlockElement::GetList(array("ID" => "DESC"), Array("IBLOCK_ID"=> "1", "ACTIVE"=>"Y"), false, false, Array("ID","NAME"));
-                    console_log($db_res);
+                  
 		        while ($comp_res = $db_res->Fetch()) {  
                     $selected = '';
                     if ($companyId == $comp_res["ID"])
@@ -201,6 +201,7 @@
             <input id="check_first-load" type="hidden" name="PROPERTY[ACTIVE][0]" value="<? if ($isActiveMaterial) {?>Y<?} else {?>N<?} ?>">
         </label>
         <script>
+        // Меняем скрытый инпут активности материала !!!Переписать на ваниль
             $("#fld-checkbox--activate").click(function() {
                 if ($(this).prop("checked") == false) {
                     $(this).next().remove();
@@ -324,15 +325,7 @@
                                     }
                                 }
                                 objectJson["blocks"].push({});
-                            }
-                            // else if (nodeList[i].tagName == "DIV" && nodeList[i].className == "ce-preview") {
-                            // 	objectJson.blocks[objectJson.blocks.length] = {
-                            // 		"type": "preview",
-                            // 		"data": {
-                            // 			"value": nodeList[i].firstChild.value
-                            // 		}
-                            // 	}
-                            // }
+                            } 
                             else if (nodeList[i].tagName == "IMG" && (nodeList[i].className == "img-detail" || nodeList[i].className == "img-preview")) {
                                 var imgCaption;
                                 imgCaption = (nodeList[i].className == "img-detail") ? imgCaption = "Главная картинка" : imgCaption = "Картинка анонса";
