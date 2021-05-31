@@ -378,7 +378,7 @@ define('PROPERTY_ID_OLD_ID_IN_CATALOGS_PDF', 266);     // Старый ID.
 // IBLOCK_ID_ALL_MATERIALS 
 define('PROPERTY_ID_COMPANY_ID_ALL_MATERIALS', 302); 			// id компании
 define('PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS', 309);       	// Json данные
-define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 308); 			// Перенести в. (функционал сохранения и переноса не доделан)
+define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 308); 			// Перенести в.
 define('PROPERTY_ID_ARCHIVE_IN_ALL_MATERIALS', 310);         // Триггер публикации от компании/автора (переиспользовано от ненужного "Архив - история изменений" )
 
 // FROM_USERTRUE_IDs 
@@ -555,11 +555,10 @@ class AddTaranslitCodeName
 				}
 			case IBLOCK_ID_ALL_MATERIALS: {
 					$propertyId         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS; // deprecated - propertyId меняем на companyIdProp
-					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_ALL_MATERIALS; // переназвать переменную
-
-					$companyIdProp		= PROPERTY_ID_COMPANY_ID_ALL_MATERIALS;
 					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
 					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
+					$companyIdProp		= PROPERTY_ID_COMPANY_ID_ALL_MATERIALS;
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_ALL_MATERIALS; // переназвать переменную  
 
 					break;
 				}
@@ -585,7 +584,7 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-								
+
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
 								break;
 							}
@@ -593,7 +592,7 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
-								
+
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
 								break;
 							}
@@ -607,7 +606,7 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
-								
+
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_STOCK;
 								break;
 							}
@@ -615,7 +614,7 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
-								
+
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_VIEWPOINT;
 								break;
 							}
@@ -623,7 +622,7 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
-								
+
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
 								break;
 							}
@@ -631,15 +630,15 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
-								
+
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NOVETLY;
 								break;
 							}
 						case IBLOCK_ID_ALL_MATERIALS: {
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
-								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS; 
+								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
 
-								$companyIdPropCopy         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS; 
+								$companyIdPropCopy         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS;
 								$fromCompanyIdCopy 		= FROM_USERTRUE_ID_IN_ALL_MATERIALS; // переназвать переменную
 
 								break;
@@ -920,13 +919,11 @@ class AddTaranslitCodeName
 					break;
 				}
 			case IBLOCK_ID_ALL_MATERIALS: {
+					$propertyId         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS; // deprecated - propertyId меняем на companyIdProp
 					$jsonDataId 		= PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
 					$moveToPropertyId   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
- 
-					$propertyId         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS; // deprecated - propertyId меняем на companyIdProp
-					
 					$companyIdProp		= PROPERTY_ID_COMPANY_ID_ALL_MATERIALS;
-					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
+					$fromCompanyId 		= PROPERTY_ID_ARCHIVE_IN_ALL_MATERIALS; // переназвать переменную  
 					break;
 				}
 		}
@@ -956,7 +953,6 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную 
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
 								break;
 							}
@@ -964,7 +960,6 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
 								break;
 							}
@@ -978,7 +973,6 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_STOCK;
 								break;
 							}
@@ -986,7 +980,6 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_VIEWPOINT;
 								break;
 							}
@@ -994,7 +987,6 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
 								break;
 							}
@@ -1002,15 +994,14 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NOVETLY;
 								break;
 							}
 						case IBLOCK_ID_ALL_MATERIALS: {
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
 								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
-								
-								$companyIdPropCopy         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS; 
+
+								$companyIdPropCopy         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS;
 								$fromCompanyIdCopy 		= FROM_USERTRUE_ID_IN_ALL_MATERIALS; // переназвать переменную
 								break;
 							}
@@ -1096,7 +1087,6 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_COMPANY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_COMPANY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_COMPANY;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_COMPANY; // переназвать переменную 
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_COMPANY;
 								break;
 							}
@@ -1104,7 +1094,6 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NEWS_INDUSTRY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NEWS_INDUSTRY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NEWS_INDUSTRY;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NEWS_INDUSTRY; // переназвать переменную
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NEWS_INDUSTRY;
 								break;
 							}
@@ -1118,7 +1107,6 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_STOCK;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_STOCK;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_STOCK;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_STOCK; // переназвать переменную
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_STOCK;
 								break;
 							}
@@ -1126,7 +1114,6 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_VIEWPOINT;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_VIEWPOINT;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_VIEWPOINT; // переназвать переменную
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_VIEWPOINT;
 								break;
 							}
@@ -1134,7 +1121,6 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_PRODUCTS_REVIEW;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_PRODUCTS_REVIEW;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_PRODUCTS_REVIEW;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_PRODUCTS_REVIEW; // переназвать переменную
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_PRODUCTS_REVIEW;
 								break;
 							}
@@ -1142,15 +1128,14 @@ class AddTaranslitCodeName
 								$moveToIdCopy = PROPERTY_ID_MOVE_TO_IN_NOVETLY;
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_NOVETLY;
 								$companyIdPropCopy = PROPERTY_ID_COMPANY_ID_IN_NOVETLY;
-								$fromCompanyIdCopy = PROPERTY_ID_ARCHIVE_IN_NOVETLY; // переназвать переменную
 								$fromCompanyIdCopy = FROM_USERTRUE_ID_IN_NOVETLY;
 								break;
 							}
 						case IBLOCK_ID_ALL_MATERIALS: {
 								$jsonDataIdCopy = PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS;
 								$moveToIdCopy   = PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS;
-								
-								$companyIdPropCopy         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS; 
+
+								$companyIdPropCopy         = PROPERTY_ID_COMPANY_ID_ALL_MATERIALS;
 								$fromCompanyIdCopy 		= FROM_USERTRUE_ID_IN_ALL_MATERIALS; // переназвать переменную
 								break;
 							}
@@ -1547,12 +1532,22 @@ class elementadd
 					"COMPANY_ID" => $arFields['ID'],
 				);
 				CEvent::Send("NEW_COMPANY", SITE_ID, $arEventFields);
-			} else if (($arFields['IBLOCK_ID'] == IBLOCK_ID_NEWS_COMPANY || $arFields['IBLOCK_ID'] == IBLOCK_ID_STOCK ||
-					$arFields['IBLOCK_ID'] == IBLOCK_ID_NEWS_INDUSTRY || $arFields['IBLOCK_ID'] == IBLOCK_ID_VIEWPOINT ||
-					$arFields['IBLOCK_ID'] == IBLOCK_ID_GALLERY_PHOTO || $arFields['IBLOCK_ID'] == IBLOCK_ID_GALLERY_VIDEO ||
-					$arFields['IBLOCK_ID'] == IBLOCK_ID_EVENTS || $arFields['IBLOCK_ID'] == IBLOCK_ID_PRODUCTS_REVIEW ||
-					$arFields['IBLOCK_ID'] == IBLOCK_ID_BRANDS || $arFields['IBLOCK_ID'] == IBLOCK_ID_LICENSE || $arFields['IBLOCK_ID'] == IBLOCK_ID_CATALOG ||
-					$arFields['IBLOCK_ID'] == IBLOCK_ID_BANNERS || $arFields['IBLOCK_ID'] == IBLOCK_ID_CATALOGS_PDF || $arFields['IBLOCK_ID'] == IBLOCK_ID_NOVETLY)
+			} else if (
+				($arFields['IBLOCK_ID'] == IBLOCK_ID_NEWS_COMPANY ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_STOCK ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_NEWS_INDUSTRY ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_VIEWPOINT ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_GALLERY_PHOTO ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_GALLERY_VIDEO ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_EVENTS ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_PRODUCTS_REVIEW ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_BRANDS ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_LICENSE ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_CATALOG ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_BANNERS ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_CATALOGS_PDF ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_NOVETLY ||
+					$arFields['IBLOCK_ID'] == IBLOCK_ID_ALL_MATERIALS)
 				&& $arFields['ID']
 			) {
 

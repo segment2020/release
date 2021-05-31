@@ -54,8 +54,7 @@ if ($arResult['ACTIVE'] == "Y") {
 	<div class="block-default in block-shadow content-margin">  
 		<div class="row">
 			
-<?      
-console_log($arResult);
+<?       
 //********************************************************************************************************************************* 
 $APPLICATION->IncludeFile('/tpl/include_area/newFields.php', array(
 	'createNewMaterial' => false,  

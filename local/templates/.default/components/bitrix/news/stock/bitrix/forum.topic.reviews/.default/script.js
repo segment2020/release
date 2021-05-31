@@ -596,7 +596,7 @@
 							mention = BX.create('SPAN',
 								{
 									props: {className: 'bxhtmled-metion'},
-									text: BX.util.htmlspecialcharsback(author.name)
+									text: BX.util.htmlspecialcharsback(author.id)
 								}, doc),
 							spaceNode = BX.create('SPAN', {html: ',&nbsp;' }, doc);
 						this.editor.SetBxTag(mention, {tag: "postuser", params: {value : author.id}});
