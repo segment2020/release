@@ -236,20 +236,11 @@ div.detailcontent img {
     max-width: 100%;
     height: auto;
 }
-.detailblock .detailcontent { 
-    overflow: hidden;
-}
 .detailblock .detailcontent table {
     width: 100%;
     overflow: auto;
     display: block;
 }
-/* .ce-block__content .ce-paragraph { 
-    min-height: 4em;
-    overflow: hidden;
-}
-.ce-block__content .ce-paragraph::after {  
-} */
 .sourceblock .title {
     display: inline;
 }
