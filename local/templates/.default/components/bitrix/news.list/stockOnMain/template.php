@@ -62,13 +62,12 @@ foreach($arResult["ITEMS"] as $arItem)
 
 	$file['src'] = EMPTY_IMAGE_PATH;
 	$arFields = array();
-	// pre($arItem['PROPERTIES']['showLogo']);
-	if (!empty($arItem['PROPERTIES']['showLogo']['VALUE']))
-	{
-		if (!empty($arItem['PREVIEW_PICTURE']["ID"]) && $arItem['ID'] > 439817) // Грязный вонючий хак. Из-за переноса со старого сайта незьля было разобрать в старой базе условия вывода.
-			$file = CFile::ResizeImageGet($arItem['PREVIEW_PICTURE']["ID"], array('width'=>70, 'height'=>70), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+	// pre($arItem['PROPERTIES']['showLogo']); 
+
+		if (!empty($arItem['PREVIEW_PICTURE']["ID"]) && $arItem['ID'] > 439817) // Грязный вонючий хак. Из-за переноса со старого сайта незьля было разобрать в старой базе условия вывода.  
+			$file = CFile::ResizeImageGet($arItem['PREVIEW_PICTURE']["ID"], array('width'=>70, 'height'=>70), BX_RESIZE_IMAGE_PROPORTIONAL, true); 
 		elseif (!empty($arItem['PROPERTIES']['companyId']['VALUE']))
-		{
+		{ 
 			$arSelect = array('PREVIEW_PICTURE');
 			$arFilter = array("IBLOCK_ID" => IBLOCK_ID_COMPANY, 'ID' => $arItem['PROPERTIES']['companyId']['VALUE']);
 			$res = CIBlockElement::GetList(Array(), $arFilter, false, array(), $arSelect);
@@ -77,8 +76,7 @@ foreach($arResult["ITEMS"] as $arItem)
 
 			if (!empty($arFields['PREVIEW_PICTURE']))
 				$file = CFile::ResizeImageGet($arFields['PREVIEW_PICTURE'], array('width'=>70, 'height'=>70), BX_RESIZE_IMAGE_PROPORTIONAL, true);
-		}
-	}
+		} 
 
 
 

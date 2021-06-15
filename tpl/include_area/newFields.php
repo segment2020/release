@@ -1,4 +1,5 @@
 <div class="col-xs-12"> 
+    <!-- для модерации -->
     <?
         global $USER;
         $moderatorID = $USER->GetID();
@@ -8,9 +9,11 @@
         ?>
     <input type="hidden" name='PROPERTY[MODERATION][0]' value="Y">
     <? } ?>
+      <!--~~~~~~~ Заголовок ~~~~~~~~~-->  
     <div class="ce-maintitle">
         <input type="text" id="lk_name" name='PROPERTY[NAME][0]' placeholder="Заголовок*" value="<? echo $name; ?>">
     </div>
+      <!--~~~~~~~ Превью картинка - Загрузка ~~~~~~~~~-->   
     <div class="ce-preview">
         <? 
             $imgInsideTag = ""; 
@@ -50,14 +53,18 @@
             <?}?>
         </div>
 
+        <!-- Анонс -->
         <textarea placeholder="Анонс публикации" id="ce-preview_text" name="PROPERTY[PREVIEW_TEXT][0]"><? echo strip_tags($previewText); ?></textarea>
     </div>
+    
+      <!--~~~~~~~ Редактор ~~~~~~~~~--> 
     <div id="js-editor"></div>
-    <div class="detailinfofirm">
-        <? 
-        
-    ?>
-    </div>
+     
+     
+      <!--~~~~~~~ Доп-поля ~~~~~~~~~-->
+     
+     
+     <!-- Блок авторство -->
     
     <? if ( CSite::InGroup(array(1)) && $moderation ) {
         $property_enums = CIBlockPropertyEnum::GetList(Array("DEF"=>"DESC", "SORT"=>"ASC"), Array("PROPERTY_ID"=>$fromCompanyId, "VALUE"=> 1));
@@ -130,7 +137,7 @@
                 <select class="selectpicker selectboxbtn form-control minbr" data-live-search="true" id="listLookupAvailableItems" name="PROPERTY[<?= $companyToId ?>][0]">
                     <?   
                 $db_res = CIBlockElement::GetList(array("ID" => "DESC"), Array("IBLOCK_ID"=> "1", "ACTIVE"=>"Y"), false, false, Array("ID","NAME"));
-                    console_log($db_res);
+                  
 		        while ($comp_res = $db_res->Fetch()) {  
                     $selected = '';
                     if ($companyId == $comp_res["ID"])
@@ -147,6 +154,7 @@
 
     </div>
      
+     <!-- авторство при создании нового материала -->
     <? } elseif ($createNewMaterial) { 
            
     $rsUser = CUser::GetByID(20631); 
@@ -160,6 +168,8 @@
 			$arFields = $ob->GetFields();
 	} 
 ?>  <div>
+
+     <!-- перенос материала -->
     <input type="hidden" name="PROPERTY[<?= $companyToId ?>][0]" value="<?= $arFields['ID'] ?>"></div>
     <? } ?>
     <? if ( CSite::InGroup(array(1)) ) { ?>
@@ -194,6 +204,7 @@
         </select>
     </div>
 
+     <!-- активация материала -->
     <fieldset class="fld-checkbox">
         <label for="active_prop" id="check_on-off" class="floatleft">
             <input type="checkbox" name="active_prop" id="fld-checkbox--activate" <? if ($isActiveMaterial) {?> checked
@@ -201,6 +212,8 @@
             <input id="check_first-load" type="hidden" name="PROPERTY[ACTIVE][0]" value="<? if ($isActiveMaterial) {?>Y<?} else {?>N<?} ?>">
         </label>
         <script>
+        // Меняем скрытый инпут активности материала 
+        // ! Переписать на ваниль
             $("#fld-checkbox--activate").click(function() {
                 if ($(this).prop("checked") == false) {
                     $(this).next().remove();
@@ -220,6 +233,7 @@
     <?  }   else    { ?>
     <? } ?>
 
+     <!-- Скрытые поля для тестов -->
     <div class="hide">
         <pre id="output"></pre>
         <textarea id="detail_text" rows="15" cols="70" name="PROPERTY[DETAIL_TEXT][0]">
@@ -324,15 +338,7 @@
                                     }
                                 }
                                 objectJson["blocks"].push({});
-                            }
-                            // else if (nodeList[i].tagName == "DIV" && nodeList[i].className == "ce-preview") {
-                            // 	objectJson.blocks[objectJson.blocks.length] = {
-                            // 		"type": "preview",
-                            // 		"data": {
-                            // 			"value": nodeList[i].firstChild.value
-                            // 		}
-                            // 	}
-                            // }
+                            } 
                             else if (nodeList[i].tagName == "IMG" && (nodeList[i].className == "img-detail" || nodeList[i].className == "img-preview")) {
                                 var imgCaption;
                                 imgCaption = (nodeList[i].className == "img-detail") ? imgCaption = "Главная картинка" : imgCaption = "Картинка анонса";
