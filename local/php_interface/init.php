@@ -68,7 +68,7 @@ define('IBLOCK_ID_INFOBLOCKS_LIST', 19);
 define('IBLOCK_ID_NOVETLY', 20);
 define('IBLOCK_ID_BANNERS', 21);
 define('IBLOCK_ID_CATALOGS_PDF', 22);
-define('IBLOCK_ID_ALL_MATERIALS', 23);
+define('IBLOCK_ID_ALL_MATERIALS', 29);
 
 define('IBLOCK_ID_USERS', 400);
 define('PAGE_TOP_100', 500);
@@ -204,7 +204,7 @@ define('PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY', 295);    	 // Json данные
 // IBLOCK_ID_VIEWPOINT
 define('PROPERTY_ID_NAME_IN_VIEWPOINT', 28); // Имя.
 define('PROPERTY_ID_SOURCE_IN_VIEWPOINT', 29); // Источник.
-define('PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT', 79); // id компании. 
+define('PROPERTY_ID_COMPANY_ID_IN_VIEWPOINT', 79); // id компании.
 define('PROPERTY_ID_ARCHIVE_IN_VIEWPOINT', 109); // Архив - история изменений.
 define('PROPERTY_ID_ADD_BLOCKID_IN_VIEWPOINT', 129); // Доп. материал - id блока.
 define('PROPERTY_ID_ADD_ELEMENTID_IN_VIEWPOINT', 130); // Доп. материал - id элемента.
@@ -376,7 +376,6 @@ define('PROPERTY_ID_COUNTRY_IN_CATALOGS_PDF', 236);    // Страна.
 define('PROPERTY_ID_OLD_ID_IN_CATALOGS_PDF', 266);     // Старый ID.
 
 // IBLOCK_ID_ALL_MATERIALS 
-define('PROPERTY_ID_COMPANY_ID_ALL_MATERIALS', 302); 			// id компании
 define('PROPERTY_ID_JSON_DATA_IN_ALL_MATERIALS', 309);       	// Json данные
 define('PROPERTY_ID_MOVE_TO_IN_ALL_MATERIALS', 308); 			// Перенести в. (функционал сохранения и переноса не доделан)
 
