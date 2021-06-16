@@ -1,8 +1,7 @@
-$(document).ready(function () {
+$(document).ready(function () { 
 
-	 
-    $(".post_gallery__item").fancybox(); 
-
+	//	Галерея материала из редактора
+	$(".post_gallery__item").fancybox();
 
 	//	Mmenuind
 
@@ -10,6 +9,7 @@ $(document).ready(function () {
 		document.querySelector('#mmenu'),
 		'all'
 	);
+
 	var navigator = menu.navigation({
 	});
 
@@ -25,9 +25,8 @@ $(document).ready(function () {
 		drawer.close();
 	});
 
-
 	$(window).on('load', function () {
- 
+
 		var cookie_name = "segment notify-cookie";
 
 		// получаем cookie если есть, иначе - undefined
@@ -45,20 +44,20 @@ $(document).ready(function () {
 
 			var exp = props.expires
 
-			if (typeof exp == "number" && exp) { 
-				var d = new Date() 
-				d.setTime(d.getTime() + exp * 1000) 
-				exp = props.expires = d 
+			if (typeof exp == "number" && exp) {
+				var d = new Date()
+				d.setTime(d.getTime() + exp * 1000)
+				exp = props.expires = d
 			}
 
-			if (exp && exp.toUTCString) { props.expires = exp.toUTCString() } 
-				value = encodeURIComponent(value)
+			if (exp && exp.toUTCString) { props.expires = exp.toUTCString() }
+			value = encodeURIComponent(value)
 
 			var updatedCookie = name + "=" + value
 
-			for (var propName in props) { 
-				updatedCookie += "; " + propName 
-				var propValue = props[propName] 
+			for (var propName in props) {
+				updatedCookie += "; " + propName
+				var propValue = props[propName]
 				if (propValue !== true) { updatedCookie += "=" + propValue }
 			}
 
@@ -67,22 +66,22 @@ $(document).ready(function () {
 		}
 
 		// удаляем cookie
-		function deleteCookie(name) { 
-			setCookie(name, 'visited', { expires: -1 }) 
+		function deleteCookie(name) {
+			setCookie(name, 'visited', { expires: -1 })
 		}
 
-		if (getCookie(cookie_name) == undefined) { 
+		if (getCookie(cookie_name) == undefined) {
 			// первое посещение 
-			setTimeout(function () { 
-				$('.notify-cookie').fadeIn(); 
-			}, 1500); 
-			$('.notify-cookie .close-notify').on("click" , function () { 
-				setCookie(cookie_name, 'visited', { expires: 60*60*24*7, path: '/', });
+			setTimeout(function () {
+				$('.notify-cookie').fadeIn();
+			}, 1500);
+			$('.notify-cookie .close-notify').on("click", function () {
+				setCookie(cookie_name, 'visited', { expires: 60 * 60 * 24 * 7, path: '/', });
 			});
 			console.log(getCookie(cookie_name));
 		}
 	});
- 
+
 	//	код до 24.09
 
 	$(document).on('change', '.vote_change', function () {
@@ -168,7 +167,6 @@ $(document).ready(function () {
 		$('.previewBlock').empty().append('<h1>' + name + '</h1>' + detailText);
 	});
 
-
 	$('.scrollup').click(function () {
 		$("html, body").animate({
 			scrollTop: 0
@@ -182,7 +180,6 @@ $(document).ready(function () {
 			$('.scrollup').fadeOut();
 		}
 	});
-
 
 	$('.open-popup-link').magnificPopup({
 		type: 'inline',
@@ -199,6 +196,7 @@ $(document).ready(function () {
 			enabled: true
 		}
 	});
+
 	if ($('div').is('#aside1')) {
 		var a = document.querySelector('#aside1'), b = null, P = 0;
 		window.addEventListener('scroll', Ascroll, false);
@@ -248,6 +246,7 @@ $(document).ready(function () {
 			Ascroll();
 		});
 	}
+
 	$('.dropdown-top .dropdown-toggle').dropdownHover();
 
 	$('.selectpicker').selectpicker({
@@ -270,11 +269,13 @@ $(document).ready(function () {
 		prevText: '',
 		pager: false
 	});
+
 	if ($(window).width() > 760) {
 		$(".segmentscroll").mCustomScrollbar({
 			scrollbarPosition: "outside"
 		});
 	}
+
 	$(window).resize(function () {
 
 		if (mainbxslider.length) {
@@ -844,9 +845,9 @@ $(document).ready(function () {
 	//----------------- Подстановка имени выбранного файла и превью выбранного изображения. ----------------
 	$("div.content-margin, div.lk_companylogobtn").on('change', 'input[type=file].fileUpload', setFileName);
 
-	function setFileName() { 
+	function setFileName() {
 
-		var thisinput = $(this); 
+		var thisinput = $(this);
 		var id = $(this).attr('id');
 		var fileName = $(this).val().replace(/.*\\/, "");
 		var elem = $("#" + id + "FileName");
@@ -856,9 +857,9 @@ $(document).ready(function () {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 
-			reader.onload = function (e) { 
-				thisinput.closest('.lk_companylogoblock').find('img').attr('src', e.target.result);  
-				thisinput.closest('.block-without-img').removeClass( 'block-without-img' ).addClass( 'block-with-img' );
+			reader.onload = function (e) {
+				thisinput.closest('.lk_companylogoblock').find('img').attr('src', e.target.result);
+				thisinput.closest('.block-without-img').removeClass('block-without-img').addClass('block-with-img');
 			};
 
 			reader.readAsDataURL(input.files[0]);
@@ -1000,8 +1001,8 @@ $(document).ready(function () {
 
 	//-----------------------------------------------------------------------------------
 	// Проверка на пустые поля элемента(публикации).
-	var btn = document.getElementById('addElement'); 
-	
+	var btn = document.getElementById('addElement');
+
 	if (!!btn) {
 		btn.addEventListener('click', function (event) {
 			var error = false;
@@ -1129,7 +1130,7 @@ $(document).ready(function () {
 				else
 					document.getElementById('errorExt').classList.add('hide');
 			}
-			 
+
 			if (error) {
 				document.getElementById('errorText').classList.remove('hide');
 				event.preventDefault();

@@ -506,4 +506,4 @@
     } 
 
 </script>
-<script src="/tpl/js/editor/editor-init.js" type="module"></script>
+<script src="/tpl/js/editor/editor-init.js" type="module"></script> 

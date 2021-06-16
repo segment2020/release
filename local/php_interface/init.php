@@ -199,8 +199,8 @@ define('PROPERTY_ID_COMPANY_ID_IN_LIFE_INDUSTRY', 183); // id компании.
 define('PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY', 184); // Перенести в.
 define('PROPERTY_ID_ADD_MATERIAL_IN_LIFE_INDUSTRY', 201); // Доп. материал.
 define('PROPERTY_ID_OLD_ID_IN_LIFE_INDUSTRY', 258); // Старый Id.
-define('PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY', 295);    	 // Json данные
-LI7jWS0dM
+define('PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY', 295);    	 // Json данные 
+
 // IBLOCK_ID_VIEWPOINT
 define('PROPERTY_ID_NAME_IN_VIEWPOINT', 28); // Имя.
 define('PROPERTY_ID_SOURCE_IN_VIEWPOINT', 29); // Источник.

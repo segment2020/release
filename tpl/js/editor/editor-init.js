@@ -52,21 +52,21 @@ if (!newMaterial && !isJsonError) {
 
 }
 
-const ImageTool = window.ImageTool; 
+const ImageTool = window.ImageTool;
 
 const editor = new EditorJS({
 	holder: "js-editor",
 	autofocus: false,
 	hideToolbar: true,
-	inlineToolbar: ['bold', 'italic', 'hyperlink', 'Marker', 'strikethrough' ],
-	tools: { 
+	inlineToolbar: ['bold', 'italic', 'hyperlink', 'Marker', 'strikethrough'],
+	tools: {
 		hyperlink: {
 			class: Hyperlink,
 			config: {
-			  shortcut: 'CMD+L',
-			  target: '_blank',
-			  rel: 'nofollow',  
-			  validate: false,
+				shortcut: 'CMD+L',
+				target: '_blank',
+				rel: 'nofollow',
+				validate: false,
 			}
 		},
 		quote: {
@@ -211,7 +211,7 @@ const editor = new EditorJS({
 					"Save": "Сохранить",
 					"Select target": "Выбрать target",
 					"Select rel": "Выброать rel"
-				  }
+				}
 			},
 			blockTunes: {
 				"delete": {
@@ -230,6 +230,7 @@ const editor = new EditorJS({
 		if (newData) {
 			editor.render(newData);
 		}
+
 	},
 	onChange: () => {
 		// var titleCaption = document.querySelector(".ce-preview");
@@ -241,11 +242,77 @@ const editor = new EditorJS({
 	}
 });
 
-const testButton 	= document.getElementById("test-button");
-const output 		= document.getElementById("output");
-const detail_text 	= document.getElementById("detail_text");
-const jsonData 		= document.getElementById("jsonData");
-const authorPick 	= document.getElementById("author-pick");
+function checkDisplay(numToShow) {
+	let elsInResult = document.querySelectorAll(".bank-card-full");
+	let delCounter = 0
+	let resultTable = document.querySelector('.result-table__list');
+	if (resultTable) {
+		for (let index = 0; index < elsInResult.length; index++) {
+			const element = elsInResult[index];
+			if ($(element).css('display') == 'none' || $(element).css("visibility") == "hidden") {
+				delCounter++
+			}
+			if (index >= numToShow) {
+				elsInResult[index].style.display = "none";
+			} else if ((elsInResult[index].style.display == "none") && (index < numToShow)) {
+				elsInResult[index].style.display = "list-item";
+			}
+		}
+		if (delCounter == elsInResult.length) {
+			resultTable.classList.add("result-is-empty")
+		} else if (resultTable.classList.contains('result-is-empty')) {
+			resultTable.classList.remove("result-is-empty")
+		}
+	}
+
+}
+try {
+	await editor.isReady;
+	/** editor initialization */
+	if (null !== document.getElementsByClassName("ce-block__content")) {
+		var editorBlocks = document.getElementsByClassName("ce-block__content");
+
+		console.log(editorBlocks);
+		setTimeout(
+			function addCollapseBtns() {
+				for (var j = 0; j < editorBlocks.length; j++) {
+					console.log(editorBlocks[j]);
+					if (editorBlocks[j].offsetHeight > 300) {
+						editorBlocks[j].classList.add("collapsed");
+						var collapseElem = document.createElement('div');
+						collapseElem.classList.add("to-collapse");
+						collapseElem.innerHTML = `
+						<span class="to-collapse__btn"> 
+							<i class="icon-icons_main-13"></i>
+							<i class="when-opened">Свернуть</i>
+							<i class="when-closed">Развернуть</i> 
+						</span>
+						`
+						editorBlocks[j].appendChild(collapseElem);
+
+						editorBlocks[j].addEventListener('click', evnt => {
+							if (evnt.currentTarget.classList.contains("is-opened")) {
+								evnt.currentTarget.classList.remove("is-opened");
+							} else {
+								evnt.currentTarget.classList.add("is-opened");
+							}
+						});
+					} 
+				}
+			}
+			, 0);
+
+	}
+} catch (reason) {
+	console.log(`Editor.js initialization failed because of ${reason}`)
+}
+
+
+const testButton = document.getElementById("test-button");
+const output = document.getElementById("output");
+const detail_text = document.getElementById("detail_text");
+const jsonData = document.getElementById("jsonData");
+const authorPick = document.getElementById("author-pick");
 
 // Сохранить
 submitElement.addEventListener("click", () => {
@@ -289,11 +356,11 @@ $(document).on("click", ".newPreviewbtn", function (e) {
 
 });
 // // тест перед сохранением
-if (testButton) { 
+if (testButton) {
 	testButton.addEventListener("click", () => {
 		editor.save().then(savedData => {
-			savedDataInput = JSON.stringify(savedData, null, 4); 
-			detailText = jsonToHtml(savedData); 
+			savedDataInput = JSON.stringify(savedData, null, 4);
+			detailText = jsonToHtml(savedData);
 			console.log(savedDataInput);
 
 			detail_text.innerHTML = detailText;
@@ -301,14 +368,14 @@ if (testButton) {
 		});
 	});
 }
-// if (authorPick) { 
+// if (authorPick) {
 // 	authorPick.onchange 
 // 	const pickAuthor = document.getElementById('author-change');
 // 	const pickCompany = document.getElementById('authorCompany-change');
 
 // 	https://betterprogramming.pub/how-onchange-differs-between-react-and-vanilla-javascript-90b56d6a340a
 // }
- 
+
 
 /** <!--~~~~~~~ Чеклист ~~~~~~~~~-->
  *
