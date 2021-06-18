@@ -1,6 +1,5 @@
 <?
-use Bitrix\Main\Page\Asset;   
-console_log("iBlockType: ".$iBlockType." - iBlockId: ".$iBlockId);
+use Bitrix\Main\Page\Asset;    
 
 $APPLICATION->IncludeComponent(
 	"wp:news.detail", 

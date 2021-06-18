@@ -54,265 +54,128 @@ if (!newMaterial && !isJsonError) {
 
 const ImageTool = window.ImageTool;
 
-const editor = new EditorJS({
-	holder: "js-editor",
-	autofocus: false,
-	hideToolbar: true,
-	inlineToolbar: ['bold', 'italic', 'hyperlink', 'Marker', 'strikethrough'],
+var editor = new EditorJS({
+	/**
+	 * Wrapper of Editor
+	 */
+	holder: 'js-editor',
+
+	/**
+	 * Tools list
+	 */
 	tools: {
-		hyperlink: {
-			class: Hyperlink,
-			config: {
-				shortcut: 'CMD+L',
-				target: '_blank',
-				rel: 'nofollow',
-				validate: false,
-			}
+		embed: {
+			class: Embed,
+			inlineToolbar: true,
+			tunes: ['alignmentSetting'],
 		},
 		quote: {
 			class: Quote,
 			inlineToolbar: true,
-			shortcut: 'CMD+SHIFT+O',
-			config: {
-				quotePlaceholder: 'Текст цитаты',
-				captionPlaceholder: 'Автор',
-			},
+			tunes: ['alignmentSetting'],
 		},
-		Marker: {
-			class: Marker,
-			shortcut: 'CMD+SHIFT+M',
-		},
-		// Incut: Incut, 	// модуль для тестов и разработки
-		carousel: {
-			class: Carousel,
-			config: {
-				endpoints: {
-					byFile: "/imgload/newImgLoad.php",
-				}
-			}
-		},
-		strikethrough: {
-			class: Strikethrough,
-			shortcut: 'CMD+SHIFT+X',
-		},
-		image: {
-			class: ImageTool,
-			config: {
-				endpoints: {
-					byFile: "/imgload/newImgLoad.php",
-					byUrl: "/imgload/newImgLoadURL.php", // доделать
-				}
-			}
-		},
-		delimiter: Delimiter,
-		linkTool: {
-			class: LinkTool,
-			config: {
-				endpoint: "/imgload/newLinkLoad.php",
-			}
-		},
-		header: {
-			class: Header,
+		table: {
+			class: Table,
 			inlineToolbar: true,
-			config: {
-				placeholder: "Заголовок"
-			},
-			shortcut: "CMD+SHIFT+H"
+			tunes: ['alignmentSetting'],
 		},
-		paragraph: {
-			config: {
-				placeholder: "Нажмите Tab для выбора инструмента",
-				inlineToolbar: true
-			}
+		code: {
+			class: CodeTool,
+			inlineToolbar: true,
+			tunes: ['alignmentSetting'],
+		},
+		raw: {
+			class: RawTool,
+			inlineToolbar: true,
+			tunes: ['alignmentSetting'],
+		},
+		checklist: {
+			class: Checklist,
+			inlineToolbar: true,
+			tunes: ['alignmentSetting'],
 		},
 		list: {
 			class: List,
 			inlineToolbar: true,
-			shortcut: "CMD+SHIFT+L"
+			tunes: ['alignmentSetting'],
 		},
-		embed: {
-			class: Embed,
+		header: {
+			class: Header,
+			tunes: ['alignmentSetting'],
+		},
+		delimiter: Delimiter,
+		paragraph: {
+			class: Paragraph,
 			inlineToolbar: false,
+			tunes: ['alignmentSetting'],
 			config: {
-				services: {
-					youtube: true
+				css: {
+					"btnColor": "btn--gray",
 				}
 			}
-		}
-	},
-	i18n: {
-		/**
-		 * @type {I18nDictionary}
-		 */
-		messages: {
-			ui: {
-				"blockTunes": {
-					"toggler": {
-						"Click to tune": "Нажмите, чтобы настроить",
-						"or drag to move": "или перетащите"
-					},
-				},
-				"inlineToolbar": {
-					"converter": {
-						"Convert to": "Конвертировать в"
-					}
-				},
-				"toolbar": {
-					"toolbox": {
-						"Add": "Добавить"
-					}
+		},
+		alignmentSetting: {
+			class: AlignmentBlockTune,
+			config: {
+				default: "center",
+				blocks: {
+					header: 'center',
+					list: 'right'
 				}
-			},
-			toolNames: {
-				"Text": "Параграф",
-				"Carousel": "Сгруппированные картинки",
-				"Image": "Картинка",
-				"Heading": "Заголовок",
-				"List": "Список",
-				"Warning": "Примечание",
-				"Checklist": "Чеклист",
-				"Quote": "Цитата",
-				"Code": "Код",
-				"Delimiter": "Разделитель",
-				"Raw HTML": "HTML-фрагмент",
-				"Table": "Таблица",
-				"Link": "Ссылка",
-				"Marker": "Маркер",
-				"Bold": "Полужирный",
-				"Italic": "Курсив",
-				"InlineCode": "Моноширинный",
-				"Hyperlink": "Ссылка"
-			},
-			tools: {
-				"warning": {
-					"Title": "Название",
-					"Message": "Сообщение",
-				},
-				"link": {
-					"Add a link": "Вставьте ссылку"
-				},
-				"stub": {
-					"The block can not be displayed correctly.": "Блок не может быть отображен"
-				},
-				"list": {
-					"Ordered": "Нумерованный",
-					"Unordered": "Маркированный",
-				},
-				"image": {
-					"With border": "С границей",
-					"With background": "C фоном",
-					"Stretch image": "Растянуть на ширину",
-				},
-				"quote": {
-					"Left alignment": "По левой стороне",
-					"Center alignment": "По центру",
-				},
-				"hyperlink": {
-					"Save": "Сохранить",
-					"Select target": "Выбрать target",
-					"Select rel": "Выброать rel"
-				}
-			},
-			blockTunes: {
-				"delete": {
-					"Delete": "Удалить"
-				},
-				"moveUp": {
-					"Move up": "Переместить вверх"
-				},
-				"moveDown": {
-					"Move down": "Переместить вниз"
-				},
 			},
 		}
 	},
-	onReady: () => {
-		if (newData) {
-			editor.render(newData);
-		}
 
+	data: {
+		"time": 1617715359615,
+		"blocks": [{
+			"type": "checklist",
+			"data": {
+				"items": [{
+					"text": "check1",
+					"checked": false
+				}, {
+					"text": "check2",
+					"checked": false
+				}, {
+					"text": "check3",
+					"checked": false
+				}]
+			},
+			"tunes": {
+				"alignmentSetting": {
+					"alignment": "center"
+				}
+			}
+		}, {
+			"type": "header",
+			"data": {
+				"text": "Header",
+				"level": 2
+			},
+			"tunes": {
+				"alignmentSetting": {
+					"alignment": "left"
+				}
+			}
+		}],
+		"version": "2.20.0"
 	},
-	onChange: () => {
-		// var titleCaption = document.querySelector(".ce-preview");
-		// if (!titleCaption) {
-		// 	editor.blocks.insert("preview", {
-		// 		value: ""
-		// 	}, {}, 0, true);
-		// }
-	}
+	/**
+	 * This Tool will be used as default
+	 */
+	// initialBlock: 'paragraph',
+
+	/**
+	 * Initial Editor data
+	 */
+
+	onReady: function() { 
+	},
+	onChange: function() {
+		console.log('something changed');
+	},
 });
-
-function checkDisplay(numToShow) {
-	let elsInResult = document.querySelectorAll(".bank-card-full");
-	let delCounter = 0
-	let resultTable = document.querySelector('.result-table__list');
-	if (resultTable) {
-		for (let index = 0; index < elsInResult.length; index++) {
-			const element = elsInResult[index];
-			if ($(element).css('display') == 'none' || $(element).css("visibility") == "hidden") {
-				delCounter++
-			}
-			if (index >= numToShow) {
-				elsInResult[index].style.display = "none";
-			} else if ((elsInResult[index].style.display == "none") && (index < numToShow)) {
-				elsInResult[index].style.display = "list-item";
-			}
-		}
-		if (delCounter == elsInResult.length) {
-			resultTable.classList.add("result-is-empty")
-		} else if (resultTable.classList.contains('result-is-empty')) {
-			resultTable.classList.remove("result-is-empty")
-		}
-	}
-
-}
-try {
-	await editor.isReady;
-	/** editor initialization */
-	if (null !== document.getElementsByClassName("ce-block__content")) {
-		var editorBlocks = document.getElementsByClassName("ce-block__content");
-
-		console.log(editorBlocks);
-		setTimeout(
-			function addCollapseBtns() {
-				for (var j = 0; j < editorBlocks.length; j++) {
-					console.log(editorBlocks[j]);
-					if (editorBlocks[j].offsetHeight > 300) {
-						editorBlocks[j].classList.add("collapsed");
-						var collapseElem = document.createElement('div');
-						collapseElem.classList.add("to-collapse");
-						collapseElem.innerHTML = `
-						<span class="to-collapse__btn"> 
-							<i class="icon-icons_main-13"></i>
-							<i class="when-opened">Свернуть</i>
-							<i class="when-closed">Развернуть</i> 
-						</span>
-						`
-						editorBlocks[j].appendChild(collapseElem);
-
-						editorBlocks[j].addEventListener('click', evnt => {
-							if (evnt.currentTarget.classList.contains("is-opened")) {
-								evnt.currentTarget.classList.remove("is-opened");
-							} else {
-								evnt.currentTarget.classList.add("is-opened");
-							}
-						});
-					} 
-				}
-			}
-			, 0);
-
-	}
-} catch (reason) {
-	console.log(`Editor.js initialization failed because of ${reason}`)
-}
-
-
-const testButton = document.getElementById("test-button");
-const output = document.getElementById("output");
-const detail_text = document.getElementById("detail_text");
-const jsonData = document.getElementById("jsonData");
-const authorPick = document.getElementById("author-pick");
 
 // Сохранить
 submitElement.addEventListener("click", () => {
@@ -323,70 +186,3 @@ submitElement.addEventListener("click", () => {
 		detail_text.innerHTML = detailText;
 	});
 });
-
-// Предварительный просмотр.
-$(document).on("click", ".newPreviewbtn", function (e) {
-	e.preventDefault();
-	var nameEl = document.getElementById("lk_name");
-	var prevTextEl = document.getElementById("ce-preview_text");
-	var companyNameEl = document.getElementById("personalPageCompanyName");
-	var companyName = "Имя вашей компании";
-
-	editor.save().then(savedData => {
-		savedDataInput = JSON.stringify(savedData, null, 4);
-		detailText = jsonToHtml(savedData);
-
-		if (!!companyNameEl)
-			companyName = companyNameEl.textContent;
-
-		if (!!nameEl)
-			var name = nameEl.value
-
-		if (!!prevTextEl)
-			var prevText = prevTextEl.value;
-		else
-			var prevText = "";
-
-		var prewHead = '<div class="detailinfo clearfix"><div class="detailinfofirm floatleft">Публикация <a href="#">' + companyName + '</a></div><div class="detailinfolink floatleft"><a href="#"><i class="icon-icons_main-10"></i><span>Все новости компании</span></a></div></div>';
-
-		prevText = '<div class="descrcontent">' + prevText + '</div>';
-
-		$('.previewBlock').empty().append('<h1>' + name + '</h1><div class="block-default in block-shadow content-margin previewBlock detailblock"><div class="row">' + prewHead + prevText + detailText + '</div></div>');
-	});
-
-});
-// // тест перед сохранением
-if (testButton) {
-	testButton.addEventListener("click", () => {
-		editor.save().then(savedData => {
-			savedDataInput = JSON.stringify(savedData, null, 4);
-			detailText = jsonToHtml(savedData);
-			console.log(savedDataInput);
-
-			detail_text.innerHTML = detailText;
-			jsonData.innerHTML = savedDataInput;
-		});
-	});
-}
-// if (authorPick) {
-// 	authorPick.onchange 
-// 	const pickAuthor = document.getElementById('author-change');
-// 	const pickCompany = document.getElementById('authorCompany-change');
-
-// 	https://betterprogramming.pub/how-onchange-differs-between-react-and-vanilla-javascript-90b56d6a340a
-// }
-
-
-/** <!--~~~~~~~ Чеклист ~~~~~~~~~-->
- *
- * 1) Переделать заголовок ☑
- * 2) В идеале сделать свой компонент под анонс, либо вариант переделать первый параграф под анонс ☑
- * 3) Анонс использовать по умолчанию? Настроил скрипт который можно включать/выключать, найти зависимости для анонса ☑
- * 4) Модуль загрузки картинок ☑
- * 5) Первая загруженная картинка будет анонсом и заглавной одновременно? -> заглавную не будем трогать, пока не будет ясен функционал ☑
- * 6) Настройки картинки (вширь или врезка) ☑
- * 7) Почему-то не работают обычные ссылки -> поправил ☑
- * 8) Парсим теги?
- * 9) Модерацию из личного кабинета ☑
- * 10) История изменений
-//  <!--~~~~~~~ Чеклист ~~~~~~~~~-->  */

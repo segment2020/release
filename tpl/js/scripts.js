@@ -1,4 +1,20 @@
-$(document).ready(function () { 
+$(document).ready(function () {
+
+	if (null !== document.getElementsByClassName("expand-block")) {
+		var editorBlocks = document.getElementsByClassName("expand-block");
+		for (var j = 0; j < editorBlocks.length; j++) {
+			console.log(editorBlocks[j].offsetHeight);
+			editorBlocks[j].querySelector('.to-expand__btn').addEventListener('click', evnt => {
+				if (evnt.currentTarget.parentElement.classList.contains("is-opened")) {
+					console.log(evnt.currentTarget);
+					evnt.currentTarget.parentElement.classList.remove("is-opened");
+				} else {
+					console.log(evnt.currentTarget);
+					evnt.currentTarget.parentElement.classList.add("is-opened");
+				}
+			});
+		}
+	}
 
 	//	Галерея материала из редактора
 	$(".post_gallery__item").fancybox();
