@@ -233,23 +233,24 @@
 
 <?
 ?>
- 
-<!-- <script src="/tpl/js/editor/editor-incut.js"></script> -->
+
 <!-- компонент для разработки -->
- 
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.20.0/dist/editor.min.js"></script>
-<script src="/tpl/js/editor/bundle1.js"></script>
-<script src="/tpl/js/editor/bundle2.js"></script>
-<script src="/tpl/js/editor/bundle3.js"></script>
-<script src="/tpl/js/editor/bundle4.js"></script> 
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/editorjs-header-with-anchor@latest"></script>
+<!-- <script src="/tpl/js/editor/editor-incut.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/editorjs-text-alignment-blocktune@latest"></script> 
+<script src="/tpl/js/editor/editor-my-tool.js"></script>
+<script src="/tpl/js/editor/editor-header.js"></script>
+<script src="/tpl/js/editor/editor-image.js"></script>
+<script src="/tpl/js/editor/editor-delimiter.js"></script>
+<script src="/tpl/js/editor/editor-list.js"></script>
+<script src="/tpl/js/editor/editor-checklist.js"></script>
+<script src="/tpl/js/editor/editor-embed.js"></script>
+<script src="/tpl/js/editor/editor-link.js"></script>
+<script src="/tpl/js/editor/editor-gallery.js"></script>
+<script src="/tpl/js/editor/editor-marker.js"></script>
+<script src="/tpl/js/editor/editor-strike.js"></script>
+<script src="/tpl/js/editor/editor-quote.js"></script>
+<script src="/tpl/js/editor/editor-Hyperlink.js"></script>
+<script src="/tpl/js/editor/editor.js"></script>
 <script>
     var decodeEntities = (function() {
 
@@ -396,9 +397,8 @@
                     }
                     articleHTML += `</div></div>`;
                     break;
-                case "paragraph":
-
-                    if (obj.data.alignment == "center") {
+                case "paragraph": 
+                    if (obj.tunes.anyTuneName.alignment == "center") {
                         pStyle = "is-collapsed";
                         pExpand = "<div class='to-expand__btn'><i class='icon-icons_main-08'></i><span class='when-opened'>Свернуть</span><span class='when-closed'>Развернуть</span></div>"
                         articleHTML += `<div class="expand-block ${pStyle}"><p class="post_caption">${obj.data.text}</p> ${pExpand}</div>`
@@ -408,56 +408,69 @@
                         pExpand = "";
                         articleHTML += `<p class="post_caption">${obj.data.text}</p>`
                         break;
+                    } 
+                case "image":
+                    stretched = obj.data.stretched ? " post_image--stretched" : "";
+                    withBorder = obj.data.withBorder ? " post_image--withBorder" : "";
+                    withBackground = obj.data.withBackground ? " post_image--withBackground" : "";
+                    caption = obj.data.caption ? `<div class="post_image--caption"> <i>${obj.data.caption}</i> </div>` : "";
+                    articleHTML += `<a href="${obj.data.file.url}" data-fancybox="gallery"><div class="post_image${stretched}${withBorder}${withBackground}"> <img src="${obj.data.file.url}" alt="${obj.data.caption}"/> ${caption}</div></a>`;
+                    break;
+                case "delimiter":
+                    articleHTML += `<div class="post_delimiter post_block"></div>`
+                    break;
+                case "linkTool":
+                    articleHTML += `<a class="link-tool__content link-tool__content--rendered" target="_blank" rel="nofollow noindex noreferrer" href="${obj.data.link}"><div class="link-tool__title">${obj.data.meta.title}</div><p class="link-tool__description">${obj.data.meta.description}</p></a>`
+                    break;
+                case "list":
+                    if (obj.data.style == "ordered") {
+                        listStyle = "ol";
                     }
-
-                    case "image":
-                        stretched = obj.data.stretched ? " post_image--stretched" : "";
-                        withBorder = obj.data.withBorder ? " post_image--withBorder" : "";
-                        withBackground = obj.data.withBackground ? " post_image--withBackground" : "";
-                        caption = obj.data.caption ? `<div class="post_image--caption"> <i>${obj.data.caption}</i> </div>` : "";
-                        articleHTML += `<a href="${obj.data.file.url}" data-fancybox="gallery"><div class="post_image${stretched}${withBorder}${withBackground}"> <img src="${obj.data.file.url}" alt="${obj.data.caption}"/> ${caption}</div></a>`;
-                        break;
-                    case "delimiter":
-                        articleHTML += `<div class="post_delimiter post_block"></div>`
-                        break;
-                    case "linkTool":
-                        articleHTML += `<a class="link-tool__content link-tool__content--rendered" target="_blank" rel="nofollow noindex noreferrer" href="${obj.data.link}"><div class="link-tool__title">${obj.data.meta.title}</div><p class="link-tool__description">${obj.data.meta.description}</p></a>`
-                        break;
-                    case "list":
-                        if (obj.data.style == "ordered") {
-                            listStyle = "ol";
-                        }
-                        if (obj.data.style == "unordered") {
-                            listStyle = "ul";
-                        }
-                        articleHTML += `<${listStyle} class="list__block">`;
-                        for (var i = 0; i < obj.data.items.length; i++) {
-                            articleHTML += `<li class="list__item">${obj.data.items[i]}</li>`;
-                        }
-                        articleHTML += `</${listStyle}>`;
-                        break;
-                    case "quote":
-                        if (obj.data.alignment == "left") {
-                            quoteStyle = "post_quote--default";
-                        }
-                        if (obj.data.alignment == "center") {
-                            quoteStyle = "post_quote--centered";
-                        }
-                        articleHTML += `<blockquote class="post_quote ${quoteStyle}"><div class="block-quote__content"><svg class="icon-entry_quote"><use xlink:href="#icon-entry_quote"></use></svg> 
-                <div class="block-quote__text">${obj.data.text}</div>
-                <div class="block-quote__author"><div class="block-quote__author-content"><div class="block-quote__author-name">${obj.data.caption}</div></div></div></div></blockquote>`
-                        break;
-                    case "warning":
-                        articleHTML += "блок warning не обработан"
-                        break;
-                    case "checklist":
-                        articleHTML += "блок checklist не обработан"
-                        break;
-                    case "embed":
-                        articleHTML += `<div class="block-default block-shadow"><div class="videoifame"><iframe width="${obj.data.width}" height="${obj.data.height}" src="${obj.data.embed}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>`
-                        break;
-                    default:
-                        return "";
+                    if (obj.data.style == "unordered") {
+                        listStyle = "ul";
+                    }
+                    if (obj.tunes.anyTuneName.alignment == "center") {
+                        pStyle = "is-collapsed";
+                        pExpand = "<div class='to-expand__btn'><i class='icon-icons_main-08'></i><span class='when-opened'>Свернуть</span><span class='when-closed'>Развернуть</span></div>"
+                        beforeList = `<div class="expand-block ${pStyle}">`
+                        afterList = `${pExpand}</div>` 
+                    } else {
+                        pStyle = "";
+                        pExpand = "";
+                        beforeList =  `<p class="post_caption">`
+                        afterList = `</div>` 
+                    }
+                    
+                    articleHTML += beforeList;
+                    articleHTML += `<${listStyle} class="list__block">`;
+                    for (var i = 0; i < obj.data.items.length; i++) {
+                        articleHTML += `<li class="list__item">${obj.data.items[i]}</li>`;
+                    }
+                    articleHTML += `</${listStyle}>`; 
+                    articleHTML += afterList;
+                    break;
+                case "quote":
+                    if (obj.data.alignment == "left") {
+                        quoteStyle = "post_quote--default";
+                    }
+                    if (obj.data.alignment == "center") {
+                        quoteStyle = "post_quote--centered";
+                    }
+                    articleHTML += `<blockquote class="post_quote ${quoteStyle}"><div class="block-quote__content"><svg class="icon-entry_quote"><use xlink:href="#icon-entry_quote"></use></svg> 
+            <div class="block-quote__text">${obj.data.text}</div>
+            <div class="block-quote__author"><div class="block-quote__author-content"><div class="block-quote__author-name">${obj.data.caption}</div></div></div></div></blockquote>`
+                    break;
+                case "warning":
+                    articleHTML += "блок warning не обработан"
+                    break;
+                case "checklist":
+                    articleHTML += "блок checklist не обработан"
+                    break;
+                case "embed":
+                    articleHTML += `<div class="block-default block-shadow"><div class="videoifame"><iframe width="${obj.data.width}" height="${obj.data.height}" src="${obj.data.embed}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>`
+                    break;
+                default:
+                    return "";
             }
         });
 
@@ -512,7 +525,7 @@
     const output = document.getElementById("output");
     const detail_text = document.getElementById("detail_text");
     const jsonData = document.getElementById("jsonData");
-    const authorPick = document.getElementById("author-pick");
+    const authorPick = document.getElementById("author-pick"); 
 
     // Предварительный просмотр.
     $(document).on("click", ".newPreviewbtn", function(e) {

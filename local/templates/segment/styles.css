@@ -377,7 +377,33 @@ div.detailcontent img {
     margin-bottom: 20px;
     overflow: hidden;
 }
+.ce-is-collapsed { 
+    position: relative;
+    overflow: hidden;
+    max-height: 5.4em; 
+    margin-bottom: 1em;
+}
 
+.ce-is-collapsed::before,
+.ce-is-collapsed::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 1em;
+	opacity: .1;
+	font-size: 8px;
+	border: 1px solid;
+	border-bottom: 0px;
+}
+
+.ce-is-collapsed::before {
+	top: auto;
+    bottom: 0;
+	border-top: 0px;
+	border-bottom: 1px solid;
+}
 .expand-block.is-collapsed {
     padding-top: 2em;
     position: relative;
@@ -446,8 +472,9 @@ div.detailcontent img {
     display: none;
 }
 
-.ce-settings__plugin-zone>div {
+.ce-settings__plugin-zone>div:not(.cdx-list-settings) {
     display: flex;
+    flex-wrap: wrap;
 } 
 
 .cdx-settings-button:last-child {

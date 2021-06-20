@@ -38,15 +38,24 @@ if (!newMaterial && !isJsonError) {
 	} else {
 		var submitElement = document.getElementById("addElement");
 		newData = {
-			"blocks": [
-				{
-					"type": "paragraph",
-					"data": {
-						"text": ""
-					}
+			"id": "84VEg_jA7l",
+			"type": "list",
+			"data": {
+				"style": "ordered",
+				"items": [
+					"123123",
+					"12321",
+					"3123123123123<br>"
+				]
+			},
+			"tunes": {
+				"alignmentSetting": {
+					"alignment": "right"
+				},
+				"anyTuneName": {
+					"alignment": "center"
 				}
-			],
-			"version": "2.19.1"
+			}
 		};
 	}
 
@@ -54,127 +63,207 @@ if (!newMaterial && !isJsonError) {
 
 const ImageTool = window.ImageTool;
 
-var editor = new EditorJS({
-	/**
-	 * Wrapper of Editor
-	 */
-	holder: 'js-editor',
-
-	/**
-	 * Tools list
-	 */
+const editor = new EditorJS({
+	holder: "js-editor",
+	autofocus: false,
+	hideToolbar: true,
+	inlineToolbar: ['bold', 'italic', 'hyperlink', 'Marker', 'strikethrough'],
 	tools: {
-		embed: {
-			class: Embed,
-			inlineToolbar: true,
-			tunes: ['alignmentSetting'],
-		},
-		quote: {
-			class: Quote,
-			inlineToolbar: true,
-			tunes: ['alignmentSetting'],
-		},
-		table: {
-			class: Table,
-			inlineToolbar: true,
-			tunes: ['alignmentSetting'],
-		},
-		code: {
-			class: CodeTool,
-			inlineToolbar: true,
-			tunes: ['alignmentSetting'],
-		},
-		raw: {
-			class: RawTool,
-			inlineToolbar: true,
-			tunes: ['alignmentSetting'],
-		},
-		checklist: {
-			class: Checklist,
-			inlineToolbar: true,
-			tunes: ['alignmentSetting'],
+
+		paragraph: {
+			// class: Paragraph, // модуль для тестов и разработки
+			config: {
+				placeholder: "Нажмите Tab для выбора инструмента",
+				inlineToolbar: true
+			},
+			tunes: ['anyTuneName'],
 		},
 		list: {
 			class: List,
 			inlineToolbar: true,
-			tunes: ['alignmentSetting'],
+			shortcut: "CMD+SHIFT+L",
+			tunes: ['anyTuneName'],
+		},
+		anyTuneName: {
+			class: AlignmentBlockTune,
+			config: {
+				default: "left",
+				blocks: {
+					header: 'left',
+					list: 'left'
+				}
+			},
+		},
+		// Incut: Incut, 	// модуль для тестов и разработки
+		hyperlink: {
+			class: Hyperlink,
+			config: {
+				shortcut: 'CMD+L',
+				target: '_blank',
+				rel: 'nofollow',
+				validate: false,
+			}
+		},
+		quote: {
+			class: Quote,
+			inlineToolbar: true,
+			shortcut: 'CMD+SHIFT+O',
+			config: {
+				quotePlaceholder: 'Текст цитаты',
+				captionPlaceholder: 'Автор',
+			},
+		},
+		Marker: {
+			class: Marker,
+			shortcut: 'CMD+SHIFT+M',
+		},
+		carousel: {
+			class: Carousel,
+			config: {
+				endpoints: {
+					byFile: "/imgload/newImgLoad.php",
+				}
+			}
+		},
+		strikethrough: {
+			class: Strikethrough,
+			shortcut: 'CMD+SHIFT+X',
+		},
+		// image: Incut,
+		image: {
+			class: ImageTool,
+			config: {
+				endpoints: {
+					byFile: "/imgload/newImgLoad.php",
+					byUrl: "/imgload/newImgLoadURL.php", // доделать
+				}
+			}
+		},
+		delimiter: Delimiter,
+		linkTool: {
+			class: LinkTool,
+			config: {
+				endpoint: "/imgload/newLinkLoad.php",
+			}
 		},
 		header: {
 			class: Header,
-			tunes: ['alignmentSetting'],
-		},
-		delimiter: Delimiter,
-		paragraph: {
-			class: Paragraph,
-			inlineToolbar: false,
-			tunes: ['alignmentSetting'],
+			inlineToolbar: true,
 			config: {
-				css: {
-					"btnColor": "btn--gray",
+				placeholder: "Заголовок"
+			},
+			shortcut: "CMD+SHIFT+H"
+		},
+		embed: {
+			class: Embed,
+			inlineToolbar: false,
+			config: {
+				services: {
+					youtube: true
 				}
 			}
-		},
-		alignmentSetting: {
-			class: AlignmentBlockTune,
-			config: {
-				default: "center",
-				blocks: {
-					header: 'center',
-					list: 'right'
+		}
+	},
+	i18n: {
+		/**
+		 * @type {I18nDictionary}
+		 */
+		messages: {
+			ui: {
+				"blockTunes": {
+					"toggler": {
+						"Click to tune": "Нажмите, чтобы настроить",
+						"or drag to move": "или перетащите"
+					},
+				},
+				"inlineToolbar": {
+					"converter": {
+						"Convert to": "Конвертировать в"
+					}
+				},
+				"toolbar": {
+					"toolbox": {
+						"Add": "Добавить"
+					}
 				}
+			},
+			toolNames: {
+				"Text": "Параграф",
+				"Carousel": "Сгруппированные картинки",
+				"Image": "Картинка",
+				"Heading": "Заголовок",
+				"List": "Список",
+				"Warning": "Примечание",
+				"Checklist": "Чеклист",
+				"Quote": "Цитата",
+				"Code": "Код",
+				"Delimiter": "Разделитель",
+				"Raw HTML": "HTML-фрагмент",
+				"Table": "Таблица",
+				"Link": "Ссылка",
+				"Marker": "Маркер",
+				"Bold": "Полужирный",
+				"Italic": "Курсив",
+				"InlineCode": "Моноширинный",
+				"Hyperlink": "Ссылка"
+			},
+			tools: {
+				"warning": {
+					"Title": "Название",
+					"Message": "Сообщение",
+				},
+				"link": {
+					"Add a link": "Вставьте ссылку"
+				},
+				"stub": {
+					"The block can not be displayed correctly.": "Блок не может быть отображен"
+				},
+				"list": {
+					"Ordered": "Нумерованный",
+					"Unordered": "Маркированный",
+				},
+				"image": {
+					"With border": "С границей",
+					"With background": "C фоном",
+					"Stretch image": "Растянуть на ширину",
+				},
+				"quote": {
+					"Left alignment": "По левой стороне",
+					"Center alignment": "По центру",
+				},
+				"hyperlink": {
+					"Save": "Сохранить",
+					"Select target": "Выбрать target",
+					"Select rel": "Выброать rel"
+				}
+			},
+			blockTunes: {
+				"delete": {
+					"Delete": "Удалить"
+				},
+				"moveUp": {
+					"Move up": "Переместить вверх"
+				},
+				"moveDown": {
+					"Move down": "Переместить вниз"
+				},
 			},
 		}
 	},
+	onReady: () => {
+		if (newData) {
+			editor.render(newData);
+		}
 
-	data: {
-		"time": 1617715359615,
-		"blocks": [{
-			"type": "checklist",
-			"data": {
-				"items": [{
-					"text": "check1",
-					"checked": false
-				}, {
-					"text": "check2",
-					"checked": false
-				}, {
-					"text": "check3",
-					"checked": false
-				}]
-			},
-			"tunes": {
-				"alignmentSetting": {
-					"alignment": "center"
-				}
-			}
-		}, {
-			"type": "header",
-			"data": {
-				"text": "Header",
-				"level": 2
-			},
-			"tunes": {
-				"alignmentSetting": {
-					"alignment": "left"
-				}
-			}
-		}],
-		"version": "2.20.0"
 	},
-	/**
-	 * This Tool will be used as default
-	 */
-	// initialBlock: 'paragraph',
-
-	/**
-	 * Initial Editor data
-	 */
-
-	onReady: function() { 
-	},
-	onChange: function() {
-		console.log('something changed');
-	},
+	onChange: () => {
+		// var titleCaption = document.querySelector(".ce-preview");
+		// if (!titleCaption) {
+		// 	editor.blocks.insert("preview", {
+		// 		value: ""
+		// 	}, {}, 0, true);
+		// }
+	}
 });
 
 // Сохранить
@@ -186,3 +275,4 @@ submitElement.addEventListener("click", () => {
 		detail_text.innerHTML = detailText;
 	});
 });
+
