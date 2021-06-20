@@ -235,8 +235,7 @@
 ?>
 
 <!-- компонент для разработки -->
-<!-- <script src="/tpl/js/editor/editor-incut.js"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/editorjs-text-alignment-blocktune@latest"></script> 
+<!-- <script src="/tpl/js/editor/editor-incut.js"></script> --> 
 <script src="/tpl/js/editor/editor-my-tool.js"></script>
 <script src="/tpl/js/editor/editor-header.js"></script>
 <script src="/tpl/js/editor/editor-image.js"></script>
