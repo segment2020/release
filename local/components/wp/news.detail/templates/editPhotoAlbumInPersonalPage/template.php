@@ -244,7 +244,7 @@ elseif (IBLOCK_ID_GALLERY_VIDEO === (int)$arResult['IBLOCK_ID'])
 					<input type="radio" id="lk_videoLinkRadio" checked name='radio'>
 					<label class="control-label mainlabel" for="lk_videoLinkRadio">Оставить ссылку</label>
 					<br>
-					<label class="control-label mainlabel" for="lk_videoLink">Ссылка на видео iFrame</label>
+					<label class="control-label mainlabel" for="lk_videoLink">Ссылка на видео</label>
 					<input type="text" class="form-control" id="lk_videoLink" name='PROPERTY[<? echo $videoLinkPropertyId; ?>][0]' value="<? echo $arResult['PROPERTIES']['videoiFrame']['VALUE']; ?>">
 				</div>
 			</div>

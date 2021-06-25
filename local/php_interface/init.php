@@ -200,7 +200,6 @@ define('PROPERTY_ID_MOVE_TO_IN_LIFE_INDUSTRY', 184); // Перенести в.
 define('PROPERTY_ID_ADD_MATERIAL_IN_LIFE_INDUSTRY', 201); // Доп. материал.
 define('PROPERTY_ID_OLD_ID_IN_LIFE_INDUSTRY', 258); // Старый Id.
 define('PROPERTY_ID_JSON_DATA_IN_LIFE_INDUSTRY', 295);    	 // Json данные 
-
 // IBLOCK_ID_VIEWPOINT
 define('PROPERTY_ID_NAME_IN_VIEWPOINT', 28); // Имя.
 define('PROPERTY_ID_SOURCE_IN_VIEWPOINT', 29); // Источник.
@@ -1875,8 +1874,8 @@ if (!function_exists('sort_FeedOnMain')) {
 // обработка YouTube-ссылки
 function getYoutubeEmbedUrl($url)
 {
-	$shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_]+)\??/i';
-	$longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))(\w+)/i';
+	$shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_\-]+)\??/i';
+	$longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))([a-zA-Z0-9_\-]+)/i';
 
 	if (preg_match($longUrlRegex, $url, $matches)) {
 		$youtube_id = $matches[count($matches) - 1];

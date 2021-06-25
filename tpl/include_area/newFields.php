@@ -436,8 +436,8 @@
                     } else {
                         pStyle = "";
                         pExpand = "";
-                        beforeList =  `<p class="post_caption">`
-                        afterList = `</div>` 
+                        beforeList =  "";
+                        afterList = "";
                     }
                     
                     articleHTML += beforeList;

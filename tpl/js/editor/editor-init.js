@@ -38,24 +38,15 @@ if (!newMaterial && !isJsonError) {
 	} else {
 		var submitElement = document.getElementById("addElement");
 		newData = {
-			"id": "84VEg_jA7l",
-			"type": "list",
-			"data": {
-				"style": "ordered",
-				"items": [
-					"123123",
-					"12321",
-					"3123123123123<br>"
-				]
-			},
-			"tunes": {
-				"alignmentSetting": {
-					"alignment": "right"
-				},
-				"anyTuneName": {
-					"alignment": "center"
+			"blocks": [
+				{
+					"type": "paragraph",
+					"data": {
+						"text": ""
+					}
 				}
-			}
+			],
+			"version": "2.19.1"
 		};
 	}
 

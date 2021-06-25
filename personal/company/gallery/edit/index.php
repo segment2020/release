@@ -273,7 +273,7 @@ elseif (IBLOCK_ID_GALLERY_VIDEO === (int)$_REQUEST['iBlockId'])
 	<div class="row">
 		<div class="col-xs-12"> 
 			<div class="btn btn-blue btnplus minbr" id='insertLink'>
-				<span class="plus text-center">+</span>вставить код iFrame
+				<span class="plus text-center">+</span>вставить ссылку на видео
 			</div>
 		</div>
 
